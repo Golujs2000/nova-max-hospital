@@ -1,0 +1,117 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper: check if user is authenticated admin
+    function isAdmin() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/staff/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/staff/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Helper: check if user is authenticated staff or admin
+    function isStaff() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/staff/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/staff/$(request.auth.uid)).data.role in ['admin', 'staff'];
+    }
+
+    // PUBLIC READ collections
+    match /doctors/{doc} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /blogs/{doc} {
+      allow read: if true;
+      allow write: if isStaff();
+    }
+
+    match /gallery/{doc} {
+      allow read: if true;
+      allow write: if isStaff();
+    }
+
+    match /galleryFolders/{doc} {
+      allow read: if true;
+      allow write: if isStaff();
+    }
+
+    match /hospitalDepartments/{doc} {
+      allow read: if true;
+      allow write: if isStaff();
+    }
+
+    match /hospitalServices/{doc} {
+      allow read: if true;
+      allow write: if isStaff();
+    }
+
+    match /surgicalServices/{doc} {
+      allow read: if true;
+      allow write: if isStaff();
+    }
+
+    match /criticalCare/{doc} {
+      allow read: if true;
+      allow write: if isStaff();
+    }
+
+    match /patientFacilities/{doc} {
+      allow read: if true;
+      allow write: if isStaff();
+    }
+
+    match /diagnostics/{doc} {
+      allow read: if true;
+      allow write: if isStaff();
+    }
+
+    match /treatments/{doc} {
+      allow read: if true;
+      allow write: if isStaff();
+    }
+
+    match /settings/{doc} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /siteStats/{doc} {
+      allow read: if true;
+      allow update: if true; // anyone can increment visit counts
+      allow create: if doc == 'total' || 
+                      doc.matches('^daily_\\d{4}-\\d{2}-\\d{2}$') ||
+                      doc.matches('^monthly_\\d{4}-\\d{2}$') ||
+                      doc.matches('^yearly_\\d{4}$');
+      allow delete: if isAdmin();
+    }
+
+    // PUBLIC WRITE with validation
+    match /appointments/{doc} {
+      allow read: if isStaff();
+      allow create: if request.resource.data.keys().hasAll([
+        'name', 'email', 'phone', 'department', 'date', 'message', 'status', 'createdAt'
+      ]) && request.resource.data.name is string
+        && request.resource.data.email is string
+        && request.resource.data.phone is string
+        && request.resource.data.status == 'pending';
+      allow update, delete: if isStaff();
+    }
+
+    match /messages/{doc} {
+      allow read: if isStaff();
+      allow create: if request.resource.data.keys().hasAll([
+        'name', 'email', 'subject', 'message', 'createdAt'
+      ]) && request.resource.data.name is string
+        && request.resource.data.email is string;
+      allow update, delete: if isStaff();
+    }
+
+    // ADMIN ONLY
+    match /staff/{doc} {
+      allow read: if request.auth != null && (request.auth.uid == doc || isStaff());
+      allow write: if isAdmin() || (request.auth != null && request.auth.uid == doc && !exists(/databases/$(database)/documents/staff/$(request.auth.uid)));
+    }
+  }
+}

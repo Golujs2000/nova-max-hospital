@@ -1,0 +1,366 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-gray-800 antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-primary-50;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #1976D2;
+    border-radius: 9999px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-7 py-3 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-full transition-all duration-200 shadow-btn hover:shadow-card-hover active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-7 py-3 bg-white hover:bg-primary-50 text-primary-600 font-semibold rounded-full border-2 border-primary-600 transition-all duration-200 hover:shadow-card active:scale-95;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center gap-2 px-7 py-3 bg-accent-500 hover:bg-accent-600 text-white font-semibold rounded-full transition-all duration-200 shadow-btn hover:shadow-card-hover active:scale-95;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-card hover:shadow-card-hover border border-primary-100/60 transition-all duration-300;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-heading font-bold text-navy-800;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-gray-500 mt-3 max-w-2xl;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-primary-200 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent transition-all bg-white/80 backdrop-blur-sm placeholder-gray-400;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold bg-primary-100 text-primary-700;
+  }
+
+  .page-hero {
+    @apply bg-gradient-to-r from-primary-800 via-primary-600 to-accent-500 text-white py-16 md:py-24 px-4 relative overflow-hidden shadow-inner;
+  }
+
+  .admin-sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200;
+  }
+
+  .admin-sidebar-link.active {
+    @apply bg-primary-600 text-white shadow-md;
+  }
+
+  .admin-sidebar-link:not(.active) {
+    @apply text-gray-600 hover:bg-primary-50 hover:text-primary-700;
+  }
+
+  /* Blog content styles */
+  .blog-content h2 {
+    @apply text-2xl font-bold text-navy-800 mt-8 mb-4;
+  }
+  .blog-content h3 {
+    @apply text-xl font-semibold text-navy-700 mt-6 mb-3;
+  }
+  .blog-content p {
+    @apply text-gray-700 leading-relaxed mb-4;
+  }
+  .blog-content ul {
+    @apply list-disc list-inside space-y-2 mb-4 text-gray-700;
+  }
+  .blog-content ol {
+    @apply list-decimal list-inside space-y-2 mb-4 text-gray-700;
+  }
+  .blog-content strong {
+    @apply font-semibold text-navy-800;
+  }
+  .blog-content a {
+    @apply text-primary-600 underline hover:text-primary-800;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-500;
+  }
+
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-xl;
+  }
+
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-lg border border-white/60 shadow-card rounded-xl;
+  }
+
+  .section-padding {
+    @apply py-12 md:py-20 px-4 md:px-8;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .section-bg-light {
+    background-color: #e8f4fd;
+  }
+
+  .section-bg-lighter {
+    background-color: #f0f8ff;
+  }
+}
+
+/* React Datepicker overrides */
+.react-datepicker-wrapper {
+  width: 100%;
+}
+.react-datepicker__input-container input {
+  @apply input-field;
+}
+.react-datepicker {
+  @apply font-sans shadow-card-hover border-primary-200 rounded-2xl overflow-hidden;
+}
+.react-datepicker__header {
+  @apply bg-primary-600 text-white border-none;
+}
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+  @apply text-white;
+}
+.react-datepicker__day--selected {
+  @apply bg-primary-600 text-white rounded-lg;
+}
+.react-datepicker__day--today {
+  @apply font-bold;
+}
+.react-datepicker__navigation-icon::before {
+  border-color: white;
+}
+
+/* ── Booking form inline calendar (light panel) ── */
+.booking-calendar .react-datepicker {
+  background: white;
+  border: 1px solid #90caf9;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 100%;
+  font-family: inherit;
+  box-shadow: 0 1px 4px rgba(25, 118, 210, 0.07);
+  box-sizing: border-box;
+}
+.booking-calendar .react-datepicker__month-container {
+  width: 100%;
+}
+.booking-calendar .react-datepicker__header {
+  background: #bbdefb;
+  border-bottom: 1px solid #90caf9;
+  border-radius: 1rem 1rem 0 0;
+  padding: 12px 0 8px;
+}
+.booking-calendar .react-datepicker__current-month {
+  color: #0D47A1;
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+.booking-calendar .react-datepicker__day-name {
+  color: #1976D2;
+  font-size: 0.7rem;
+  font-weight: 600;
+  width: 2rem;
+  line-height: 2rem;
+}
+.booking-calendar .react-datepicker__week {
+  display: flex;
+  justify-content: space-around;
+}
+.booking-calendar .react-datepicker__day-names {
+  display: flex;
+  justify-content: space-around;
+}
+.booking-calendar .react-datepicker__month {
+  background: white;
+  border-radius: 0 0 1rem 1rem;
+  padding: 8px 8px 12px;
+  margin: 0;
+}
+.booking-calendar .react-datepicker__day {
+  color: #374151;
+  font-size: 0.75rem;
+  font-weight: 500;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  border-radius: 50%;
+  margin: 2px;
+  transition: all 0.15s;
+}
+.booking-calendar .react-datepicker__day:hover {
+  background: #bbdefb;
+  color: #0D47A1;
+  border-radius: 50%;
+}
+.booking-calendar .react-datepicker__day--selected,
+.booking-calendar .react-datepicker__day--keyboard-selected {
+  background: #1976D2 !important;
+  color: white !important;
+  font-weight: 800;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.35);
+}
+.booking-calendar .react-datepicker__day--today {
+  color: #1565C0;
+  font-weight: 700;
+}
+.booking-calendar .react-datepicker__day--disabled {
+  color: #d1d5db !important;
+  cursor: not-allowed;
+}
+.booking-calendar .react-datepicker__navigation-icon::before {
+  border-color: #1976D2;
+}
+.booking-calendar .react-datepicker__navigation:hover .react-datepicker__navigation-icon::before {
+  border-color: #0D47A1;
+}
+.booking-calendar .react-datepicker__navigation {
+  top: 14px;
+}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1976D2, #29B6F6);
+  z-index: 9999;
+  transition: width 0.1s linear;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Nav link animated underline */
+.nav-link-line {
+  position: relative;
+  overflow: hidden;
+}
+.nav-link-line::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #29B6F6;
+  border-radius: 2px;
+  transition: width 0.28s ease, left 0.28s ease;
+}
+.nav-link-line:hover::after,
+.nav-link-line.active-link::after {
+  width: 80%;
+  left: 10%;
+}
+
+/* CTA shimmer */
+@keyframes shimmer-sweep {
+  0%   { left: -80%; }
+  100% { left: 130%; }
+}
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+  animation: shimmer-sweep 2.2s infinite;
+  pointer-events: none;
+}
+
+/* Logo ring pulse */
+@keyframes ring-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(25, 118, 210, 0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba(25, 118, 210, 0); }
+}
+.logo-ring {
+  animation: ring-pulse 2.4s ease-in-out infinite;
+}
+
+/* Announcement ticker */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 28s linear infinite;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* Gallery marquee */
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+.marquee-row:hover > div {
+  animation-play-state: paused;
+}
+
+/* Morphing shape animation — smooth organic blob, no corners */
+@keyframes morph-blob {
+  0% {
+    border-radius: 40% 60% 70% 30% / 50% 30% 70% 50%;
+  }
+  25% {
+    border-radius: 70% 30% 50% 50% / 30% 50% 70% 60%;
+  }
+  50% {
+    border-radius: 50% 60% 30% 60% / 70% 40% 50% 40%;
+  }
+  75% {
+    border-radius: 30% 50% 70% 40% / 60% 70% 30% 50%;
+  }
+  100% {
+    border-radius: 40% 60% 70% 30% / 50% 30% 70% 50%;
+  }
+}
+.animate-morph {
+  animation: morph-blob 10s ease-in-out infinite;
+}
+
+/* Icon service card */
+.icon-card {
+  @apply w-14 h-14 rounded-xl flex items-center justify-center bg-primary-100 text-primary-600 transition-all duration-300;
+}
+.icon-card:hover, .group:hover .icon-card {
+  @apply bg-primary-600 text-white shadow-btn;
+}
