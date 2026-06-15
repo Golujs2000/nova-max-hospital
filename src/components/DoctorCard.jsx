@@ -34,18 +34,6 @@ export default function DoctorCard({ doc, accent }) {
             </div>
           )}
 
-          {/* Experience badge */}
-          {doc.experience && (
-            <div className="absolute top-4 left-4 bg-navy-800 border border-navy-700/50 rounded-[5px] px-3 py-2 flex items-center gap-2 shadow-md z-20">
-              <div className="w-8 h-8 rounded bg-amber-500 flex items-center justify-center text-white flex-shrink-0">
-                <FiAward className="w-4 h-4" />
-              </div>
-              <div>
-                <p className="text-white font-black text-sm leading-none">{doc.experience}+ Yrs</p>
-                <p className="text-primary-300 text-[9px] font-bold uppercase tracking-wider mt-0.5">Experience</p>
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Action Buttons */}
@@ -70,10 +58,18 @@ export default function DoctorCard({ doc, accent }) {
         <div>
           {/* Header line with Specialty tag */}
           <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-            <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider ${isOb ? 'bg-rose-50 border border-rose-200 text-rose-700' : 'bg-cyan-50 border border-cyan-200 text-cyan-700'}`}>
-              <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${isOb ? 'bg-rose-500' : 'bg-cyan-500'}`} />
-              {doc.specialty}
-            </span>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider ${isOb ? 'bg-rose-50 border border-rose-200 text-rose-700' : 'bg-cyan-50 border border-cyan-200 text-cyan-700'}`}>
+                <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${isOb ? 'bg-rose-500' : 'bg-cyan-500'}`} />
+                {doc.specialty}
+              </span>
+              {doc.experience && (
+                <span className="inline-flex items-center gap-1 bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                  <FiAward className="w-3.5 h-3.5" />
+                  {doc.experience}+ Yrs Exp
+                </span>
+              )}
+            </div>
             {doc.consultationFee && (
               <span className="text-xs font-semibold text-gray-500 bg-gray-50 border border-gray-100 px-3 py-1 rounded-[5px]">
                 Fee: ₹{doc.consultationFee}

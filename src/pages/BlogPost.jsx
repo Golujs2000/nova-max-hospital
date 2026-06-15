@@ -1,4 +1,4 @@
-﻿// ─────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────
 // pages/BlogPost.jsx
 // Individual blog post page at /blog/:slug.
 // Fetches post by slug (also increments the view counter).
@@ -162,7 +162,7 @@ export default function BlogPost() {
                   </div>
                 </div>
                 <p className="text-gray-500 text-xs leading-relaxed mb-4">
-                  surgical physician at Sarvada Hospito Care specialising in {post.category}.
+                  surgical physician at {siteData.name} specialising in {post.category}.
                 </p>
                 <Link to="/book-appointment" className="btn-primary text-sm py-2.5 w-full justify-center">
                   Book Consultation

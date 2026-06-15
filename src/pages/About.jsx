@@ -13,18 +13,14 @@ export default function About() {
     <>
       <SEO
         title={`About Us — ${siteData.name}`}
-        description={`Learn about Sarvada Hospito Care (A Unit of Servada Hospito Care Pvt. Ltd.) in Kankarbagh, Patna — an ISO 9001:2020 certified hospital offering advanced laparoscopic surgery, ICU, ICCU, dialysis, orthopedic care, and multi-specialty treatment.`}
+        description={`Learn about ${siteData.name} in Digha, Patna — offering expert care in urology, laparoscopy, uro gynecology, male infertility, sexology, and general surgeries.`}
         keywords={[
-          'about Sarvada Hospito Care Patna',
-          'Sarvada Hospito Care Kankarbagh',
+          'about Nova Max Hospital Patna',
+          'Nova Max Hospital Digha',
+          'urologist Patna',
           'laparoscopic surgeon Patna',
-          'multidepartment hospital Patna Bihar',
-          'dialysis centre Patna',
-          'icu iccu hospital Patna',
-          'outstation patient care Patna',
-          'patients from Nepal',
-          'patients from Jharkhand',
-          'patients from UP'
+          'male infertility treatment Patna',
+          'sexology clinic Patna',
         ]}
       />
 
@@ -36,7 +32,7 @@ export default function About() {
               Advanced Surgery. <span className="text-primary-400">Expert Care.</span>
             </h1>
             <p className="text-white/80 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
-              Sarvada Hospito Care (A Unit of Servada Hospito Care Pvt. Ltd.) is Patna's trusted multi-specialty healthcare centre, offering advanced laparoscopic surgery, ICU, ICCU, dialysis, orthopedic surgery, cardiology, neurosurgery, gynecology, and emergency care.
+              {siteData.description}
             </p>
             
             <div className="flex flex-wrap justify-center gap-4">
@@ -63,7 +59,7 @@ export default function About() {
               <div className="rounded-[5px] border border-gray-100 overflow-hidden mb-10">
                 <img
                   src="/hospital-staff.png"
-                  alt="Sarvada Hospito Care — Our Team"
+                  alt={`${siteData.name} — Our Team`}
                   className="w-full h-auto object-cover"
                 />
               </div>
@@ -78,28 +74,28 @@ export default function About() {
               
               <div className="space-y-4 text-gray-600 leading-relaxed text-base sm:text-lg">
                 <p>
-                  Sarvada Hospito Care was established at Anand Palace, Bypass Road, Changer, Kankarbagh, Patna with a focused mission — to bring world-class healthcare, advanced laparoscopic surgeries, and multi-specialty treatments to Bihar.
+                  {siteData.name} was established in Digha, Patna, with a focused mission — to deliver high-quality, trusted healthcare in urology, laparoscopy, male infertility, sexology, and general surgeries to patients in Bihar and surrounding regions.
                 </p>
                 <p>
-                  Managed and run by a team of senior Consultant Physicians, Gastro Surgeons, Gynecologists, Cardiologists, and Orthopedicians with decades of collective clinical experience. Our medical expertise is coupled with a genuine concern for our patients' well-being, supported by a staff dedicated to patient comfort and prompt attention.
+                  Under the leadership of our Director, <strong>Dr. M.K. Sinha</strong>, who has extensive experience practicing urology, laparoscopy, uro gynecology, male infertility, sexology, and general surgeries, our medical expertise is coupled with a genuine concern for patient well-being.
                 </p>
                 <p>
-                  We are proud to have served over <strong className="text-navy-800">5,000 satisfied patients</strong> and performed more than <strong className="text-navy-800">2,000 successful operations</strong>.
+                  Our hospital features a modern modular operation theatre, a fully equipped ICU, a hemodialysis unit, and an in-house pathology lab. We are supported by a dedicated team of doctors and compassionate nursing staff who ensure every patient receives personalized attention and quality treatment.
                 </p>
                 <p>
-                  Today, our reputation extends far beyond Patna. We are the preferred healthcare destination for patients traveling from <strong className="text-navy-800">Nepal</strong>, neighboring states like <strong className="text-navy-800">Jharkhand</strong> and <strong className="text-navy-800">Uttar Pradesh (UP)</strong>, as well as all <strong className="text-navy-800">38 districts of Bihar</strong>, seeking trusted laparoscopic surgeries and liver, pancreas, and stone treatments.
+                  Today, our reputation is built on trust. We are known for our specialized care and remain a preferred healthcare destination for patients from Digha, Patna, and all surrounding areas seeking advanced surgical and clinical solutions.
                 </p>
               </div>
               
               <div className="mt-8 flex flex-wrap gap-3">
                 <div className="flex items-center gap-2 border rounded-full px-4 py-2 text-sm font-medium bg-blue-50 border-blue-200 text-blue-700">
-                  <FiCheckCircle className="w-4 h-4" /> Laparoscopic Surgery
+                  <FiCheckCircle className="w-4 h-4" /> Urology &amp; Stone Treatment
                 </div>
                 <div className="flex items-center gap-2 border rounded-full px-4 py-2 text-sm font-medium bg-primary-50 border-primary-200 text-primary-700">
-                  <FiHeart className="w-4 h-4" /> Stone Treatment
+                  <FiCheckCircle className="w-4 h-4" /> Advanced Laparoscopy
                 </div>
                 <div className="flex items-center gap-2 border rounded-full px-4 py-2 text-sm font-medium bg-teal-50 border-teal-200 text-teal-700">
-                  <FiShield className="w-4 h-4" /> Liver & Pancreas Care
+                  <FiCheckCircle className="w-4 h-4" /> Male Infertility &amp; Sexology
                 </div>
               </div>
             </motion.div>

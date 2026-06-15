@@ -107,7 +107,7 @@ export default function TreatmentDetail() {
     <div className="bg-white min-h-screen font-sans text-gray-800">
       <SEO
         title={`${treatment.name} - ${department.name}`}
-        description={`${treatment.name} at Sarvada Hospito Care, Patna.`}
+        description={`${treatment.name} at ${siteData.name}, Patna.`}
         keywords={[treatment.name, department.name, `${treatment.name} Patna`]}
       />
 
@@ -173,7 +173,7 @@ export default function TreatmentDetail() {
                       <p key={i}>{paragraph}</p>
                     ))
                   ) : (
-                    <p><span className="font-semibold text-navy-900">{treatment.name}</span> is expertly performed at Sarvada Hospito Care under the specialized <Link to={`/services/${slug}`} className="text-primary-600 hover:underline">{department.name}</Link> department by our highly experienced medical team. We adhere to rigorous international safety protocols to ensure optimal clinical outcomes and the highest standard of patient care.</p>
+                    <p><span className="font-semibold text-navy-900">{treatment.name}</span> is expertly performed at {siteData.name} under the specialized <Link to={`/services/${slug}`} className="text-primary-600 hover:underline">{department.name}</Link> department by our highly experienced medical team. We adhere to rigorous safety protocols to ensure optimal clinical outcomes and the highest standard of patient care.</p>
                   )}
                 </div>
               </div>

@@ -1,4 +1,4 @@
-﻿// ─────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────
 // components/admin/GalleryPicker.jsx
 // Modal for selecting an image from the Firebase gallery.
 // Used by AdminBlog and AdminDoctors to pick a featured image
@@ -14,7 +14,7 @@ import { FiX, FiImage, FiCheck } from 'react-icons/fi'
 import { getGallery } from '../../services/gallery'
 
 const LOCAL_PHOTOS = [
-  { id: 'l1', image: '/gallery/hospital-1.jpg', title: 'Sarvada Hospito Care' },
+  { id: 'l1', image: '/gallery/hospital-1.jpg', title: 'Nova Max Hospital' },
   { id: 'l2', image: '/gallery/hospital-2.jpg', title: 'Hospital Building' },
   { id: 'l3', image: '/gallery/hospital-3.jpg', title: 'Medical Facility' },
   { id: 'l4', image: '/gallery/hospital-4.jpg', title: 'Patient Care' },

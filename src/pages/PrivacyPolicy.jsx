@@ -1,4 +1,4 @@
-﻿import { motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import SEO from '../components/SEO'
 import { siteData } from '../data/siteData'
 
@@ -44,7 +44,7 @@ const sections = [
 export default function PrivacyPolicy() {
   return (
     <>
-      <SEO title="Privacy Policy" description="Read Sarvada Hospito Care's privacy policy to understand how we collect, use, and protect your personal information." />
+      <SEO title="Privacy Policy" description={`Read ${siteData.name}'s privacy policy to understand how we collect, use, and protect your personal information.`} />
 
       <section className="page-hero text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="container-max">

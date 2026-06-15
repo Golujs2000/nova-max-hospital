@@ -31,13 +31,13 @@ export default function Doctors() {
     <>
       <SEO
         title="Our Doctors"
-        description="Meet our team of expert doctors and specialists at Sarvada Hospito Care, Patna. View doctor profiles, specialties, and book appointments online."
+        description={`Meet our team of expert doctors and specialists at ${siteData.name}, Patna. View doctor profiles, specialties, and book appointments online.`}
         keywords={['doctors in Patna', 'best doctors Patna', 'specialists Patna Bihar', 'hospital doctors Patna']}
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
-          name: 'Doctors at Sarvada Hospito Care',
-          description: 'Meet our team of expert doctors and specialists at Sarvada Hospito Care, Patna, Bihar.',
+          name: `Doctors at ${siteData.name}`,
+          description: `Meet our team of expert doctors and specialists at ${siteData.name}, Patna, Bihar.`,
           url: `${siteData.url}/doctors`,
         }}
       />

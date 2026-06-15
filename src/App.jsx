@@ -1,6 +1,6 @@
 // ─────────────────────────────────────────────────────────────
 // App.jsx
-// Root router configuration for Sarvada Hospito Care.
+// Root router configuration for Nova Max Hospital.
 // Defines all public and admin routes.
 //
 // Route structure:

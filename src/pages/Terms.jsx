@@ -1,11 +1,11 @@
-﻿import { motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import SEO from '../components/SEO'
 import { siteData } from '../data/siteData'
 
 const sections = [
   {
     title: '1. Acceptance of Terms',
-    content: 'By accessing and using the Sarvada Hospito Care website, you accept and agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our website.',
+    content: `By accessing and using the ${siteData.name} website, you accept and agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our website.`,
   },
   {
     title: '2. Medical Disclaimer',
@@ -17,11 +17,11 @@ const sections = [
   },
   {
     title: '4. Intellectual Property',
-    content: 'All content on this website, including text, images, logos, and graphics, is the property of Sarvada Hospito Care and protected by copyright law. You may not reproduce, distribute, or use our content without prior written permission.',
+    content: `All content on this website, including text, images, logos, and graphics, is the property of ${siteData.name} and protected by copyright law. You may not reproduce, distribute, or use our content without prior written permission.`,
   },
   {
     title: '5. Limitation of Liability',
-    content: 'Sarvada Hospito Care shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of this website or our services, to the maximum extent permitted by applicable law.',
+    content: `${siteData.name} shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of this website or our services, to the maximum extent permitted by applicable law.`,
   },
   {
     title: '6. Privacy',
@@ -33,7 +33,7 @@ const sections = [
   },
   {
     title: '8. Governing Law',
-    content: 'These Terms are governed by the laws of India and the state of Madhya Pradesh. Any disputes shall be subject to the exclusive jurisdiction of courts in Indore, Madhya Pradesh.',
+    content: 'These Terms are governed by the laws of India and the state of Bihar. Any disputes shall be subject to the exclusive jurisdiction of courts in Patna, Bihar.',
   },
   {
     title: '9. Changes to Terms',
@@ -48,7 +48,7 @@ const sections = [
 export default function Terms() {
   return (
     <>
-      <SEO title="Terms & Conditions" description="Read Sarvada Hospito Care's terms and conditions for using our website and services." />
+      <SEO title="Terms & Conditions" description={`Read ${siteData.name}'s terms and conditions for using our website and services.`} />
 
       <section className="page-hero text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="container-max">

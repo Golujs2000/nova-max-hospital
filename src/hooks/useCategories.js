@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getCategoryItems, ALL_COLLECTIONS } from '../services/categories'
 import { getTreatments } from '../services/treatments'
+import { siteSpecialties } from '../data/siteData'
 
 export function useCategories() {
   const [categories, setCategories] = useState([])
@@ -28,7 +29,10 @@ export function useCategories() {
       // Sort globally by order if needed
       unifiedDepartments.sort((a, b) => (a.order || 0) - (b.order || 0))
 
-      return unifiedDepartments
+      if (unifiedDepartments.length > 0) {
+        return unifiedDepartments
+      }
+      return siteSpecialties
     } catch (err) {
       throw err
     }

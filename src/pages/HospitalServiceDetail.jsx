@@ -82,7 +82,7 @@ export default function HospitalServiceDetail() {
     <>
       <SEO
         title={`${service.name} - Services & Facilities`}
-        description={service.description || `Explore details about ${service.name} at Sarvada Hospito Care.`}
+        description={service.description || `Explore details about ${service.name} at ${siteData.name}.`}
         keywords={[`${service.name} Patna`, 'hospital services Patna', 'medical facilities Patna']}
       />
 
@@ -141,7 +141,7 @@ export default function HospitalServiceDetail() {
                   {service.description || 'Dedicated hospital facility and medical service designed to support your treatment and ensure clinical safety.'}
                 </p>
                 <p className="text-sm">
-                  At Sarvada Hospito Care, our facilities are equipped to offer highly reliable clinical outcomes. Under the medical guidance of our panel of senior specialists, we maintain stringent protocols for patient hygiene, comfort, and care.
+                  At {siteData.name}, our facilities are equipped to offer highly reliable clinical outcomes. Under the medical guidance of our panel of senior specialists, we maintain stringent protocols for patient hygiene, comfort, and care.
                 </p>
               </div>
 

@@ -17,11 +17,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { FiArrowRight, FiImage, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { FaUserMd, FaHeartbeat, FaAmbulance, FaCalendarCheck } from 'react-icons/fa'
 import { getGalleryByFolderName } from '../../services/gallery'
+import { siteData } from '../../data/siteData'
 
 const STATS = [
   { value: '5,000+', label: 'Satisfied Patients',    icon: <FaHeartbeat className="w-6 h-6" /> },
-  { value: '2018',   label: 'Year Established',      icon: <FaCalendarCheck className="w-6 h-6" /> },
-  { value: '10+',    label: 'Expert Doctors',        icon: <FaUserMd className="w-6 h-6" /> },
+  { value: '2026',   label: 'Year Established',      icon: <FaCalendarCheck className="w-6 h-6" /> },
+  { value: '5+',    label: 'Expert Doctors',        icon: <FaUserMd className="w-6 h-6" /> },
   { value: '2,000+', label: 'Successful Operations', icon: <FaAmbulance className="w-6 h-6" /> },
 ]
 
@@ -122,7 +123,7 @@ const cleanTitle = (title = '') =>
     .replace(/[-_\s]+\d+$/, '')
     .replace(/[-_]/g, ' ')
     .trim()
-    .replace(/\b\w/g, (c) => c.toUpperCase()) || 'Sarvada Hospito Care'
+    .replace(/\b\w/g, (c) => c.toUpperCase()) || siteData.name
 
 // ── Tiles ─────────────────────────────────────────────────────────────────────
 function MediaRender({ img, className = '', scaleClass = 'group-hover:scale-105' }) {
@@ -231,7 +232,7 @@ export default function GalleryStrip() {
               Modern Clinic <span className="text-primary-600">Infrastructure</span>
             </h2>
             <p className="text-gray-500 text-lg leading-relaxed">
-              Established in 2018, Sarvada Hospito Care provides a calm, welcoming environment designed for your comfort. With a dedicated team of over 10 expert doctors, our infrastructure is optimized for focused consultation and effective surgical healing.
+              Established in 2026, {siteData.name} provides a calm, welcoming environment designed for your comfort. With a dedicated team of over 5 expert doctors, our infrastructure is optimized for focused consultation and effective surgical healing.
             </p>
           </motion.div>
 

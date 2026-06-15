@@ -12,6 +12,7 @@ import { FiSearch, FiCalendar, FiUser, FiEye, FiTag } from 'react-icons/fi'
 import SEO from '../components/SEO'
 import { useBlogs } from '../hooks/useBlog'
 import { formatDate, truncate } from '../utils/helpers'
+import { siteData } from '../data/siteData'
 
 const ALL = 'All'
 
@@ -35,7 +36,7 @@ export default function Blog() {
     <>
       <SEO
         title="Health Blog"
-        description="Read expert health tips, medical guides, and patient stories from our specialist medical team at Sarvada Hospito Care."
+        description={`Read expert health tips, medical guides, and patient stories from our specialist medical team at ${siteData.name}.`}
       />
 
       {/* Hero */}

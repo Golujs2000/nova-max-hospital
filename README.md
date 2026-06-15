@@ -1,8 +1,8 @@
-# 🏥 Sarvada Hospito Care
+# 🏥 Nova Max Hospital
 
 > **Advanced Laparoscopic, Stone Surgery & Multi-specialty Healthcare | Expert Care in Patna, Bihar**
 
-Official website for **Sarvada Hospito Care** (A Unit of Servada Hospito Care Pvt. Ltd.) — built with React, Vite, Tailwind CSS, and Firebase.
+Official website for **Nova Max Hospital** — built with React, Vite, Tailwind CSS, and Firebase.
 
 ---
 
@@ -10,10 +10,10 @@ Official website for **Sarvada Hospito Care** (A Unit of Servada Hospito Care Pv
 
 | | |
 |---|---|
-| **Hospital** | Sarvada Hospito Care (A Unit of Servada Hospito Care Pvt. Ltd.) |
+| **Hospital** | Nova Max Hospital |
 | **Specialisation** | Advanced Laparoscopy · ICU, ICCU, IPD & OPD Care · Dialysis · Ortho, Spine & Neurosurgery · Urology · Gynecology |
 | **City** | Patna, Bihar |
-| **Website** | [sarvada-hospito-care.web.app](https://sarvada-hospito-care.web.app) |
+| **Website** | [nova-max-hospital-e4412.web.app](https://nova-max-hospital-e4412.web.app) |
 
 ---
 
@@ -280,8 +280,8 @@ Official website for **Sarvada Hospito Care** (A Unit of Servada Hospito Care Pv
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Golujs2000/SARVADA-HOSPITO-CARE-PATNA.git
-cd SARVADA-HOSPITO-CARE-PATNA
+git clone <repository-url>
+cd <project-folder>
 ```
 
 ### 2. Install dependencies
@@ -377,5 +377,5 @@ Manage:
 
 ## 📄 License
 
-© 2026 Sarvada Hospito Care (A Unit of Servada Hospito Care Pvt. Ltd.). All rights reserved.
+© 2026 Nova Max Hospital. All rights reserved.
 # nova-max-hospital

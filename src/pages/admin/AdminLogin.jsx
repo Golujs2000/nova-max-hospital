@@ -15,6 +15,7 @@ import { FiMail, FiLock, FiEye, FiEyeOff, FiAlertCircle } from 'react-icons/fi'
 import toast from 'react-hot-toast'
 import { useAuth } from '../../context/AuthContext'
 import { Helmet } from 'react-helmet-async'
+import { siteData } from '../../data/siteData'
 
 export default function AdminLogin() {
   const { user, userRole, login, resetPassword } = useAuth()
@@ -96,12 +97,12 @@ export default function AdminLogin() {
           {/* Logo */}
           <div className="flex flex-col items-center mb-8">
             <div className="w-16 h-16 rounded-2xl bg-primary-600 flex items-center justify-center shadow-lg mb-4">
-              <span className="text-white font-bold text-2xl">SH</span>
+              <span className="text-white font-bold text-2xl">NM</span>
             </div>
             <h1 className="text-2xl font-bold text-navy-800">
               {resetMode ? 'Reset Password' : 'Admin Login'}
             </h1>
-            <p className="text-gray-500 text-sm mt-1">Sarvada Hospito Care Admin</p>
+            <p className="text-gray-500 text-sm mt-1">{siteData.name} Admin</p>
           </div>
 
           {/* Error */}
@@ -219,7 +220,7 @@ export default function AdminLogin() {
         </div>
 
         <p className="text-center text-white/50 text-xs mt-6">
-          © {new Date().getFullYear()} Sarvada Hospito Care. All rights reserved.
+          © {new Date().getFullYear()} {siteData.name}. All rights reserved.
         </p>
       </motion.div>
     </div>

@@ -232,7 +232,7 @@ function StaffModal({ editingMember, onClose, onSaved }) {
                 onChange={handleChange}
                 required
                 className="input-field pl-9"
-                placeholder="staff@sarvadahospito.com"
+                placeholder="staff@novamaxhospital.com"
               />
             </div>
           </div>

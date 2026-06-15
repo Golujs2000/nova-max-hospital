@@ -62,8 +62,8 @@ export default function Contact() {
     <>
       <SEO
         title={`Contact Us — ${siteData.name}`}
-        description={`Contact Sarvada Hospito Care, Patna at ${siteData.contact.phone}. Located at ${siteData.contact.address}. Book appointments online.`}
-        keywords={['contact Sarvada Hospito Care', 'clinic address Patna', 'Sarvada Hospito Care phone number', 'book surgery appointment Patna']}
+        description={`Contact ${siteData.name}, Patna at ${siteData.contact.phone}. Located at ${siteData.contact.address}. Book appointments online.`}
+        keywords={['contact Nova Max Hospital', 'Nova Max Hospital address', 'Nova Max Hospital phone number', 'book urology appointment Patna']}
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'MedicalClinic',
@@ -73,10 +73,10 @@ export default function Contact() {
           email: siteData.contact.email,
           address: {
             '@type': 'PostalAddress',
-            streetAddress: 'Anand palace, Bypass Rd, changer, Kankarbagh',
-            addressLocality: 'Patna',
-            addressRegion: 'Bihar',
-            postalCode: '800020',
+            streetAddress: siteData.contact.streetAddress || "Multi-speciality Hospital, opposite Women's ITI College, beside HDFC Bank or Ziom, Digha",
+            addressLocality: siteData.contact.addressLocality || 'Patna',
+            addressRegion: siteData.contact.addressRegion || 'Bihar',
+            postalCode: siteData.contact.postalCode || '800011',
             addressCountry: 'IN',
           },
           openingHoursSpecification: [
@@ -172,7 +172,7 @@ export default function Contact() {
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
-                title="Sarvada Hospito Care Map"
+                title={`${siteData.name} Map`}
               />
             </div>
           </motion.div>

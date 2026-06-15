@@ -4,6 +4,7 @@ import {
 } from 'firebase/firestore'
 import { db } from '../firebase/config'
 import { getTreatments } from './treatments'
+import { siteSpecialties } from '../data/siteData'
 
 // Mapping human-readable category names to Firestore collection names
 export const CATEGORY_TO_COLLECTION = {
@@ -58,13 +59,21 @@ export async function getCategoryItemBySlug(slug) {
   })
 
   const results = await Promise.all(promises)
-  const found = results.find(res => res !== null) || null
+  let found = results.find(res => res !== null) || null
   
   if (found) {
     // Attach treatments to the item
     const tQ = query(collection(db, 'treatments'), where('parentId', '==', found.id))
     const tSnap = await getDocs(tQ)
     found.treatments = tSnap.docs.map(d => ({ ...d.data(), id: d.id }))
+  }
+
+  // Fallback to siteSpecialties if not found in Firestore
+  if (!found) {
+    const fallback = siteSpecialties.find(spec => spec.slug === slug)
+    if (fallback) {
+      found = { ...fallback }
+    }
   }
   
   return found
@@ -93,8 +102,11 @@ export async function getDepartments() {
     getTreatments()
   ])
   const allCategories = categoryResults.flat()
-  return allCategories.map(spec => ({
-    ...spec,
-    treatments: treatments.filter(t => t.parentId === spec.id)
-  })).sort((a, b) => (a.order || 0) - (b.order || 0))
+  if (allCategories.length > 0) {
+    return allCategories.map(spec => ({
+      ...spec,
+      treatments: treatments.filter(t => t.parentId === spec.id)
+    })).sort((a, b) => (a.order || 0) - (b.order || 0))
+  }
+  return siteSpecialties
 }

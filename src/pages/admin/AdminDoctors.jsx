@@ -607,14 +607,14 @@ export default function AdminDoctors() {
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Current Position
-                        <span className="text-gray-400 font-normal ml-1 text-xs">(e.g. Director &amp; HOD, Sarvada Hospito Care)</span>
+                        <span className="text-gray-400 font-normal ml-1 text-xs">(e.g. Director &amp; HOD, Nova Max Hospital)</span>
                       </label>
                       <input
                         name="currentPosition"
                         value={form.currentPosition}
                         onChange={handleChange}
                         className="input-field"
-                        placeholder="Director & HOD, Sarvada Hospito Care, Patna"
+                        placeholder="Director & HOD, Nova Max Hospital, Patna"
                       />
                     </div>
                     <div>

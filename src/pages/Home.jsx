@@ -16,7 +16,6 @@ import GalleryStrip from '../components/home/GalleryStrip'
 import FeaturedDoctors from '../components/home/FeaturedDoctors'
 import Testimonials from '../components/home/Testimonials'
 import AppointmentForm from '../components/home/AppointmentForm'
-import PatientReach from '../components/home/PatientReach'
 import { siteData } from '../data/siteData'
 
 const hospitalSchema = {
@@ -30,10 +29,10 @@ const hospitalSchema = {
   email: siteData.contact.email,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Anand palace, Bypass Rd, changer, Kankarbagh',
-    addressLocality: 'Patna',
-    addressRegion: 'Bihar',
-    postalCode: '800020',
+    streetAddress: siteData.contact.streetAddress || "Multi-speciality Hospital, opposite Women's ITI College, beside HDFC Bank or Ziom, Digha",
+    addressLocality: siteData.contact.addressLocality || 'Patna',
+    addressRegion: siteData.contact.addressRegion || 'Bihar',
+    postalCode: siteData.contact.postalCode || '800011',
     addressCountry: 'IN',
   },
   openingHoursSpecification: [
@@ -46,7 +45,7 @@ const hospitalSchema = {
 
 // Trust points shown inside the appointment section
 const TRUST_POINTS = [
-  { icon: FiCheckCircle, text: 'ISO 9001:2020 Certified Hospital' },
+  { icon: FiCheckCircle, text: 'Established in 2026' },
   { icon: FiClock,       text: '24/7 Emergency & Trauma Care' },
   { icon: FiAward,       text: 'Advanced Laparoscopic Surgery' },
   { icon: FiUsers,       text: '5,000+ Satisfied Patients' },
@@ -59,18 +58,16 @@ export default function Home() {
   return (
     <>
       <SEO
-        description="Sarvada Hospito Care (A Unit of Servada Hospito Care Pvt. Ltd.) — ISO 9001:2020 Certified Hospital in Kankarbagh, Patna. Providing advanced laparoscopic surgery, ICU, ICCU, dialysis, gynecology, and 24/7 emergency care."
+        description={siteData.description}
         keywords={[
-          'laparoscopic surgery Patna',
+          'urology hospital Patna',
+          'laparoscopy surgery Digha',
           'kidney stone treatment Patna',
-          'gallbladder stone Patna',
-          'jaundice specialist Patna',
-          'liver specialist Patna',
-          'stone hospital Patna Bihar',
-          'laparoscopy clinic Nepal',
-          'stone specialist Jharkhand',
-          'laparoscopic surgeon UP',
-          'gastro surgeon Bihar'
+          'male infertility doctor Patna',
+          'sexologist in Patna',
+          'general surgeon Digha',
+          'Dr M K Sinha urologist',
+          'Nova Max Hospital Digha'
         ]}
         jsonLd={{
           ...hospitalSchema,
@@ -154,13 +151,9 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="max-w-2xl mx-auto"
+            className="w-full mt-12"
           >
-            <div className="bg-white rounded-2xl shadow-card-hover p-7 md:p-10">
-              <h3 className="font-heading font-black text-navy-800 text-xl mb-1">Book Your Visit</h3>
-              <p className="text-gray-400 text-sm mb-6">Confirmed within 30 minutes.</p>
-              <AppointmentForm />
-            </div>
+            <AppointmentForm />
           </motion.div>
 
         </div>
@@ -168,9 +161,6 @@ export default function Home() {
 
       {/* 6. Facilities & Infrastructure Gallery */}
       <GalleryStrip />
-
-      {/* 7. Regional Patient Reach */}
-      <PatientReach />
 
       {/* 8. Patient Testimonials */}
       <Testimonials />
@@ -207,7 +197,7 @@ export default function Home() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Sarvada Hospito Care Location"
+                title={`${siteData.name} Location`}
               />
             </motion.div>
 

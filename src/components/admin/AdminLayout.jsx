@@ -24,6 +24,7 @@ import {
 import { collection, query, where, onSnapshot } from 'firebase/firestore'
 import { db } from '../../firebase/config'
 import { useAuth } from '../../context/AuthContext'
+import { siteData } from '../../data/siteData'
 
 const NAV_LINKS = [
   { to: '/admin', label: 'Dashboard', icon: FiGrid, end: true },
@@ -66,11 +67,11 @@ export default function AdminLayout() {
       <div className="flex items-center gap-3 px-6 py-5 border-b border-gray-100">
         <img
           src="/logo.png"
-          alt="Sarvada Hospito Care Logo"
+          alt={`${siteData.name} Logo`}
           className="w-10 h-10 object-contain shrink-0"
         />
         <div>
-          <p className="font-bold text-navy-800 text-sm leading-tight">Sarvada Hospito Care</p>
+          <p className="font-bold text-navy-800 text-sm leading-tight">{siteData.name}</p>
           <p className="text-xs text-gray-400">Admin Panel</p>
         </div>
       </div>
@@ -182,10 +183,10 @@ export default function AdminLayout() {
                 <div className="hidden sm:flex items-center gap-2">
                   <img
                     src="/logo.png"
-                    alt="Sarvada Hospito Care Logo"
+                    alt={`${siteData.name} Logo`}
                     className="w-8 h-8 object-contain shrink-0"
                   />
-                  <span className="font-semibold text-navy-800 text-sm">Sarvada Hospito Care</span>
+                  <span className="font-semibold text-navy-800 text-sm">{siteData.name}</span>
                 </div>
               </div>
 

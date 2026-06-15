@@ -2,20 +2,22 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FiCalendar, FiClock, FiActivity, FiPhoneCall, FiCheckCircle } from 'react-icons/fi'
 import { FaUserMd, FaHeartbeat, FaAmbulance, FaAward } from 'react-icons/fa'
+import { siteData, siteDoctors } from '../../data/siteData'
+import DoctorCard from '../DoctorCard'
 
 // Stats shown inside the hero
 const HERO_STATS = [
   { value: '5,000+', label: 'Happy Patients', icon: <FaHeartbeat className="w-5 h-5" /> },
-  { value: '10+',    label: 'Expert Doctors',  icon: <FaUserMd className="w-5 h-5" /> },
+  { value: '5+',    label: 'Expert Doctors',  icon: <FaUserMd className="w-5 h-5" /> },
   { value: '2,000+', label: 'Operations',      icon: <FaAmbulance className="w-5 h-5" /> },
-  { value: 'ISO',    label: '9001:2020',        icon: <FaAward className="w-5 h-5" /> },
+  { value: '2026',    label: 'Established',      icon: <FaAward className="w-5 h-5" /> },
 ]
 
 const TRUST_POINTS = [
-  'Advanced Laparoscopic & Surgical Care',
-  '24/7 Emergency & Trauma Services',
-  'ICU / ICCU / Dialysis Unit',
-  'ISO 9001:2020 Certified Hospital',
+  'Urology & Advanced Laparoscopy',
+  'Modern Modular Operation Theatre & ICU',
+  'Hemodialysis & In-house Pathology Lab',
+  'Male Infertility & Sexology Care',
 ]
 
 export default function HeroSection() {
@@ -58,7 +60,7 @@ export default function HeroSection() {
             </h1>
 
             <p className="text-gray-500 text-base md:text-lg mb-7 max-w-xl leading-relaxed">
-              Sarvada Hospito Care — ISO 9001:2020 certified hospital in Kankarbagh, Patna. Providing world-class multi-specialty healthcare with compassion and advanced technology.
+              {siteData.name} — offering expert care in urology, laparoscopy, uro gynecology, male infertility, sexology, and general surgeries in Digha, Patna.
             </p>
 
             {/* Trust Points */}
@@ -79,7 +81,7 @@ export default function HeroSection() {
                 <FiCalendar className="w-4 h-4" />
                 Book Appointment
               </Link>
-              <a href="tel:7079001600"
+              <a href={`tel:${siteData.contact.phone.replace(/\s+/g, '')}`}
                 className="inline-flex items-center gap-2 bg-white border-2 border-primary-600 text-primary-700 px-7 py-3.5 rounded-full font-bold hover:bg-primary-50 hover:shadow-card transition-all duration-300"
               >
                 <FiPhoneCall className="w-4 h-4" />
@@ -88,47 +90,18 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Right — Doctor Image */}
+          {/* Right — Doctor Profile Card */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="order-1 lg:order-2 relative flex justify-center lg:justify-end"
+            className="order-1 lg:order-2 relative flex justify-center lg:justify-end w-full"
           >
-            {/* Large decorative circle behind image */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-primary-100/70" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] rounded-full bg-primary-200/50" />
-
-            {/* Doctor image */}
-            <div className="relative z-10">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/nova-max-hospital.firebasestorage.app/o/gallery%2F1781313426729_hero%20background%20image.webp?alt=media&token=687cba46-1b9b-4cb7-a8e5-09439bbe1df4"
-                alt="Sarvada Hospito Care Doctors"
-                className="w-full max-w-[420px] h-[480px] object-cover object-top rounded-3xl shadow-card-hover relative z-10"
-              />
-              {/* Floating badge — emergency */}
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
-                className="absolute -left-6 bottom-20 bg-white rounded-2xl px-4 py-3 shadow-card-hover border border-primary-100 flex items-center gap-3 z-20"
-              >
-                <div className="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center shrink-0">
-                  <FaAmbulance className="w-5 h-5 text-red-500" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-navy-800 leading-tight">24/7 Emergency</p>
-                  <p className="text-[10px] text-gray-500">Always Available</p>
-                </div>
-              </motion.div>
-              {/* Floating badge — ISO */}
-              <motion.div
-                animate={{ y: [0, 6, 0] }}
-                transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut', delay: 0.5 }}
-                className="absolute -right-4 top-16 bg-primary-600 text-white rounded-2xl px-4 py-3 shadow-btn z-20"
-              >
-                <p className="text-xs font-bold leading-tight">ISO Certified</p>
-                <p className="text-[10px] text-primary-200">9001:2020</p>
-              </motion.div>
+            {/* Large decorative circle behind card */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-primary-100/50 pointer-events-none" />
+            
+            <div className="relative z-10 w-full max-w-[550px]">
+              <DoctorCard doc={siteDoctors[0]} />
             </div>
           </motion.div>
         </div>

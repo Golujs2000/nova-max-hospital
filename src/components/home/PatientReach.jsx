@@ -21,10 +21,7 @@ export default function PatientReach() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="inline-flex items-center gap-1.5 bg-accent-50 border border-accent-200 text-accent-700 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4 shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent-500 animate-pulse" />
-              Regional Medical Hub
-            </span>
+
             <h2 className="font-heading font-black text-navy-800 text-4xl md:text-5xl leading-tight mt-2">
               Trusted Across <span className="text-primary-600">Borders &amp; Districts</span>
             </h2>

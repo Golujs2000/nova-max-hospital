@@ -18,7 +18,7 @@ import { siteData } from '../data/siteData'
 /**
  * SEO head manager.
  * Props:
- *   title        — page title (appended with " | Sarvada Hospito Care")
+ *   title        — page title (appended with " | Nova Max Hospital")
  *   description  — meta description
  *   image        — absolute OG image URL
  *   type         — OG type: 'website' | 'article'
@@ -37,7 +37,7 @@ export default function SEO({ title, description, image, type = 'website', keywo
   // 1. Dynamic Description Local/Geo-Targeting
   let desc = description || siteData.description
   if (desc && !desc.toLowerCase().includes('patna')) {
-    desc = `${desc.trim()} Available at Sarvada Hospito Care in Kankarbagh, Patna, Bihar.`
+    desc = `${desc.trim()} Available at ${siteData.name} in Digha, Patna, Bihar.`
   }
 
   const img  = image || `${siteData.url}${siteData.seo.ogImage}`
@@ -56,10 +56,10 @@ export default function SEO({ title, description, image, type = 'website', keywo
       dynamicLocalKeywords.push(
         coreName,
         `${coreName} Patna`,
-        `${coreName} Kankarbagh`,
+        `${coreName} Digha`,
         `${coreName} Bihar`,
         `best ${coreName} in Patna`,
-        `top ${coreName} in Kankarbagh`,
+        `top ${coreName} in Digha`,
         `${coreName} treatment Patna`,
         `${coreName} hospital Patna`
       )
@@ -93,16 +93,16 @@ export default function SEO({ title, description, image, type = 'website', keywo
     email: siteData.contact.email,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Anand palace, Bypass Rd, changer, Kankarbagh',
-      addressLocality: 'Patna',
-      addressRegion: 'Bihar',
-      postalCode: '800020',
+      streetAddress: siteData.contact.streetAddress || "Multi-speciality Hospital, opposite Women's ITI College, beside HDFC Bank or Ziom, Digha",
+      addressLocality: siteData.contact.addressLocality || 'Patna',
+      addressRegion: siteData.contact.addressRegion || 'Bihar',
+      postalCode: siteData.contact.postalCode || '800011',
       addressCountry: 'IN'
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: '25.5975',
-      longitude: '85.1636'
+      latitude: '25.6454537',
+      longitude: '85.0936936'
     },
     openingHoursSpecification: [
       {

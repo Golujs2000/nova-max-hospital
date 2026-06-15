@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { FiHeart, FiUsers, FiClock, FiCreditCard, FiShield, FiThumbsUp, FiArrowRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
+import { siteData } from '../../data/siteData'
 
 const features = [
   { icon: FiHeart,     title: 'Comprehensive Care',    desc: 'Holistic treatment covering all medical specialties under one roof.' },
@@ -40,25 +41,11 @@ export default function WhyChooseUs() {
             {/* Main large image */}
             <div className="relative">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/nova-max-hospital.firebasestorage.app/o/gallery%2F1781112398923_SARVADA%20HOSPITO%20CARE01.webp?alt=media&token=b9f5adf4-1e65-43e0-88e5-db1eb9408a4a"
-                alt="Sarvada Hospito Care Facility"
+                src="/gallery/NOVA MAX HOSPITAL.png"
+                alt={`${siteData.name} Facility`}
                 className="w-full h-[420px] object-cover rounded-3xl shadow-card-hover border-4 border-white"
               />
 
-              {/* Overlapping second image — bottom right */}
-              <div className="absolute -bottom-8 -right-6 w-44 h-44 rounded-2xl overflow-hidden border-4 border-white shadow-card-hover z-10">
-                <img
-                  src="https://firebasestorage.googleapis.com/v0/b/nova-max-hospital.firebasestorage.app/o/gallery%2F1781122820016_neemkroli%20baba01.webp?alt=media&token=65aea2b7-ec30-42b6-869a-149501c650f6"
-                  alt="Team"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* ISO Badge */}
-              <div className="absolute -top-5 -left-5 bg-primary-600 text-white rounded-2xl px-5 py-4 shadow-btn text-center z-10">
-                <p className="font-heading font-black text-xl leading-none">ISO</p>
-                <p className="text-[10px] font-bold tracking-widest text-primary-200 mt-0.5">9001:2020</p>
-              </div>
 
               {/* Floating experience badge */}
               <motion.div
@@ -66,7 +53,7 @@ export default function WhyChooseUs() {
                 transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
                 className="absolute top-1/2 -right-8 -translate-y-1/2 bg-white rounded-2xl px-4 py-3 shadow-card-hover border border-primary-100 z-10"
               >
-                <p className="font-heading font-black text-2xl text-primary-600 leading-none">2018</p>
+                <p className="font-heading font-black text-2xl text-primary-600 leading-none">{siteData.founded}</p>
                 <p className="text-[10px] text-gray-500 font-medium">Est. Year</p>
               </motion.div>
             </div>

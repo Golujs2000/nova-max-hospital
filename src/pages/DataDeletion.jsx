@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FiTrash2, FiMail, FiPhone, FiAlertCircle } from 'react-icons/fi'
 import toast from 'react-hot-toast'
@@ -46,7 +46,7 @@ export default function DataDeletion() {
 
   return (
     <>
-      <SEO title="Data Deletion Request" description="Submit a request to delete your personal data from Sarvada Hospito Care's systems." />
+      <SEO title="Data Deletion Request" description={`Submit a request to delete your personal data from ${siteData.name}'s systems.`} />
 
       <section className="page-hero text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="container-max">

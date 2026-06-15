@@ -4,4 +4,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin
 
-Sitemap: https://sarvada-hospito-care.web.app/sitemap.xml
+Sitemap: https://nova-max-hospital-e4412.web.app/sitemap.xml

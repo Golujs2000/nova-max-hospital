@@ -113,7 +113,7 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-3 mb-5">
               <img
                 src="/logo.png"
-                alt="Sarvada Hospito Care Logo"
+                alt={`${siteData.name} Logo`}
                 className="w-14 h-14 object-contain shrink-0"
               />
               <div>
