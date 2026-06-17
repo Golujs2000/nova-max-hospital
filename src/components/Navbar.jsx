@@ -146,7 +146,9 @@ export default function Navbar() {
                 <div className="w-11 h-11 rounded-lg flex items-center justify-center bg-primary-50 p-1 shadow-sm">
                   <img src="/logo.png" alt="Logo" className="h-8 w-auto object-contain rounded-md" />
                 </div>
-                <span className="font-heading font-bold text-xs text-navy-800 tracking-wider">NOVA MAX</span>
+                <span className="font-heading font-extrabold text-sm text-navy-800 tracking-wider uppercase">
+                  Nova Max <span className="text-primary-600">Hospital</span>
+                </span>
               </Link>
               <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2 text-navy-800 hover:text-primary-600">
                 <AnimatePresence mode="wait" initial={false}>

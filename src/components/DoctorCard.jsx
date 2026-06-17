@@ -36,8 +36,8 @@ export default function DoctorCard({ doc, accent }) {
 
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-col gap-2.5 w-full">
+        {/* Action Buttons — Desktop only */}
+        <div className="hidden md:flex flex-col gap-2.5 w-full">
           <Link
             to={`/book-appointment?doctor=${encodeURIComponent(doc.name)}&dept=${encodeURIComponent(doc.specialty)}`}
             className="w-full text-center py-3 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
@@ -128,6 +128,22 @@ export default function DoctorCard({ doc, accent }) {
             </div>
           </div>
         )}
+
+        {/* Action Buttons — Mobile only */}
+        <div className="flex md:hidden flex-col sm:flex-row gap-2.5 w-full mt-5">
+          <Link
+            to={`/book-appointment?doctor=${encodeURIComponent(doc.name)}&dept=${encodeURIComponent(doc.specialty)}`}
+            className="flex-1 text-center py-3 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
+          >
+            <FiCalendar className="w-3.5 h-3.5" /> Book Appointment
+          </Link>
+          <Link
+            to={`/doctors/${doc.slug || doc.id}`}
+            className="flex-1 text-center py-3 border border-primary-600 text-primary-600 hover:bg-primary-50 font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
+          >
+            View Profile <FiChevronRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
 
       </div>
     </div>

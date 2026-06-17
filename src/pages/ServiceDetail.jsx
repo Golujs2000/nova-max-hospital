@@ -154,7 +154,7 @@ export default function ServiceDetail() {
   return (
     <div className="bg-white min-h-screen font-sans text-gray-800">
       <SEO
-        title={`${department.name} - ${siteData.hospitalName}`}
+        title={`${department.name} - ${siteData.name}`}
         description={`${department.description} Recovery: ${department.recoveryTime || 'Varies'}.`}
         keywords={[department.name, `${department.name} Patna`, `${department.name} hospital Bihar`, ...(department.features || [])]}
       />
@@ -356,10 +356,10 @@ export default function ServiceDetail() {
                           </div>
                           
                           <div className="flex-1 min-w-0 pt-1">
-                            <Link to={`/doctors/${doc.slug || doc.id}`} className="font-bold text-navy-900 text-base truncate hover:text-primary-600 transition-colors block">
+                            <Link to={`/doctors/${doc.slug || doc.id}`} className="font-bold text-navy-900 text-base hover:text-primary-600 transition-colors block">
                               {doc.name}
                             </Link>
-                            <p className="text-xs text-gray-500 mt-0.5 truncate">{doc.qualification}</p>
+                            <p className="text-xs text-gray-500 mt-0.5">{doc.qualification}</p>
                             {doc.experience && (
                               <p className="text-[11px] font-semibold text-primary-600 mt-1 uppercase tracking-wider">{doc.experience} Exp</p>
                             )}

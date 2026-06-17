@@ -10,12 +10,24 @@ export function useCategories() {
 
   const fetchAllData = async () => {
     try {
-      // Fetch all 5 category collections concurrently
-      const categoryPromises = ALL_COLLECTIONS.map(col => getCategoryItems(col))
-      const [categoryResults, treatments] = await Promise.all([
-        Promise.all(categoryPromises),
-        getTreatments()
-      ])
+      // Fetch all 5 category collections concurrently with individual try-catch
+      const categoryPromises = ALL_COLLECTIONS.map(async (col) => {
+        try {
+          return await getCategoryItems(col)
+        } catch (colErr) {
+          console.error(`Error fetching category items for ${col}:`, colErr)
+          return []
+        }
+      })
+
+      let treatments = []
+      try {
+        treatments = await getTreatments()
+      } catch (tErr) {
+        console.error('Error fetching treatments:', tErr)
+      }
+
+      const categoryResults = await Promise.all(categoryPromises)
 
       // Flatten categories into a single array
       const allCategories = categoryResults.flat()
@@ -34,7 +46,8 @@ export function useCategories() {
       }
       return siteSpecialties
     } catch (err) {
-      throw err
+      console.error('Error fetching unified categories from Firestore, falling back to siteSpecialties:', err)
+      return siteSpecialties
     }
   }
 

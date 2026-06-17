@@ -48,24 +48,34 @@ export async function getCategoryItemById(collectionName, id) {
 
 // Search ALL category collections for an item with a matching slug
 export async function getCategoryItemBySlug(slug) {
-  // Run queries across all 5 collections concurrently
-  const promises = ALL_COLLECTIONS.map(async (colName) => {
-    const q = query(collection(db, colName), where('slug', '==', slug), limit(1))
-    const snap = await getDocs(q)
-    if (!snap.empty) {
-      return { ...snap.docs[0].data(), id: snap.docs[0].id, _collection: colName }
-    }
-    return null
-  })
+  let found = null
 
-  const results = await Promise.all(promises)
-  let found = results.find(res => res !== null) || null
-  
-  if (found) {
-    // Attach treatments to the item
-    const tQ = query(collection(db, 'treatments'), where('parentId', '==', found.id))
-    const tSnap = await getDocs(tQ)
-    found.treatments = tSnap.docs.map(d => ({ ...d.data(), id: d.id }))
+  try {
+    // Run queries across all 5 collections concurrently
+    const promises = ALL_COLLECTIONS.map(async (colName) => {
+      try {
+        const q = query(collection(db, colName), where('slug', '==', slug), limit(1))
+        const snap = await getDocs(q)
+        if (!snap.empty) {
+          return { ...snap.docs[0].data(), id: snap.docs[0].id, _collection: colName }
+        }
+      } catch (colErr) {
+        console.error(`Error querying collection ${colName} for slug ${slug}:`, colErr)
+      }
+      return null
+    })
+
+    const results = await Promise.all(promises)
+    found = results.find(res => res !== null) || null
+    
+    if (found) {
+      // Attach treatments to the item
+      const tQ = query(collection(db, 'treatments'), where('parentId', '==', found.id))
+      const tSnap = await getDocs(tQ)
+      found.treatments = tSnap.docs.map(d => ({ ...d.data(), id: d.id }))
+    }
+  } catch (err) {
+    console.error('Error fetching category item by slug from Firestore:', err)
   }
 
   // Fallback to siteSpecialties if not found in Firestore

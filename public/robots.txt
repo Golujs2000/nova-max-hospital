@@ -4,4 +4,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin
 
-Sitemap: https://nova-max-hospital-e4412.web.app/sitemap.xml
+Sitemap: https://nova-max-hospital-b048d.web.app/sitemap.xml

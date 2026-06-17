@@ -12,7 +12,7 @@ export const siteData = {
   description:
     'We are Nova Max Private Hospital in Digha, Patna, offering expert care in urology, laparoscopy, general surgery, male infertility, and sexology. Our skilled urologists and surgeons specialize in kidney stone treatment, laparoscopic procedures, and comprehensive urological solutions. With a modern modular operation theatre, ICU, hemodialysis unit, and in-house pathology lab, we deliver advanced medical care you can trust. Our dedicated team of doctors and compassionate nursing staff ensure every patient receives personalized attention and quality treatment. Visit us for exceptional healthcare services in Patna.',
   founded: '2026',
-  url: 'https://nova-max-hospital-e4412.web.app',
+  url: 'https://nova-max-hospital-b048d.web.app',
   logo: '/favicon.png',
 
   // ── Contact & Location ───────────────────────────────────────
@@ -24,6 +24,7 @@ export const siteData = {
     postalCode: '800011',
     phone: '072505 20694',
     phone2: '8252730070',
+    whatsapp: '919334097925',
     phone3: '',
     phone4: '',
     email: 'surgmrityunjay@yahoo.co.in',
@@ -150,117 +151,7 @@ export const siteData = {
   ],
 }
 
-export const siteSpecialties = [
-  {
-    id: 'urology',
-    name: 'Urology',
-    category: 'Surgical Services',
-    icon: '🫘',
-    description: 'Expert care for kidney stones, prostate disorders, bladder issues, and comprehensive urological solutions.',
-    slug: 'urology',
-    treatments: [
-      { name: 'Kidney Stone Treatment (URS / PCNL)', slug: 'kidney-stone-treatment' },
-      { name: 'Prostate Surgery (TURP)', slug: 'prostate-surgery' },
-      { name: 'UTI & Bladder Care', slug: 'uti-bladder-care' },
-      { name: 'Circumcision & Hydrocele Surgery', slug: 'circumcision-hydrocele-surgery' }
-    ]
-  },
-  {
-    id: 'laparoscopy',
-    name: 'Laparoscopy',
-    category: 'Surgical Services',
-    icon: '🔬',
-    description: 'Advanced minimally invasive keyhole surgeries for gallbladder stones, hernia, and appendix with faster recovery.',
-    slug: 'laparoscopy',
-    treatments: [
-      { name: 'Laparoscopic Cholecystectomy (Gallstone)', slug: 'laparoscopic-cholecystectomy' },
-      { name: 'Laparoscopic Hernia Repair (TEP/TAPP)', slug: 'laparoscopic-hernia-repair' },
-      { name: 'Laparoscopic Appendectomy', slug: 'laparoscopic-appendectomy' },
-      { name: 'Diagnostic Laparoscopy', slug: 'diagnostic-laparoscopy' }
-    ]
-  },
-  {
-    id: 'uro-gynecology',
-    name: 'Uro Gynecology',
-    category: 'Hospital Departments',
-    icon: '🤰',
-    description: 'Specialized diagnosis and treatment for pelvic floor disorders, urinary incontinence, and women’s reproductive health.',
-    slug: 'uro-gynecology',
-    treatments: [
-      { name: 'Pelvic Organ Prolapse Treatment', slug: 'pelvic-organ-prolapse' },
-      { name: 'Urinary Incontinence Management', slug: 'urinary-incontinence' },
-      { name: 'Gynaecological Consultation', slug: 'gynaecological-consultation' },
-      { name: 'D&C Procedure', slug: 'dc-procedure' }
-    ]
-  },
-  {
-    id: 'male-infertility',
-    name: 'Male Infertility',
-    category: 'Hospital Departments',
-    icon: '👨',
-    description: 'Comprehensive evaluation, micro-surgeries, and targeted medical therapies for male reproductive health and infertility.',
-    slug: 'male-infertility',
-    treatments: [
-      { name: 'Semen Analysis & Workup', slug: 'semen-analysis-workup' },
-      { name: 'Varicocele Treatment', slug: 'varicocele-treatment' },
-      { name: 'Hormonal Evaluation', slug: 'hormonal-evaluation' }
-    ]
-  },
-  {
-    id: 'sexology',
-    name: 'Sexology',
-    category: 'Hospital Departments',
-    icon: '❤️',
-    description: 'Confidential, expert consultations and evidence-based treatments for sexual health disorders and dysfunctions.',
-    slug: 'sexology',
-    treatments: [
-      { name: 'Erectile Dysfunction Treatment', slug: 'erectile-dysfunction' },
-      { name: 'Premature Ejaculation Therapy', slug: 'premature-ejaculation' },
-      { name: 'Performance Anxiety Counseling', slug: 'performance-anxiety-counseling' }
-    ]
-  },
-  {
-    id: 'general-surgery',
-    name: 'General Surgery',
-    category: 'Surgical Services',
-    icon: '🔪',
-    description: 'Comprehensive surgical care for appendix, hernias, swelling, trauma, and complex abdominal conditions.',
-    slug: 'general-surgery',
-    treatments: [
-      { name: 'Appendectomy', slug: 'appendectomy' },
-      { name: 'Hernia Repair Surgery', slug: 'hernia-repair-surgery' },
-      { name: 'Abscess Drainage & Wound Care', slug: 'abscess-drainage' },
-      { name: 'Lipoma & Cyst Removal', slug: 'lipoma-cyst-removal' }
-    ]
-  },
-  {
-    id: 'icu-emergency-care',
-    name: 'ICU & Emergency Care',
-    category: 'Critical & Emergency Care',
-    icon: '🚨',
-    description: '24/7 high-dependency unit, emergency trauma care, and intensive monitoring managed by expert intensivists.',
-    slug: 'icu-emergency-care',
-    treatments: [
-      { name: '24/7 Emergency ICU Support', slug: 'emergency-icu-support' },
-      { name: 'Ventilator & Oxygen Care', slug: 'ventilator-oxygen-care' },
-      { name: 'Post-Surgical Monitoring (HDU)', slug: 'post-surgical-monitoring' }
-    ]
-  },
-  {
-    id: 'hemodialysis-pathology',
-    name: 'Hemodialysis & Pathology',
-    category: 'Diagnostics',
-    icon: '🧪',
-    description: 'In-house state-of-the-art pathology laboratory and dedicated hemodialysis unit for kidney patient support.',
-    slug: 'hemodialysis-pathology',
-    treatments: [
-      { name: 'Hemodialysis Service', slug: 'hemodialysis-service' },
-      { name: 'Complete Blood Count (CBC)', slug: 'complete-blood-count' },
-      { name: 'Liver & Kidney Function Tests (LFT/KFT)', slug: 'liver-kidney-function-tests' },
-      { name: 'Urinalysis & Diagnostics', slug: 'urinalysis-diagnostics' }
-    ]
-  }
-]
+export { siteSpecialties } from './hospitalServicesData'
 
 export const siteDoctors = [
   {
@@ -268,16 +159,18 @@ export const siteDoctors = [
     name: 'Dr. M.K. Sinha',
     specialty: 'Urology',
     specialties: ['Urology', 'Laparoscopy', 'Uro Gynecology', 'Male Infertility', 'Sexology', 'General Surgery'],
-    qualification: 'MS (General Surgery), M.Ch (Urology)',
+    qualification: 'MBBS, MS (Gen. Surgery) Patna, SR II Urology (Sir J.J. Hospital Mumbai), FL-ASI, USI, AMASI, IMA',
     experience: 30,
     image: '/gallery/DR. M.K. SINHA.png',
-    bio: 'Dr. M.K. Sinha is the Director of Nova Max Hospital. He is a highly experienced urologist and laparoscopic surgeon practicing urology, laparoscopy, uro-gynecology, male infertility, sexology, and general surgeries in Patna.',
+    bio: 'Dr. M.K. Sinha is the Director of Nova Max Hospital. He is a highly experienced Surgeon & Urologist practicing urology, laparoscopy, uro-gynecology, male infertility, sexual health problems, and general surgeries. He previously served as a Urologist, Transplant & Laparoscopic Surgeon at Indraprastha Apollo Hospital (Delhi), Breach Candy Hospital (Mumbai), and Lanka Apollo Hospital (Colombo).',
     availableDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     availableHours: '10:00 AM - 04:00 PM',
     availableTime: '10:00 AM - 04:00 PM',
     phone: '072505 20694',
     email: 'surgmrityunjay@yahoo.co.in',
     featured: true,
+    currentPosition: 'Director & Chief Consultant (Urology & Laparoscopy), Nova Max Hospital',
+    previousPosition: 'Former Urologist, Transplant & Laparoscopic Surgeon, Indraprastha Apollo Hospital, Delhi | Former Surgeon, Breach Candy Hospital, Mumbai | Former Surgeon, Lanka Apollo Hospital, Colombo',
     linkedTreatments: [
       'urology::kidney-stone-treatment',
       'urology::prostate-surgery',

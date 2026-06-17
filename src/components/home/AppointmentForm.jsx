@@ -109,6 +109,32 @@ export default function AppointmentForm() {
     return Object.keys(e).length === 0
   }
 
+  const generateWhatsAppLink = (formData, bookingId) => {
+    const formattedDate = formData.date 
+      ? new Date(formData.date).toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }) 
+      : ''
+    
+    const text = `*NOVA MAX HOSPITAL - APPOINTMENT BOOKING*
+----------------------------------------
+*Booking ID:* ${bookingId}
+*Patient Name:* ${formData.name.trim()}
+*Age:* ${formData.age}
+*Sex:* ${formData.sex}
+*Mobile:* ${formData.phone.trim()}
+*Department:* ${formData.department}
+*Doctor:* ${formData.doctorName || 'Any Specialist'}
+*Date:* ${formattedDate}
+*Time Slot:* ${formData.timeSlot}
+*Mode:* ${formData.mode}
+${formData.address.trim() ? `*Address:* ${formData.address.trim()}` : ''}
+${formData.message.trim() ? `*Symptoms/Message:* ${formData.message.trim()}` : ''}
+
+Please confirm my appointment slot. Thank you!`
+
+    const whatsappNumber = siteData.contact.whatsapp || '919334097925'
+    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!checkHoneypot(form._hp)) return
@@ -135,12 +161,26 @@ export default function AppointmentForm() {
         message:    sanitizeInput(form.message),
       })
       setRateLimit('appointment')
+      
+      const whatsappUrl = generateWhatsAppLink(form, bookingId)
+      
       toast.success('Appointment booked!')
       navigate('/appointment-success', {
-        state: { bookingId, name: form.name, department: form.department, doctorId: form.doctorId, doctorName: form.doctorName, date: form.date, timeSlot: form.timeSlot, mode: form.mode },
+        state: { 
+          bookingId, 
+          name: form.name, 
+          department: form.department, 
+          doctorId: form.doctorId, 
+          doctorName: form.doctorName, 
+          date: form.date?.toISOString(), 
+          timeSlot: form.timeSlot, 
+          mode: form.mode,
+          whatsappUrl
+        },
       })
       setForm(initialState)
-    } catch {
+    } catch (err) {
+      console.error(err)
       toast.error('Failed to book. Please try again.')
     } finally {
       setLoading(false)

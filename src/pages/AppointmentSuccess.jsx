@@ -7,14 +7,33 @@
 // ─────────────────────────────────────────────────────────────
 
 import { useLocation, Link } from 'react-router-dom'
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FiCalendar, FiPhone, FiHome, FiCheckCircle, FiClock } from 'react-icons/fi'
+import { FaWhatsapp } from 'react-icons/fa'
 import SEO from '../components/SEO'
 import { formatDate } from '../utils/helpers'
 import { siteData } from '../data/siteData'
 
 export default function AppointmentSuccess() {
   const { state } = useLocation()
+
+  const { bookingId, name, parentName, department, doctorName, date, mode, whatsappUrl } = state || {}
+
+  useEffect(() => {
+    if (whatsappUrl) {
+      const timer = setTimeout(() => {
+        // Detect mobile browsers to bypass popup blockers and deep-link directly
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+        if (isMobile) {
+          window.location.href = whatsappUrl
+        } else {
+          window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+        }
+      }, 1500)
+      return () => clearTimeout(timer)
+    }
+  }, [whatsappUrl])
 
   if (!state?.bookingId) {
     return (
@@ -24,8 +43,6 @@ export default function AppointmentSuccess() {
       </div>
     )
   }
-
-  const { bookingId, name, parentName, department, doctorName, date, mode } = state
 
   return (
     <>
@@ -48,9 +65,29 @@ export default function AppointmentSuccess() {
           </motion.div>
 
           <h1 className="font-heading text-3xl font-bold text-navy-800 mb-2">Appointment Confirmed!</h1>
-          <p className="text-gray-500 mb-8">
+          <p className="text-gray-500 mb-6">
             Thank you, <span className="font-semibold text-navy-800">{name}</span>. Our team will call you within 30 minutes to confirm the exact time.
           </p>
+
+          {/* WhatsApp Action Card */}
+          {whatsappUrl && (
+            <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 mb-8 text-center space-y-3 shadow-sm">
+              <h3 className="font-heading font-black text-emerald-800 text-base flex items-center justify-center gap-2">
+                <FaWhatsapp className="w-5 h-5 text-emerald-600 animate-bounce" /> Send Details to WhatsApp
+              </h3>
+              <p className="text-gray-600 text-xs leading-relaxed max-w-sm mx-auto">
+                Opening WhatsApp to send your booking details directly to the hospital. If it didn't open automatically, click the button below to send:
+              </p>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs py-3 px-5 rounded-xl shadow-md transition-all active:scale-95 duration-150 uppercase tracking-wider"
+              >
+                💬 Open WhatsApp &amp; Send
+              </a>
+            </div>
+          )}
 
           {/* Booking details */}
           <div className="bg-gray-50 rounded-2xl p-6 text-left space-y-4 mb-8">
