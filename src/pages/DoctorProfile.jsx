@@ -184,6 +184,16 @@ export default function DoctorProfile() {
                 >
                   <FiCalendar /> Book Appointment
                 </Link>
+                <div className="mt-3 text-center">
+                  <span className="text-xs text-gray-500 block">or call to book:</span>
+                  <a
+                    href={`tel:${doctor.phone || siteData.contact.phone}`}
+                    className="inline-flex items-center justify-center gap-1.5 text-primary-600 hover:text-primary-700 font-bold text-sm mt-1"
+                  >
+                    <FiPhone className="w-4 h-4 animate-pulse" />
+                    {doctor.phone || siteData.contact.phone}
+                  </a>
+                </div>
               </div>
             </motion.div>
 
@@ -357,12 +367,24 @@ export default function DoctorProfile() {
                 <p className="text-white/80 text-sm mb-5">
                   Schedule a consultation with {doctor.name}. Our team will confirm within 30 minutes.
                 </p>
-                <Link
-                  to={`/book-appointment?dept=${encodeURIComponent(doctor.specialty)}&doctor=${encodeURIComponent(doctor.name)}`}
-                  className="btn-accent inline-flex"
-                >
-                  <FiCalendar /> Book Now
-                </Link>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                  <Link
+                    to={`/book-appointment?dept=${encodeURIComponent(doctor.specialty)}&doctor=${encodeURIComponent(doctor.name)}`}
+                    className="btn-accent inline-flex justify-center"
+                  >
+                    <FiCalendar /> Book Now
+                  </Link>
+                  <div className="flex flex-col">
+                    <span className="text-xs text-white/70">Or call to book directly:</span>
+                    <a
+                      href={`tel:${doctor.phone || siteData.contact.phone}`}
+                      className="inline-flex items-center gap-1.5 text-white hover:text-accent-200 font-bold text-sm mt-0.5"
+                    >
+                      <FiPhone className="w-4 h-4 animate-pulse" />
+                      {doctor.phone || siteData.contact.phone}
+                    </a>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>
