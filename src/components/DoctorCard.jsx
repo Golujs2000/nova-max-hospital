@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
-import { FiClock, FiCalendar, FiAward, FiChevronRight } from 'react-icons/fi'
+import { FiClock, FiCalendar, FiAward, FiChevronRight, FiPhone } from 'react-icons/fi'
 import { getInitials } from '../utils/helpers'
+import { siteData } from '../data/siteData'
 
 const DAYS_SHORT = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
 const DAYS_FULL  = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
@@ -44,6 +45,12 @@ export default function DoctorCard({ doc, accent }) {
           >
             <FiCalendar className="w-3.5 h-3.5" /> Book Appointment
           </Link>
+          <a
+            href={`tel:${doc.phone || siteData.contact.phone}`}
+            className="w-full text-center py-3 bg-accent-600 hover:bg-accent-700 text-white font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
+          >
+            <FiPhone className="w-3.5 h-3.5 animate-pulse" /> Call: {doc.phone || siteData.contact.phone}
+          </a>
           <Link
             to={`/doctors/${doc.slug || doc.id}`}
             className="w-full text-center py-3 border border-primary-600 text-primary-600 hover:bg-primary-50 font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
@@ -130,16 +137,22 @@ export default function DoctorCard({ doc, accent }) {
         )}
 
         {/* Action Buttons — Mobile only */}
-        <div className="flex md:hidden flex-col sm:flex-row gap-2.5 w-full mt-5">
+        <div className="flex md:hidden flex-col gap-2.5 w-full mt-5">
           <Link
             to={`/book-appointment?doctor=${encodeURIComponent(doc.name)}&dept=${encodeURIComponent(doc.specialty)}`}
-            className="flex-1 text-center py-3 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
+            className="w-full text-center py-3 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
           >
             <FiCalendar className="w-3.5 h-3.5" /> Book Appointment
           </Link>
+          <a
+            href={`tel:${doc.phone || siteData.contact.phone}`}
+            className="w-full text-center py-3 bg-accent-600 hover:bg-accent-700 text-white font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
+          >
+            <FiPhone className="w-3.5 h-3.5 animate-pulse" /> Call: {doc.phone || siteData.contact.phone}
+          </a>
           <Link
             to={`/doctors/${doc.slug || doc.id}`}
-            className="flex-1 text-center py-3 border border-primary-600 text-primary-600 hover:bg-primary-50 font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
+            className="w-full text-center py-3 border border-primary-600 text-primary-600 hover:bg-primary-50 font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
           >
             View Profile <FiChevronRight className="w-3.5 h-3.5" />
           </Link>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiPhone, FiMenu, FiX, FiChevronDown, FiArrowRight, FiActivity, FiMail } from 'react-icons/fi'
+import { FiPhone, FiMenu, FiX, FiChevronDown, FiArrowRight, FiActivity, FiMail, FiCalendar } from 'react-icons/fi'
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaLinkedinIn } from 'react-icons/fa'
 import { siteData } from '../data/siteData'
 import { useCategories } from '../hooks/useCategories'
@@ -153,8 +153,8 @@ export default function Navbar() {
                   <span className="text-navy-800 font-heading font-black text-base lg:text-lg uppercase tracking-wide group-hover:text-primary-600 transition-colors leading-none">
                     Nova Max <span className="text-primary-600">Hospital</span>
                   </span>
-                  <span className="text-[9px] text-gray-500 font-semibold tracking-wider mt-1 truncate max-w-[280px]">
-                    Specialty Urology &amp; Surgery Hospital
+                  <span className="text-[9.5px] text-gray-500 font-bold uppercase tracking-wider mt-1.5 truncate max-w-[280px]">
+                    Urology • Sexology • Laparoscopy
                   </span>
                 </div>
               </Link>
@@ -166,9 +166,14 @@ export default function Navbar() {
                 <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-primary-50 p-1 shadow-sm">
                   <img src="/logo.png" alt="Logo" className="h-6 w-auto object-contain rounded-md" />
                 </div>
-                <span className="font-heading font-extrabold text-xs text-navy-800 tracking-wider uppercase leading-none">
-                  Nova Max <span className="text-primary-600 hidden min-[360px]:inline">Hospital</span>
-                </span>
+                <div className="flex flex-col">
+                  <span className="font-heading font-extrabold text-xs text-navy-800 tracking-wider uppercase leading-none">
+                    Nova Max <span className="text-primary-600">Hospital</span>
+                  </span>
+                  <span className="text-[7.5px] text-gray-500 font-bold uppercase tracking-wider mt-0.5 leading-none">
+                    Urology • Sexology • Laparoscopy
+                  </span>
+                </div>
               </Link>
 
 

@@ -184,16 +184,13 @@ export default function DoctorProfile() {
                 >
                   <FiCalendar /> Book Appointment
                 </Link>
-                <div className="mt-3 text-center">
-                  <span className="text-xs text-gray-500 block">or call to book:</span>
-                  <a
-                    href={`tel:${doctor.phone || siteData.contact.phone}`}
-                    className="inline-flex items-center justify-center gap-1.5 text-primary-600 hover:text-primary-700 font-bold text-sm mt-1"
-                  >
-                    <FiPhone className="w-4 h-4 animate-pulse" />
-                    {doctor.phone || siteData.contact.phone}
-                  </a>
-                </div>
+                <a
+                  href={`tel:${doctor.phone || siteData.contact.phone}`}
+                  className="btn-secondary w-full justify-center mt-3 flex items-center gap-2"
+                >
+                  <FiPhone className="w-4 h-4 animate-pulse" />
+                  Call: {doctor.phone || siteData.contact.phone}
+                </a>
               </div>
             </motion.div>
 
