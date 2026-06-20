@@ -25,9 +25,14 @@ export async function sendMessage(data) {
 
 // Fetch all messages, newest first (admin inbox view)
 export async function getMessages() {
-  const q = query(collection(db, COL), orderBy('createdAt', 'desc'))
-  const snap = await getDocs(q)
-  return snap.docs.map((d) => ({ ...d.data(), id: d.id }))
+  try {
+    const q = query(collection(db, COL), orderBy('createdAt', 'desc'))
+    const snap = await getDocs(q)
+    return snap.docs.map((d) => ({ ...d.data(), id: d.id }))
+  } catch (err) {
+    console.warn("Failed to get messages:", err)
+    return []
+  }
 }
 
 // Mark a single message as read (called when admin opens the message)

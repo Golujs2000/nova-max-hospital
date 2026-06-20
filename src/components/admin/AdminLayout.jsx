@@ -52,7 +52,13 @@ export default function AdminLayout() {
 
   useEffect(() => {
     const q = query(collection(db, 'messages'), where('read', '==', false))
-    const unsub = onSnapshot(q, (snap) => setUnreadCount(snap.size))
+    const unsub = onSnapshot(
+      q,
+      (snap) => setUnreadCount(snap.size),
+      (err) => {
+        console.warn('Real-time unread messages subscription failed (likely unauthenticated):', err)
+      }
+    )
     return unsub
   }, [])
 

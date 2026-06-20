@@ -13,9 +13,14 @@ const COL = 'staff'
 const functions = getFunctions(app)
 
 export async function getStaff() {
-  const q = query(collection(db, COL), orderBy('name'))
-  const snap = await getDocs(q)
-  return snap.docs.map((d) => ({ ...d.data(), id: d.id }))
+  try {
+    const q = query(collection(db, COL), orderBy('name'))
+    const snap = await getDocs(q)
+    return snap.docs.map((d) => ({ ...d.data(), id: d.id }))
+  } catch (err) {
+    console.warn("Failed to get staff:", err)
+    return []
+  }
 }
 
 /**

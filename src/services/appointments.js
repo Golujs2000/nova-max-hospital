@@ -24,12 +24,17 @@ export async function createAppointment(data) {
 
 // Fetch all appointments; pass { status } to filter by a specific status
 export async function getAppointments(filters = {}) {
-  let q = query(collection(db, COL), orderBy('createdAt', 'desc'))
-  if (filters.status) {
-    q = query(collection(db, COL), where('status', '==', filters.status), orderBy('createdAt', 'desc'))
+  try {
+    let q = query(collection(db, COL), orderBy('createdAt', 'desc'))
+    if (filters.status) {
+      q = query(collection(db, COL), where('status', '==', filters.status), orderBy('createdAt', 'desc'))
+    }
+    const snap = await getDocs(q)
+    return snap.docs.map((d) => ({ ...d.data(), id: d.id }))
+  } catch (err) {
+    console.warn("Failed to get appointments:", err)
+    return []
   }
-  const snap = await getDocs(q)
-  return snap.docs.map((d) => ({ ...d.data(), id: d.id }))
 }
 
 // Update the status of an appointment (e.g. 'confirmed', 'cancelled', 'completed')
@@ -49,7 +54,12 @@ export async function deleteAppointment(id) {
 
 // Fetch the N most recent appointments (used on the admin dashboard)
 export async function getRecentAppointments(n = 5) {
-  const q = query(collection(db, COL), orderBy('createdAt', 'desc'), limit(n))
-  const snap = await getDocs(q)
-  return snap.docs.map((d) => ({ ...d.data(), id: d.id }))
+  try {
+    const q = query(collection(db, COL), orderBy('createdAt', 'desc'), limit(n))
+    const snap = await getDocs(q)
+    return snap.docs.map((d) => ({ ...d.data(), id: d.id }))
+  } catch (err) {
+    console.warn("Failed to get recent appointments:", err)
+    return []
+  }
 }

@@ -140,21 +140,41 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Mobile Logo & Toggle */}
-            <div className="flex md:hidden items-center justify-between w-full">
-              <Link to="/" className="flex items-center gap-2">
-                <div className="w-11 h-11 rounded-lg flex items-center justify-center bg-primary-50 p-1 shadow-sm">
-                  <img src="/logo.png" alt="Logo" className="h-8 w-auto object-contain rounded-md" />
+            {/* Mobile Logo & Actions & Toggle */}
+            <div className="flex md:hidden items-center justify-between w-full gap-1">
+              <Link to="/" className="flex items-center gap-1.5 shrink-0">
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-primary-50 p-1 shadow-sm">
+                  <img src="/logo.png" alt="Logo" className="h-6 w-auto object-contain rounded-md" />
                 </div>
-                <span className="font-heading font-extrabold text-sm text-navy-800 tracking-wider uppercase">
-                  Nova Max <span className="text-primary-600">Hospital</span>
+                <span className="font-heading font-extrabold text-xs text-navy-800 tracking-wider uppercase leading-none">
+                  Nova Max <span className="text-primary-600 hidden min-[360px]:inline">Hospital</span>
                 </span>
               </Link>
-              <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2 text-navy-800 hover:text-primary-600">
+
+              {/* Mobile CTA & Contact */}
+              <div className="flex items-center gap-1 sm:gap-2 ml-auto mr-1 shrink">
+                <Link
+                  to="/book-appointment"
+                  className="bg-primary-600 text-white px-2 py-1.5 rounded-full text-[9px] sm:text-[10px] font-extrabold tracking-wide hover:bg-primary-700 shadow-sm transition-all duration-300 whitespace-nowrap btn-shimmer"
+                >
+                  BOOK <span className="hidden min-[440px]:inline">APPOINTMENT</span>
+                </Link>
+
+                <a
+                  href={`tel:${siteData.contact.phone}`}
+                  className="flex items-center gap-1 bg-accent-500 text-white hover:bg-accent-600 px-2 py-1.5 rounded-full text-[9px] sm:text-[10px] font-extrabold transition-all duration-300 shadow-sm whitespace-nowrap"
+                >
+                  <FiPhone className="w-2.5 h-2.5 animate-pulse" />
+                  <span className="hidden min-[480px]:inline">CALL: </span>
+                  <span>{siteData.contact.phone}</span>
+                </a>
+              </div>
+
+              <button onClick={() => setMobileOpen(!mobileOpen)} className="p-1 text-navy-800 hover:text-primary-600 shrink-0">
                 <AnimatePresence mode="wait" initial={false}>
                   {mobileOpen
-                    ? <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.18 }}><FiX size={24} /></motion.span>
-                    : <motion.span key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.18 }}><FiMenu size={24} /></motion.span>
+                    ? <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.18 }}><FiX size={20} /></motion.span>
+                    : <motion.span key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.18 }}><FiMenu size={20} /></motion.span>
                   }
                 </AnimatePresence>
               </button>

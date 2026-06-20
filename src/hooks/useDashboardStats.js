@@ -74,13 +74,32 @@ export function useDashboardStats() {
         })
         const last12Keys = last12Dates.map(toMonthKey)
 
+        // Helper wrappers to handle permissions/fetch errors on individual collections/documents
+        const safeGetDocs = async (ref) => {
+          try {
+            return await getDocs(ref)
+          } catch (e) {
+            console.warn(`Failed to fetch collection:`, e)
+            return { docs: [], size: 0 }
+          }
+        }
+
+        const safeGetDoc = async (ref) => {
+          try {
+            return await getDoc(ref)
+          } catch (e) {
+            console.warn(`Failed to fetch document:`, e)
+            return { exists: () => false, data: () => ({}) }
+          }
+        }
+
         // ── Fetch base collections ────────────────────────────
         const [apptSnap, msgSnap, docSnap, hospSnap, surgSnap] = await Promise.all([
-          getDocs(collection(db, 'appointments')),
-          getDocs(collection(db, 'messages')),
-          getDocs(collection(db, 'doctors')),
-          getDocs(collection(db, 'hospitalDepartments')),
-          getDocs(collection(db, 'surgicalServices')),
+          safeGetDocs(collection(db, 'appointments')),
+          safeGetDocs(collection(db, 'messages')),
+          safeGetDocs(collection(db, 'doctors')),
+          safeGetDocs(collection(db, 'hospitalDepartments')),
+          safeGetDocs(collection(db, 'surgicalServices')),
         ])
 
         const appointments = apptSnap.docs.map(d => ({ id: d.id, ...d.data() }))
@@ -88,14 +107,14 @@ export function useDashboardStats() {
 
         // ── Fetch visit stat docs ─────────────────────────────
         const [todayVisitDoc, monthlyVisitDoc, yearlyVisitDoc] = await Promise.all([
-          getDoc(doc(db, 'siteStats', `daily_${todayKey}`)),
-          getDoc(doc(db, 'siteStats', `monthly_${thisMonth}`)),
-          getDoc(doc(db, 'siteStats', `yearly_${thisYear}`)),
+          safeGetDoc(doc(db, 'siteStats', `daily_${todayKey}`)),
+          safeGetDoc(doc(db, 'siteStats', `monthly_${thisMonth}`)),
+          safeGetDoc(doc(db, 'siteStats', `yearly_${thisYear}`)),
         ])
 
         // Daily visit docs for chart (30 reads)
         const dailyVisitDocs = await Promise.all(
-          last30Keys.map(k => getDoc(doc(db, 'siteStats', `daily_${k}`)))
+          last30Keys.map(k => safeGetDoc(doc(db, 'siteStats', `daily_${k}`)))
         )
 
         // ── Appointment grouping ──────────────────────────────

@@ -22,19 +22,19 @@ const DEFAULT_FOLDERS = [
 ]
 
 const LOCAL_INFRASTRUCTURE_IMAGES = [
-  { id: 'infra-1', title: 'Nova Max Hospital Building', image: '/Infrastructure/NOVA MAX HOSPITAL.png', type: 'image', order: 0, folderId: 'infrastructure' },
-  { id: 'infra-2', title: 'Operation Theatre (OT)', image: '/Infrastructure/ot.webp', type: 'image', order: 1, folderId: 'infrastructure' },
-  { id: 'infra-3', title: 'Outpatient Department (OPD)', image: '/Infrastructure/opd.webp', type: 'image', order: 2, folderId: 'infrastructure' },
-  { id: 'infra-4', title: 'Director Dr. M.K. Sinha', image: '/Infrastructure/DR. M.K. SINHA.png', type: 'image', order: 3, folderId: 'infrastructure' },
-  { id: 'infra-5', title: 'Patient Ward', image: '/Infrastructure/unnamed (6).webp', type: 'image', order: 4, folderId: 'infrastructure' },
-  { id: 'infra-6', title: 'Consulting Room', image: '/Infrastructure/unnamed (7).webp', type: 'image', order: 5, folderId: 'infrastructure' },
-  { id: 'infra-7', title: 'Emergency Care Unit', image: '/Infrastructure/unnamed (8).webp', type: 'image', order: 6, folderId: 'infrastructure' },
-  { id: 'infra-8', title: 'Dialysis Ward', image: '/Infrastructure/unnamed (9).webp', type: 'image', order: 7, folderId: 'infrastructure' },
-  { id: 'infra-9', title: 'Pathology Lab', image: '/Infrastructure/unnamed (10).webp', type: 'image', order: 8, folderId: 'infrastructure' },
-  { id: 'infra-10', title: 'Emergency Care Entrance', image: '/Infrastructure/unnamed (11).webp', type: 'image', order: 9, folderId: 'infrastructure' },
-  { id: 'infra-11', title: 'Medical Equipment Facility', image: '/Infrastructure/unnamed (12).webp', type: 'image', order: 10, folderId: 'infrastructure' },
-  { id: 'infra-12', title: 'Hospital Lobby & Waiting Area', image: '/Infrastructure/unnamed (13).webp', type: 'image', order: 11, folderId: 'infrastructure' },
-  { id: 'infra-13', title: 'Reception Desk', image: '/Infrastructure/download.jfif', type: 'image', order: 12, folderId: 'infrastructure' },
+  { id: 'infra-1', title: 'Nova Max Hospital Building', image: '/Infrastructure/nova-max-hospital-building.png', type: 'image', order: 0, folderId: 'infrastructure' },
+  { id: 'infra-2', title: 'Dr. M.K. Sinha (Director)', image: '/Infrastructure/dr-mk-sinha-portrait.png', type: 'image', order: 1, folderId: 'infrastructure' },
+  { id: 'infra-3', title: 'Operation Theatre', image: '/Infrastructure/operation-theatre.webp', type: 'image', order: 2, folderId: 'infrastructure' },
+  { id: 'infra-4', title: 'Laparoscopic Surgery in Progress', image: '/Infrastructure/laparoscopic-surgery-in-progress.webp', type: 'image', order: 3, folderId: 'infrastructure' },
+  { id: 'infra-5', title: 'Dr. M.K. Sinha (Chief Consultant)', image: '/Infrastructure/dr-mk-sinha-office.webp', type: 'image', order: 4, folderId: 'infrastructure' },
+  { id: 'infra-6', title: 'OPD Examination Room', image: '/Infrastructure/opd-examination-room.webp', type: 'image', order: 5, folderId: 'infrastructure' },
+  { id: 'infra-7', title: 'OPD Consultation', image: '/Infrastructure/doctor-patient-consultation.webp', type: 'image', order: 6, folderId: 'infrastructure' },
+  { id: 'infra-8', title: 'OPD Patient Care', image: '/Infrastructure/doctor-consulting-elderly-patient.webp', type: 'image', order: 7, folderId: 'infrastructure' },
+  { id: 'infra-9', title: 'Hospital Waiting Area', image: '/Infrastructure/hospital-waiting-lobby.webp', type: 'image', order: 8, folderId: 'infrastructure' },
+  { id: 'infra-10', title: 'ICU & Ward Patient Beds', image: '/Infrastructure/icu-ward-beds.jfif', type: 'image', order: 9, folderId: 'infrastructure' },
+  { id: 'infra-11', title: 'C-Arm Surgical Imaging System', image: '/Infrastructure/c-arm-xray-machine.webp', type: 'image', order: 10, folderId: 'infrastructure' },
+  { id: 'infra-12', title: 'Consulting Chamber', image: '/Infrastructure/dr-sinha-handshake-advocate.webp', type: 'image', order: 11, folderId: 'infrastructure' },
+  { id: 'infra-13', title: 'Dr. M.K. Sinha Profile', image: '/Infrastructure/dr-mk-sinha-profile.webp', type: 'image', order: 12, folderId: 'infrastructure' },
 ]
 
 // ─── Folders ──────────────────────────────────────────────────

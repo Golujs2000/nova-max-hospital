@@ -8,7 +8,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiChevronUp } from 'react-icons/fi'
+import { FiChevronUp, FiPhone } from 'react-icons/fi'
 import { siteData } from '../data/siteData'
 
 const WA_NUMBER = siteData.contact.phone.replace(/\D/g, '').replace(/^0/, '')
@@ -62,6 +62,26 @@ export default function FloatingButtons() {
           </motion.button>
         )}
       </AnimatePresence>
+
+      {/* ── Call Button ── */}
+      <motion.a
+        href={`tel:${siteData.contact.phone}`}
+        title="Call Nova Max Hospital"
+        initial={{ opacity: 0, scale: 0.7 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.2, type: 'spring', stiffness: 260, damping: 20 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-primary-600 text-white shadow-lg shadow-primary-500/30 hover:bg-primary-700 transition-colors"
+      >
+        <FiPhone className="w-6 h-6 animate-pulse" />
+        {/* Ping animation (subtle) */}
+        <span className="absolute inset-0 rounded-full bg-primary-600 opacity-20 animate-ping" />
+        {/* Tooltip */}
+        <span className="absolute right-16 whitespace-nowrap bg-gray-900 text-white text-xs font-medium px-2.5 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none shadow-md transition-opacity">
+          Call: {siteData.contact.phone}
+        </span>
+      </motion.a>
 
       {/* ── WhatsApp ── */}
       <motion.a

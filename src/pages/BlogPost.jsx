@@ -63,7 +63,7 @@ export default function BlogPost() {
           publisher: {
             '@type': 'Organization',
             name: siteData.name,
-            logo: { '@type': 'ImageObject', url: `${siteData.url}/favicon.svg` },
+            logo: { '@type': 'ImageObject', url: `${siteData.url}/favicon.png` },
           },
           datePublished: post.createdAt?.toDate?.()?.toISOString() || new Date().toISOString(),
           mainEntityOfPage: { '@type': 'WebPage', '@id': `${siteData.url}/blog/${post.slug}` },
