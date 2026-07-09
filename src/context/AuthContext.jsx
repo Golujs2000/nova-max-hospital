@@ -81,15 +81,15 @@ export function AuthProvider({ children }) {
   const isStaff = () => ['admin', 'staff'].includes(userRole)
 
   const value = {
-    user: user || { email: 'developer@novamax.com', uid: 'dev-admin', isMock: true },
-    userName: userName || 'Developer',
-    userRole: userRole || 'admin',
+    user,
+    userName,
+    userRole,
     loading,
     login,
     logout,
     resetPassword,
-    isAdmin: () => (userRole || 'admin') === 'admin',
-    isStaff: () => ['admin', 'staff'].includes(userRole || 'admin'),
+    isAdmin,
+    isStaff,
   }
 
   return (
