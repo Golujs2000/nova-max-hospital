@@ -4,7 +4,6 @@ import {
 } from 'firebase/firestore'
 import { db } from '../firebase/config'
 import { getTreatments } from './treatments'
-import { siteSpecialties } from '../data/siteData'
 
 // Mapping human-readable category names to Firestore collection names
 export const CATEGORY_TO_COLLECTION = {
@@ -77,15 +76,6 @@ export async function getCategoryItemBySlug(slug) {
   } catch (err) {
     console.error('Error fetching category item by slug from Firestore:', err)
   }
-
-  // Fallback to siteSpecialties if not found in Firestore
-  if (!found) {
-    const fallback = siteSpecialties.find(spec => spec.slug === slug)
-    if (fallback) {
-      found = { ...fallback }
-    }
-  }
-  
   return found
 }
 
@@ -112,11 +102,8 @@ export async function getDepartments() {
     getTreatments()
   ])
   const allCategories = categoryResults.flat()
-  if (allCategories.length > 0) {
-    return allCategories.map(spec => ({
-      ...spec,
-      treatments: treatments.filter(t => t.parentId === spec.id)
-    })).sort((a, b) => (a.order || 0) - (b.order || 0))
-  }
-  return siteSpecialties
+  return allCategories.map(spec => ({
+    ...spec,
+    treatments: treatments.filter(t => t.parentId === spec.id)
+  })).sort((a, b) => (a.order || 0) - (b.order || 0))
 }

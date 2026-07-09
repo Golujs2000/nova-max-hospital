@@ -82,9 +82,7 @@ export default function AppointmentForm() {
   const navigate = useNavigate()
   const { categories: departments } = useCategories()
   const { doctors } = useDoctors()
-  const departmentList = departments.length > 0
-    ? departments.map((s) => s.name)
-    : siteData.departments
+  const departmentList = departments.map((s) => s.name)
 
   const set = (name, value) => {
     setForm((p) => ({ ...p, [name]: value }))

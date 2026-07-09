@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getCategoryItems, ALL_COLLECTIONS } from '../services/categories'
 import { getTreatments } from '../services/treatments'
-import { siteSpecialties } from '../data/siteData'
 
 // Global in-memory cache and active request promise
 let cachedCategories = null
@@ -53,12 +52,11 @@ export function useCategories() {
         // Sort globally by order if needed
         unifiedDepartments.sort((a, b) => (a.order || 0) - (b.order || 0))
 
-        const finalResult = unifiedDepartments.length > 0 ? unifiedDepartments : siteSpecialties
-        cachedCategories = finalResult
-        return finalResult
+        cachedCategories = unifiedDepartments
+        return unifiedDepartments
       } catch (err) {
-        console.error('Error fetching unified categories from Firestore, falling back to siteSpecialties:', err)
-        return siteSpecialties
+        console.error('Error fetching unified categories from Firestore:', err)
+        return []
       } finally {
         activeFetchPromise = null
       }

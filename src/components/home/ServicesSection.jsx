@@ -3,16 +3,12 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiActivity, FiArrowRight } from 'react-icons/fi'
 import { useCategories } from '../../hooks/useCategories'
-import { siteSpecialties } from '../../data/siteData'
 
 const TABS = ['All', 'Hospital Departments', 'Surgical Services']
 
 export default function ServicesSection() {
-  const { categories: dbDepartments, loading: dbLoading } = useCategories()
+  const { categories: departments, loading } = useCategories()
   const [activeTab, setActiveTab] = useState('All')
-
-  const departments = dbDepartments.length > 0 ? dbDepartments : siteSpecialties
-  const loading = dbDepartments.length > 0 ? false : dbLoading
 
   const filtered = departments.filter(d => {
     if (activeTab === 'All') return d.category === 'Surgical Services' || d.category === 'Hospital Departments'

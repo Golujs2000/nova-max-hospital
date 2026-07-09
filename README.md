@@ -13,7 +13,7 @@ Official website for **Nova Max Hospital** — built with React, Vite, Tailwind 
 | **Hospital** | Nova Max Hospital |
 | **Specialisation** | Advanced Laparoscopy · ICU, ICCU, IPD & OPD Care · Dialysis · Ortho, Spine & Neurosurgery · Urology · Gynecology |
 | **City** | Patna, Bihar |
-| **Website** | [nova-max-hospital-b048d.web.app](https://nova-max-hospital-b048d.web.app) |
+| **Website** | [nova-max-hospital-4ac39.web.app](https://nova-max-hospital-4ac39.web.app) |
 
 ---
 

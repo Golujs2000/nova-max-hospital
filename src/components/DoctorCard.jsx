@@ -101,9 +101,9 @@ export default function DoctorCard({ doc, accent }) {
           <div className="bg-slate-50 border border-gray-100 rounded-[5px] p-4 mb-4">
             <ul className="text-xs font-bold text-navy-800 space-y-2.5">
               {doc.qualification && (
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary-500" />
-                  <span>Qualification: {doc.qualification.split(',')[0]}</span>
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary-500 mt-1 shrink-0" />
+                  <span>Qualification: {doc.qualification}</span>
                 </li>
               )}
               {doc.currentPosition && (

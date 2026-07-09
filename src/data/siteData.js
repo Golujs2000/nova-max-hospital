@@ -12,7 +12,7 @@ export const siteData = {
   description:
     'We are Nova Max Private Hospital in Digha, Patna, offering expert care in urology, laparoscopy, general surgery, male infertility, and sexology. Our skilled urologists and surgeons specialize in kidney stone treatment, laparoscopic procedures, and comprehensive urological solutions. With a modern modular operation theatre, ICU, hemodialysis unit, and in-house pathology lab, we deliver advanced medical care you can trust. Our dedicated team of doctors and compassionate nursing staff ensure every patient receives personalized attention and quality treatment. Visit us for exceptional healthcare services in Patna.',
   founded: '2026',
-  url: 'https://nova-max-hospital-b048d.web.app',
+  url: 'https://nova-max-hospital-4ac39.web.app',
   logo: '/favicon.png',
 
   // ── Contact & Location ───────────────────────────────────────
@@ -151,7 +151,7 @@ export const siteData = {
   ],
 }
 
-export { siteSpecialties } from './hospitalServicesData'
+export { siteSpecialties } from './hospitalServicesData.js'
 
 export const siteDoctors = [
   {
@@ -162,7 +162,7 @@ export const siteDoctors = [
     qualification: 'MBBS, MS (Gen. Surgery) Patna, SR II Urology (Sir J.J. Hospital Mumbai), FL-ASI, USI, AMASI, IMA',
     experience: 30,
     image: '/gallery/DR. M.K. SINHA.png',
-    bio: 'Dr. M.K. Sinha is the Director of Nova Max Hospital. He is a highly experienced Surgeon & Urologist practicing urology, laparoscopy, uro-gynecology, male infertility, sexual health problems, and general surgeries. He previously served as a Urologist, Transplant & Laparoscopic Surgeon at Indraprastha Apollo Hospital (Delhi), Breach Candy Hospital (Mumbai), and Lanka Apollo Hospital (Colombo).',
+    bio: 'Dr. M.K. Sinha is the Director of Nova Max Hospital. He is a highly experienced Surgeon & Urologist with over 30 years of experience practicing urology, laparoscopy, uro-gynecology, male infertility, sexual health problems, and general surgeries. He previously served as a Urologist, Transplant & Laparoscopic Surgeon at Indraprastha Apollo Hospital (Delhi), Breach Candy Hospital (Mumbai), and Lanka Apollo Hospital (Colombo).',
     availableDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     availableHours: '10:00 AM - 04:00 PM',
     availableTime: '10:00 AM - 04:00 PM',
@@ -210,5 +210,22 @@ export const siteDoctors = [
     ]
   }
 ]
+
+export function updateSiteDataDynamic(dbSettings) {
+  if (dbSettings.siteName) siteData.name = dbSettings.siteName;
+  if (dbSettings.siteName) siteData.shortName = dbSettings.siteName;
+  if (dbSettings.tagline) siteData.tagline = dbSettings.tagline;
+  if (dbSettings.description) siteData.description = dbSettings.description;
+  
+  if (!siteData.contact) siteData.contact = {};
+  if (dbSettings.phone) siteData.contact.phone = dbSettings.phone;
+  if (dbSettings.emergencyPhone) siteData.contact.phone2 = dbSettings.emergencyPhone;
+  if (dbSettings.email) siteData.contact.email = dbSettings.email;
+  if (dbSettings.address) siteData.contact.address = dbSettings.address;
+  
+  if (!siteData.social) siteData.social = {};
+  if (dbSettings.facebookUrl) siteData.social.facebook = dbSettings.facebookUrl;
+  if (dbSettings.instagramUrl) siteData.social.instagram = dbSettings.instagramUrl;
+}
 
 export default siteData

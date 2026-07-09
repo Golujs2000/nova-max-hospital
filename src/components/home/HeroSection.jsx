@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FiCalendar, FiClock, FiActivity, FiPhoneCall, FiCheckCircle } from 'react-icons/fi'
 import { FaUserMd, FaHeartbeat, FaAmbulance, FaAward } from 'react-icons/fa'
-import { siteData, siteDoctors } from '../../data/siteData'
+import { siteData } from '../../data/siteData'
+import { useFeaturedDoctors } from '../../hooks/useDoctors'
 import DoctorCard from '../DoctorCard'
 
 // Stats shown inside the hero
@@ -21,6 +22,8 @@ const TRUST_POINTS = [
 ]
 
 export default function HeroSection() {
+  const { doctors: featured } = useFeaturedDoctors()
+  const featuredDoc = featured && featured.length > 0 ? featured[0] : null
   return (
     <section className="relative bg-white overflow-hidden">
 
@@ -45,7 +48,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="order-2 lg:order-1"
+            className="lg:order-1"
           >
             {/* Pill badge */}
             <div className="inline-flex items-center gap-2 bg-primary-100 text-primary-700 text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-5 border border-primary-200">
@@ -54,10 +57,26 @@ export default function HeroSection() {
             </div>
 
             <h1 className="font-heading font-black text-4xl sm:text-5xl lg:text-[3.6rem] leading-[1.1] mb-5 text-navy-800">
-              Advanced Care for <br />
-              <span className="text-primary-600">Your Health</span> &amp; <br />
-              <span className="text-accent-500">Wellness</span>
+              Expert <span className="text-primary-600">Urology</span> &amp; <br className="hidden md:inline" />
+              <span className="text-accent-500">General Surgery</span> <br className="hidden md:inline" />
+              Hospital in Patna
             </h1>
+
+            {/* Highlight Badges */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              <span className="bg-primary-50 text-primary-700 text-xs md:text-sm font-semibold px-3.5 py-1.5 rounded-full border border-primary-100 flex items-center gap-1.5">
+                <FiCheckCircle className="w-3.5 h-3.5 text-primary-600" />
+                5000+ Successful Surgeries
+              </span>
+              <span className="bg-primary-50 text-primary-700 text-xs md:text-sm font-semibold px-3.5 py-1.5 rounded-full border border-primary-100 flex items-center gap-1.5">
+                <FiCheckCircle className="w-3.5 h-3.5 text-primary-600" />
+                15+ Years Experience
+              </span>
+              <span className="bg-primary-50 text-primary-700 text-xs md:text-sm font-semibold px-3.5 py-1.5 rounded-full border border-primary-100 flex items-center gap-1.5">
+                <FiCheckCircle className="w-3.5 h-3.5 text-primary-600" />
+                Same-Day Appointments
+              </span>
+            </div>
 
             <p className="text-gray-500 text-base md:text-lg mb-7 max-w-xl leading-relaxed">
               {siteData.name} — offering expert care in urology, laparoscopy, uro gynecology, male infertility, sexology, and general surgeries in Digha, Patna.
@@ -95,13 +114,17 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="order-1 lg:order-2 relative flex justify-center lg:justify-end w-full"
+            className="lg:order-2 relative flex justify-center lg:justify-end w-full"
           >
             {/* Large decorative circle behind card */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-primary-100/50 pointer-events-none" />
             
             <div className="relative z-10 w-full max-w-[550px]">
-              <DoctorCard doc={siteDoctors[0]} />
+              {featuredDoc ? (
+                <DoctorCard doc={featuredDoc} />
+              ) : (
+                <div className="w-full h-80 bg-gray-100 rounded-2xl animate-pulse" />
+              )}
             </div>
           </motion.div>
         </div>
