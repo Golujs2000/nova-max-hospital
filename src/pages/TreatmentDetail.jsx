@@ -129,27 +129,36 @@ export default function TreatmentDetail() {
             {treatment.name}
           </h1>
 
-          <div className="flex flex-wrap gap-4 lg:gap-8">
-            {treatment.duration && (
+          <div className="flex flex-wrap gap-4 lg:gap-8 items-end justify-between mt-6 pt-6 border-t border-gray-200/60">
+            <div className="flex flex-wrap gap-4 lg:gap-8">
+              {treatment.duration && (
+                <div>
+                  <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">Duration</p>
+                  <p className="text-navy-900 font-bold text-lg flex items-center gap-2">
+                    <FiClock className="w-4 h-4 text-primary-500" /> {treatment.duration}
+                  </p>
+                </div>
+              )}
+              {(treatment.recovery || department.recoveryTime) && (
+                <div>
+                  <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">Recovery</p>
+                  <p className="text-navy-900 font-bold text-lg flex items-center gap-2">
+                    <FiActivity className="w-4 h-4 text-primary-500" /> {treatment.recovery || department.recoveryTime}
+                  </p>
+                </div>
+              )}
               <div>
-                <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">Duration</p>
-                <p className="text-navy-900 font-bold text-lg flex items-center gap-2">
-                  <FiClock className="w-4 h-4 text-primary-500" /> {treatment.duration}
-                </p>
+                <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">OPD Consultation</p>
+                <p className="text-navy-900 font-bold text-lg">Available Daily</p>
               </div>
-            )}
-            {(treatment.recovery || department.recoveryTime) && (
-              <div>
-                <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">Recovery</p>
-                <p className="text-navy-900 font-bold text-lg flex items-center gap-2">
-                  <FiActivity className="w-4 h-4 text-primary-500" /> {treatment.recovery || department.recoveryTime}
-                </p>
-              </div>
-            )}
-            <div>
-              <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">Cost / Price</p>
-              <p className="text-navy-900 font-bold text-lg">Consultation</p>
             </div>
+
+            <a 
+              href="#book-specialist" 
+              className="lg:hidden bg-primary-600 hover:bg-primary-700 text-white font-bold text-sm px-6 py-3 rounded-lg flex items-center gap-2 shadow-sm transition-all duration-200"
+            >
+              <FiCalendar className="w-4 h-4" /> Book Appointment
+            </a>
           </div>
         </div>
       </section>
@@ -305,7 +314,7 @@ export default function TreatmentDetail() {
             </div>
 
             {/* Right Sidebar — Specialists */}
-            <div className="space-y-8 lg:sticky lg:top-24 self-start">
+            <div id="book-specialist" className="space-y-8 lg:sticky lg:top-24 self-start scroll-mt-24">
               
               <div className="bg-slate-50 rounded-2xl border border-gray-200 p-6 md:p-8">
                 <h3 className="font-heading font-bold text-xl text-navy-900 mb-2">Book This Procedure</h3>
@@ -314,37 +323,60 @@ export default function TreatmentDetail() {
                 {relatedDoctors.length > 0 ? (
                   <div className="space-y-6">
                     {relatedDoctors.map((doc) => (
-                      <div key={doc.id} className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow">
-                        <div className="flex items-start gap-4 mb-4">
-                          <div className="relative flex-shrink-0">
-                            {doc.image ? (
-                              <img src={doc.image} alt={doc.name} className="w-14 h-14 rounded-full object-cover border border-gray-100" />
-                            ) : (
-                              <div className="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center border border-gray-200">
-                                <span className="font-bold text-gray-500 text-lg">{getInitials(doc.name)}</span>
+                      <div key={doc.id} className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group">
+                        {/* Large Image on top */}
+                        <div className="w-full aspect-[4/3] bg-slate-50 relative overflow-hidden flex items-center justify-center border-b border-gray-100">
+                          {doc.image ? (
+                            <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center">
+                              <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center shadow-md">
+                                <span className="font-bold text-white text-2xl">{getInitials(doc.name)}</span>
                               </div>
-                            )}
-                            <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full" />
-                          </div>
-                          
-                          <div className="flex-1 min-w-0 pt-1">
-                            <Link to={`/doctors/${doc.slug || doc.id}`} className="font-bold text-navy-900 text-base hover:text-primary-600 transition-colors block">
+                            </div>
+                          )}
+                          <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 bg-green-50 text-green-700 text-[10px] font-bold px-2.5 py-1 rounded-full border border-green-200">
+                            <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                            Available Today
+                          </span>
+                        </div>
+                        
+                        {/* Info below */}
+                        <div className="p-5 space-y-4">
+                          <div>
+                            <Link to={`/doctors/${doc.slug || doc.id}`} className="font-heading font-black text-navy-800 text-lg hover:text-primary-600 transition-colors block">
                               {doc.name}
                             </Link>
-                            <p className="text-xs text-gray-500 mt-0.5">{doc.qualification}</p>
+                            <p className="text-xs text-gray-500 mt-1 font-semibold">{doc.qualification}</p>
+                          </div>
+                          
+                          <div className="flex flex-wrap gap-2">
+                            <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-cyan-50 border border-cyan-200 text-cyan-700 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                              {doc.specialty}
+                            </span>
                             {doc.experience && (
-                              <p className="text-[11px] font-semibold text-primary-600 mt-1 uppercase tracking-wider">{doc.experience} Exp</p>
+                              <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-amber-50 border border-amber-200 text-amber-700 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                                {doc.experience}+ Yrs Exp
+                              </span>
                             )}
                           </div>
-                        </div>
 
-                        {/* Direct Booking Button for this Doctor & Procedure */}
-                        <Link
-                          to={`/book-appointment?dept=${encodeURIComponent(department.name)}&treatment=${encodeURIComponent(treatment.name)}&doctor=${encodeURIComponent(doc.name)}`}
-                          className="w-full flex items-center justify-center gap-2 bg-navy-900 text-white font-semibold text-sm py-2.5 rounded-lg hover:bg-primary-600 transition-colors"
-                        >
-                          <FiCalendar className="w-4 h-4" /> Book Appointment
-                        </Link>
+                          {/* Direct Booking Button for this Doctor & Procedure */}
+                          <div className="flex flex-col gap-2 pt-2">
+                            <Link
+                              to={`/book-appointment?dept=${encodeURIComponent(department.name)}&treatment=${encodeURIComponent(treatment.name)}&doctor=${encodeURIComponent(doc.name)}`}
+                              className="w-full flex items-center justify-center gap-2 bg-primary-600 text-white font-bold text-xs py-3 rounded-lg hover:bg-primary-700 transition-colors shadow-sm"
+                            >
+                              <FiCalendar className="w-3.5 h-3.5" /> Book Appointment
+                            </Link>
+                            <Link
+                              to={`/doctors/${doc.slug || doc.id}`}
+                              className="w-full text-center py-2.5 border border-gray-300 text-gray-700 font-bold text-xs rounded-lg hover:bg-gray-50 transition-colors"
+                            >
+                              View Profile
+                            </Link>
+                          </div>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -365,12 +397,11 @@ export default function TreatmentDetail() {
                     General Booking
                   </Link>
                 </div>
-              </div>
+              </div></div>
 
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Lightbox */}
       <AnimatePresence>

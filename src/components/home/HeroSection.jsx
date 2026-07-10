@@ -23,7 +23,9 @@ const TRUST_POINTS = [
 
 export default function HeroSection() {
   const { doctors: featured } = useFeaturedDoctors()
-  const featuredDoc = featured && featured.length > 0 ? featured[0] : null
+  const featuredDoc = featured && featured.length > 0
+    ? (featured.find(d => d.slug === 'dr-m-k-sinha' || d.name.toLowerCase().includes('m.k.')) || featured[0])
+    : null
   return (
     <section className="relative bg-white overflow-hidden">
 
