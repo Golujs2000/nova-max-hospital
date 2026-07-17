@@ -10,7 +10,7 @@
 - Prostate Surgery (TURP)
 - UTI & Bladder Care
 - Circumcision & Hydrocele Surgery
-- Bladder Stone Removal (Cystolitholapaxy)
+- UTI, Bladder & Hydrocele Care
 - Ureteroscopy (URS) & Laser Lithotripsy
 - Renal Colic Management (Emergency)
 - RIRS (Flexible Ureteroscopy)
@@ -69,6 +69,4 @@
   - Dr. M.K. Sinha (Director, Surgeon & Urologist)
     MBBS, MS (Gen. Surgery) Patna, SR II Urology (Sir J.J. Hospital Mumbai)
     FL-ASI, USI, AMASI, IMA
-  - Dr. Basant Kumar Sinha (Senior General Surgeon)
-    MS (General Surgery) — 50+ Years Experience
 ================================================================

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import {
   FiCalendar, FiClock, FiMail, FiUsers,
   FiTrendingUp, FiRefreshCw, FiEye, FiBarChart2, FiActivity,
+  FiPhoneCall,
 } from 'react-icons/fi'
 import {
   Chart as ChartJS,
@@ -116,6 +117,13 @@ export default function AdminDashboard() {
     { label: 'Pending Appointments', value: stats.pendingAppointments, icon: FiClock,    iconBg: 'bg-amber-50 text-amber-600', border: 'border-amber-100' },
   ]
 
+  // ── Phone Call stat cards ─────────────────────────────────────
+  const CALL_CARDS = [
+    { label: 'Today Call Clicks',   value: stats.todayCalls,   icon: FiPhoneCall, iconBg: 'bg-orange-50 text-orange-600', border: 'border-orange-100' },
+    { label: 'Monthly Call Clicks', value: stats.monthlyCalls, icon: FiPhoneCall, iconBg: 'bg-amber-50 text-amber-600',   border: 'border-amber-100' },
+    { label: 'Yearly Call Clicks',  value: stats.yearlyCalls,  icon: FiPhoneCall, iconBg: 'bg-yellow-50 text-yellow-600',  border: 'border-yellow-100' },
+  ]
+
   // ── Chart datasets ────────────────────────────────────────────
   const dailyChartData = {
     labels: chartData.daily.labels,
@@ -139,6 +147,17 @@ export default function AdminDashboard() {
         borderWidth: 2.5,
         pointRadius: 3,
         pointBackgroundColor: '#0891b2',
+        tension: 0.4,
+        fill: true,
+      },
+      {
+        label: 'Call Clicks',
+        data: chartData.daily.calls,
+        borderColor: '#ea580c',
+        backgroundColor: 'rgba(234,88,12,0.09)',
+        borderWidth: 2.5,
+        pointRadius: 3,
+        pointBackgroundColor: '#ea580c',
         tension: 0.4,
         fill: true,
       },
@@ -198,6 +217,18 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           {APPT_CARDS.map((card, i) => (
             <StatCard key={card.label} {...card} loading={loading} i={i + 3} />
+          ))}
+        </div>
+      </div>
+
+      {/* ── Phone Call Clicks ── */}
+      <div>
+        <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+          <FiPhoneCall size={13} /> Phone Call Clicks
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {CALL_CARDS.map((card, i) => (
+            <StatCard key={card.label} {...card} loading={loading} i={i + 6} />
           ))}
         </div>
       </div>
@@ -266,7 +297,7 @@ export default function AdminDashboard() {
           iconBg="bg-blue-50 text-blue-600"
           border="border-blue-100"
           loading={loading}
-          i={6}
+          i={9}
         />
         <StatCard
           label="Unread Messages"
@@ -275,7 +306,7 @@ export default function AdminDashboard() {
           iconBg="bg-red-50 text-red-600"
           border="border-red-100"
           loading={loading}
-          i={7}
+          i={10}
         />
         <StatCard
           label="Total Doctors"
@@ -284,7 +315,7 @@ export default function AdminDashboard() {
           iconBg="bg-green-50 text-green-600"
           border="border-green-100"
           loading={loading}
-          i={8}
+          i={11}
         />
         <StatCard
           label="Total Departments"
@@ -293,7 +324,7 @@ export default function AdminDashboard() {
           iconBg="bg-rose-50 text-rose-600"
           border="border-rose-100"
           loading={loading}
-          i={9}
+          i={12}
         />
       </div>
 

@@ -85,6 +85,30 @@ service cloud.firestore {
                       doc.matches('^monthly_\\d{4}-\\d{2}$') ||
                       doc.matches('^yearly_\\d{4}$');
       allow delete: if isAdmin();
+
+      // Allow public to create log entries, and staff/admin to read them
+      match /logs/{logDoc} {
+        allow read: if isStaff();
+        allow create: if true;
+        allow update, delete: if isAdmin();
+      }
+    }
+
+    match /callStats/{doc} {
+      allow read: if true;
+      allow update: if true; // anyone can increment call counts
+      allow create: if doc == 'total' || 
+                      doc.matches('^daily_\\d{4}-\\d{2}-\\d{2}$') ||
+                      doc.matches('^monthly_\\d{4}-\\d{2}$') ||
+                      doc.matches('^yearly_\\d{4}$');
+      allow delete: if isAdmin();
+
+      // Allow public to create log entries, and staff/admin to read them
+      match /logs/{logDoc} {
+        allow read: if isStaff();
+        allow create: if true;
+        allow update, delete: if isAdmin();
+      }
     }
 
     // PUBLIC WRITE with validation

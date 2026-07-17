@@ -185,29 +185,6 @@ export const siteDoctors = [
       'general-surgery::abscess-drainage',
       'general-surgery::lipoma-cyst-removal'
     ]
-  },
-  {
-    id: 'dr-basant-kumar-sinha',
-    name: 'Dr. Basant Kumar Sinha',
-    specialty: 'General Surgery',
-    specialties: ['General Surgery'],
-    qualification: 'MS (General Surgery)',
-    experience: 50,
-    image: '',
-    bio: 'Dr. Basant Kumar Sinha is a legendary Senior General Surgeon at Nova Max Hospital with over 50 years of clinical experience. He has previously served as a Senior Consultant at prestigious medical institutions including Indraprastha Apollo Hospital, Breach Candy Hospital in Mumbai, and Lanka Apollo Hospital in Colombo.',
-    availableDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    availableHours: '10:00 AM - 04:00 PM',
-    availableTime: '10:00 AM - 04:00 PM',
-    phone: '072505 20694',
-    email: 'surgmrityunjay@yahoo.co.in',
-    featured: true,
-    previousPosition: 'Senior Consultant, Indraprastha Apollo Hospital | Consultant Surgeon, Breach Candy Hospital, Mumbai | Senior Consultant, Lanka Apollo Hospital, Colombo',
-    linkedTreatments: [
-      'general-surgery::appendectomy',
-      'general-surgery::hernia-repair-surgery',
-      'general-surgery::abscess-drainage',
-      'general-surgery::lipoma-cyst-removal'
-    ]
   }
 ]
 

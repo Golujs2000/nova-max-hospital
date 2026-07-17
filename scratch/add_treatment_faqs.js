@@ -38,12 +38,12 @@ function getFaqsForTreatment(tName, tSlug, parentId) {
          { question: "Will prostate surgery affect urinary control?", answer: "Temporary urinary leakage can occur in a small number of patients post-surgery. However, permanent incontinence is extremely rare, and control is typically restored within weeks through simple pelvic exercises." }
        ];
      }
-     if (slug.includes('uti') || slug.includes('bladder')) {
-       return [
-         { question: "How long does a UTI take to clear up with treatment?", answer: "With the correct course of antibiotics prescribed after a urine culture check, symptoms of a urinary tract infection (UTI) typically start improving within 24 to 48 hours." },
-         { question: "Can a bladder stone be dissolved with medicines?", answer: "While small kidney stones can pass with hydration, larger bladder stones generally require crushing and removal (Cystolitholapaxy) because they cannot dissolve naturally." }
-       ];
-     }
+     if (slug.includes('uti') || slug.includes('bladder') || slug.includes('hydrocele')) {
+        return [
+          { question: "How long does a UTI take to clear up with treatment?", answer: "With the correct course of antibiotics prescribed after a urine culture check, symptoms of a urinary tract infection (UTI) typically start improving within 24 to 48 hours." },
+          { question: "Is hydrocele surgery a daycare procedure, and does it recur?", answer: "Yes, modern minimal-access hydrocele surgery (hydrocelectomy) is a safe daycare procedure, allowing patients to return home the same day. With advanced surgical excision or plication of the sac, the recurrence rate is extremely low." }
+        ];
+      }
      return [
        { question: `Is ${tName} painful?`, answer: `No. The procedure is performed under spinal or general anesthesia, meaning you will feel absolutely no pain during the surgery. Post-operative discomfort is mild and managed with simple painkillers.` },
        { question: `What is the recovery time for ${tName}?`, answer: `Most patients are discharged within 24 to 48 hours (daycare/overnight). You can resume light, non-strenuous desk work within 3 to 4 days, and return to full activities in 2 weeks.` },

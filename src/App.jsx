@@ -43,6 +43,8 @@ import AdminLayout from './components/admin/AdminLayout'
 import AdminLogin from './pages/admin/AdminLogin'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminAppointments from './pages/admin/AdminAppointments'
+import AdminCalls from './pages/admin/AdminCalls'
+import AdminTraffic from './pages/admin/AdminTraffic'
 import AdminDoctors from './pages/admin/AdminDoctors'
 import AdminBlog from './pages/admin/AdminBlog'
 import AdminGallery from './pages/admin/AdminGallery'
@@ -99,6 +101,8 @@ function AppRoutes() {
       >
         <Route index element={<AdminDashboard />} />
         <Route path="appointments" element={<AdminAppointments />} />
+        <Route path="calls" element={<AdminCalls />} />
+        <Route path="traffic" element={<AdminTraffic />} />
         <Route path="doctors" element={<AdminDoctors />} />
         <Route path="blog" element={<AdminBlog />} />
         <Route path="gallery" element={<AdminGallery />} />

@@ -30,6 +30,10 @@ export function useDashboardStats() {
     todayVisits: 0,
     monthlyVisits: 0,
     yearlyVisits: 0,
+    // Calls
+    todayCalls: 0,
+    monthlyCalls: 0,
+    yearlyCalls: 0,
     // Appointments
     todayAppointments: 0,
     monthlyAppointments: 0,
@@ -42,8 +46,8 @@ export function useDashboardStats() {
   })
 
   const [chartData, setChartData] = useState({
-    // 30-day line chart (appointments + visits)
-    daily: { labels: [], appointments: [], visits: [] },
+    // 30-day line chart (appointments + visits + calls)
+    daily: { labels: [], appointments: [], visits: [], calls: [] },
     // 12-month bar chart (appointments only)
     monthly: { labels: [], appointments: [] },
   })
@@ -112,9 +116,21 @@ export function useDashboardStats() {
           safeGetDoc(doc(db, 'siteStats', `yearly_${thisYear}`)),
         ])
 
+        // ── Fetch call stat docs ──────────────────────────────
+        const [todayCallDoc, monthlyCallDoc, yearlyCallDoc] = await Promise.all([
+          safeGetDoc(doc(db, 'callStats', `daily_${todayKey}`)),
+          safeGetDoc(doc(db, 'callStats', `monthly_${thisMonth}`)),
+          safeGetDoc(doc(db, 'callStats', `yearly_${thisYear}`)),
+        ])
+
         // Daily visit docs for chart (30 reads)
         const dailyVisitDocs = await Promise.all(
           last30Keys.map(k => safeGetDoc(doc(db, 'siteStats', `daily_${k}`)))
+        )
+
+        // Daily call docs for chart (30 reads)
+        const dailyCallDocs = await Promise.all(
+          last30Keys.map(k => safeGetDoc(doc(db, 'callStats', `daily_${k}`)))
         )
 
         // ── Appointment grouping ──────────────────────────────
@@ -148,7 +164,7 @@ export function useDashboardStats() {
           return d ? toMonthKey(d) === thisMonth : false
         })
 
-        // ── Visit counts ──────────────────────────────────────
+        // ── Visit/Call counts helper ─────────────────────────
         const count = docSnap => (docSnap.exists() ? (docSnap.data().count ?? 0) : 0)
 
         // ── Set state ─────────────────────────────────────────
@@ -156,6 +172,9 @@ export function useDashboardStats() {
           todayVisits:          count(todayVisitDoc),
           monthlyVisits:        count(monthlyVisitDoc),
           yearlyVisits:         count(yearlyVisitDoc),
+          todayCalls:           count(todayCallDoc),
+          monthlyCalls:         count(monthlyCallDoc),
+          yearlyCalls:          count(yearlyCallDoc),
           todayAppointments:    todayAppts.length,
           monthlyAppointments:  monthlyAppts.length,
           pendingAppointments:  appointments.filter(a => a.status === 'pending').length,
@@ -170,6 +189,7 @@ export function useDashboardStats() {
             labels:       last30Dates.map(d => d.toLocaleDateString('en-IN', { month: 'short', day: 'numeric' })),
             appointments: last30Keys.map(k => apptByDay[k]),
             visits:       dailyVisitDocs.map(d => count(d)),
+            calls:        dailyCallDocs.map(d => count(d)),
           },
           monthly: {
             labels:       last12Dates.map(d => d.toLocaleDateString('en-IN', { month: 'short', year: '2-digit' })),

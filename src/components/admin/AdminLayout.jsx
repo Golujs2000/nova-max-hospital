@@ -19,7 +19,7 @@ import {
   FiGrid, FiCalendar, FiUsers, FiFileText, FiImage,
   FiMail, FiUserCheck, FiStar, FiSettings, FiLogOut,
   FiMenu, FiX, FiBell, FiPlusSquare, FiActivity,
-  FiHeart, FiShield, FiHome, FiMonitor
+  FiHeart, FiShield, FiHome, FiMonitor, FiPhoneCall
 } from 'react-icons/fi'
 import { collection, query, where, onSnapshot } from 'firebase/firestore'
 import { db } from '../../firebase/config'
@@ -33,6 +33,8 @@ const NAV_LINKS = [
   { to: '/admin/blog', label: 'Blog', icon: FiFileText },
   { to: '/admin/gallery', label: 'Gallery', icon: FiImage },
   { to: '/admin/messages', label: 'Messages', icon: FiMail, badge: true },
+  { to: '/admin/calls', label: 'Call Clicks', icon: FiPhoneCall },
+  { to: '/admin/traffic', label: 'Traffic Logs', icon: FiGlobe },
   { to: '/admin/hospital-departments', label: 'Hospital Depts', icon: FiActivity },
   { to: '/admin/surgical-services', label: 'Surgical Services', icon: FiHeart },
   { to: '/admin/critical-care', label: 'Critical Care', icon: FiShield },
