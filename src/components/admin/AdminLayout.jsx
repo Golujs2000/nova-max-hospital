@@ -19,7 +19,7 @@ import {
   FiGrid, FiCalendar, FiUsers, FiFileText, FiImage,
   FiMail, FiUserCheck, FiStar, FiSettings, FiLogOut,
   FiMenu, FiX, FiBell, FiPlusSquare, FiActivity,
-  FiHeart, FiShield, FiHome, FiMonitor, FiPhoneCall
+  FiHeart, FiShield, FiHome, FiMonitor, FiPhoneCall, FiGlobe
 } from 'react-icons/fi'
 import { collection, query, where, onSnapshot } from 'firebase/firestore'
 import { db } from '../../firebase/config'
