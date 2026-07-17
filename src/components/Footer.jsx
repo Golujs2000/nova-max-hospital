@@ -146,7 +146,7 @@ export default function Footer() {
                 const Icon = socialIcons[platform]
                 return Icon ? (
                   <a key={platform} href={url} target="_blank" rel="noopener noreferrer"
-                    className="w-9 h-9 bg-white/10 hover:bg-primary-500 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-110"
+                    className="w-12 h-12 bg-white/10 hover:bg-primary-500 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-110"
                     aria-label={platform}>
                     <Icon className="w-4 h-4 text-white" />
                   </a>

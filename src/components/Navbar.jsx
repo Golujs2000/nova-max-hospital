@@ -177,7 +177,7 @@ export default function Navbar() {
               </Link>
 
 
-              <button onClick={() => setMobileOpen(!mobileOpen)} className="p-1 text-navy-800 hover:text-primary-600 shrink-0">
+              <button onClick={() => setMobileOpen(!mobileOpen)} className="p-1 text-navy-800 hover:text-primary-600 shrink-0" aria-label="Toggle navigation menu">
                 <AnimatePresence mode="wait" initial={false}>
                   {mobileOpen
                     ? <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.18 }}><FiX size={20} /></motion.span>

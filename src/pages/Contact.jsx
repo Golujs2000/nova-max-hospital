@@ -155,7 +155,7 @@ export default function Contact() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 bg-white border border-gray-200 hover:bg-primary-50 hover:text-primary-600 hover:border-primary-200 rounded-[5px] flex items-center justify-center transition-colors"
+                  className="w-12 h-12 bg-white border border-gray-200 hover:bg-primary-50 hover:text-primary-600 hover:border-primary-200 rounded-[5px] flex items-center justify-center transition-colors"
                   aria-label={label}
                 >
                   <Icon className="w-5 h-5" />

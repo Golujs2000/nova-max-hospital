@@ -72,6 +72,7 @@ export default function Doctors() {
               value={specialty}
               onChange={(e) => setSpecialty(e.target.value)}
               className="input-field w-full sm:w-auto sm:min-w-[200px]"
+              aria-label="Filter by department"
             >
               <option value="">All Departments</option>
               {departments.map((d) => <option key={d.id} value={d.name}>{d.name}</option>)}

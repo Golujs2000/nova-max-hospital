@@ -1,0 +1,25 @@
+# Nova Max Hospital
+
+Nova Max Hospital is a premier multi-specialty healthcare facility located in Digha, Patna, Bihar, specializing in Urology, Advanced Laparoscopy, Sexology, Male Infertility, Uro Gynecology, and General Surgeries.
+
+## Core Information
+- **Director**: Dr. M. K. Sinha (Senior Consultant Urologist, ex-Sir J.J. Hospital Mumbai)
+- **Address**: Opposite Women's ITI College, Beside HDFC Bank or Ziom, Digha, Patna, Bihar 800011, India
+- **Contact Number**: +91 72505 20694 / +91 94718 69654
+- **Email**: info@novamaxhospital.com
+- **Website**: https://novamaxhospital.com
+
+## Main Departments & Specialties
+- **Urology**: Treatment for kidney stones, RIRS laser surgery, PCNL, URS, TURP prostate surgery, UTIs, and bladder diseases.
+- **Laparoscopy**: Keyhole surgeries including Laparoscopic Cholecystectomy (Gallstones), Hernia repair (TEP/TAPP), Appendectomy, and Hysterectomy.
+- **Male Infertility**: Semen analysis, hormonal evaluations, and varicocele micro-surgery.
+- **Sexology**: Private counseling and treatments for Erectile Dysfunction (ED) and Premature Ejaculation (PE).
+- **Uro Gynecology**: Pelvic organ prolapse, incontinence, and gynecological consultations.
+- **Diagnostics & Support**: 24/7 ICU support, advanced hemodialysis, digital X-Ray, ultrasound, and in-house pathology lab.
+
+## Key Sitemap Paths
+- `/` - Homepage featuring department selection, doctor bios, and booking.
+- `/about` - Hospital history, story, director information, and clinical infrastructure details.
+- `/doctors` - Detailed list of consulting specialists, credentials, and schedules.
+- `/contact` - Location details, inquiry form, and telephone numbers.
+- `/book-appointment` - Direct digital channel to request patient consultations.

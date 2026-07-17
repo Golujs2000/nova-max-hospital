@@ -43,10 +43,10 @@ const initialState = {
   timeSlot: '', mode: 'Offline', message: '', _hp: '',
 }
 
-function Field({ label, required, error, children }) {
+function Field({ id, label, required, error, children }) {
   return (
     <div>
-      <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5">
+      <label htmlFor={id} className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5">
         {label}{required && <span className="text-primary-500 ml-0.5">*</span>}
       </label>
       {children}
@@ -238,10 +238,10 @@ Please confirm my appointment slot. Thank you!`
 
           {/* Name row */}
           <div className="grid grid-cols-1 gap-4">
-            <Field label="Full Name" required error={errors.name}>
+            <Field id="apt-name" label="Full Name" required error={errors.name}>
               <div className="relative">
                 <FiUser className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300" />
-                <input name="name" value={form.name} onChange={handleChange}
+                <input id="apt-name" name="name" value={form.name} onChange={handleChange}
                   placeholder="Patient's full name"
                   className={`${inp(errors.name)} pl-10`} />
               </div>
@@ -250,8 +250,8 @@ Please confirm my appointment slot. Thank you!`
 
           {/* Age + Sex row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Field label="Age" required error={errors.age}>
-              <input name="age" value={form.age} onChange={handleChange}
+            <Field id="apt-age" label="Age" required error={errors.age}>
+              <input id="apt-age" name="age" value={form.age} onChange={handleChange}
                 placeholder="e.g. 32"
                 type="number" min="1" max="120"
                 className={inp(errors.age)} />
@@ -278,10 +278,10 @@ Please confirm my appointment slot. Thank you!`
 
 
           {/* Phone */}
-          <Field label="Mobile Number" required error={errors.phone}>
+          <Field id="apt-phone" label="Mobile Number" required error={errors.phone}>
             <div className="relative">
               <FiPhone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300" />
-              <input name="phone" value={form.phone} onChange={handleChange}
+              <input id="apt-phone" name="phone" value={form.phone} onChange={handleChange}
                 placeholder="10-digit mobile number"
                 inputMode="numeric" maxLength={10}
                 className={`${inp(errors.phone)} pl-10`} />
@@ -289,30 +289,30 @@ Please confirm my appointment slot. Thank you!`
           </Field>
 
           {/* Email optional */}
-          <Field label="Email Address (Optional)" error={errors.email}>
+          <Field id="apt-email" label="Email Address (Optional)" error={errors.email}>
             <div className="relative">
               <FiMail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300" />
-              <input type="email" name="email" value={form.email} onChange={handleChange}
+              <input id="apt-email" type="email" name="email" value={form.email} onChange={handleChange}
                 placeholder="your@email.com"
                 className={`${inp(errors.email)} pl-10`} />
             </div>
           </Field>
 
           {/* Address */}
-          <Field label="Address" error={errors.address}>
+          <Field id="apt-address" label="Address" error={errors.address}>
             <div className="relative">
               <FiMapPin className="absolute left-3.5 top-3.5 w-4 h-4 text-gray-300" />
-              <textarea name="address" value={form.address} onChange={handleChange}
+              <textarea id="apt-address" name="address" value={form.address} onChange={handleChange}
                 rows={2} placeholder="Village / Town / City"
                 className={`${inp(errors.address)} pl-10 resize-none`} />
             </div>
           </Field>
 
           {/* Department */}
-          <Field label="Department" required error={errors.department}>
+          <Field id="apt-dept" label="Department" required error={errors.department}>
             <div className="relative">
               <FiActivity className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 z-10" />
-              <select name="department" value={form.department} onChange={handleChange}
+              <select id="apt-dept" name="department" value={form.department} onChange={handleChange}
                 className={`${inp(errors.department)} pl-10 appearance-none cursor-pointer`}>
                 <option value="">Select department</option>
                 {departmentList.map((d) => <option key={d} value={d}>{d}</option>)}

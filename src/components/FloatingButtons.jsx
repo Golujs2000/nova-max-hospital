@@ -51,6 +51,7 @@ export default function FloatingButtons() {
             transition={{ type: 'spring', stiffness: 300, damping: 22 }}
             onClick={scrollToTop}
             title="Back to top"
+            aria-label="Scroll back to top of the page"
             className="group relative flex flex-col items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-primary-500 shadow-lg hover:bg-primary-600 hover:border-primary-600 transition-colors"
           >
             {/* Stethoscope badge dot */}
@@ -62,11 +63,12 @@ export default function FloatingButtons() {
           </motion.button>
         )}
       </AnimatePresence>
-
+ 
       {/* ── Call Button ── */}
       <motion.a
         href={`tel:${siteData.contact.phone}`}
         title="Call Nova Max Hospital"
+        aria-label="Call Nova Max Hospital direct line"
         initial={{ opacity: 0, scale: 0.7 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.2, type: 'spring', stiffness: 260, damping: 20 }}
@@ -82,13 +84,14 @@ export default function FloatingButtons() {
           Call: {siteData.contact.phone}
         </span>
       </motion.a>
-
+ 
       {/* ── WhatsApp ── */}
       <motion.a
         href={WA_URL}
         target="_blank"
         rel="noopener noreferrer"
         title="Chat with us on WhatsApp"
+        aria-label="Chat with Nova Max Hospital on WhatsApp"
         initial={{ opacity: 0, scale: 0.7 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.3, type: 'spring', stiffness: 260, damping: 20 }}
