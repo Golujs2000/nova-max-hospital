@@ -3,14 +3,14 @@
 // Utility to track clicks on phone links (tel:) and update Firestore call stats.
 // ─────────────────────────────────────────────────────────────
 
-import { doc, setDoc, increment, serverTimestamp, collection, addDoc } from 'firebase/firestore'
-import { db } from '../firebase/config'
-
 /**
  * Tracks a phone call click by atomically incrementing Call Stats in Firestore.
  * Keeps daily, monthly, yearly, and total counts, and logs the specific click timestamp.
  */
 export async function trackPhoneCall(phoneNumber = '', text = '', geo = null) {
+  const { db } = await import('../firebase/config')
+  const { doc, setDoc, increment, serverTimestamp, collection, addDoc } = await import('firebase/firestore')
+
   const now = new Date()
   const yyyy = now.getFullYear()
   const mm = String(now.getMonth() + 1).padStart(2, '0')

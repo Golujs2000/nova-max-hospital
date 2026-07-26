@@ -1,19 +1,13 @@
-// ─────────────────────────────────────────────────────────────
-// pages/DoctorProfile.jsx
-// Individual doctor detail page at /doctors/:id.
-// Fetches the doctor document directly from Firestore by ID.
-// Displays bio, qualifications, specializations, available days,
-// consultation fee, and a link to book an appointment.
-// ─────────────────────────────────────────────────────────────
-
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   FiPhone, FiMail, FiClock, FiCalendar,
-  FiArrowLeft, FiAward, FiUser, FiActivity, FiChevronRight, FiBriefcase
+  FiArrowLeft, FiAward, FiUser, FiActivity, FiChevronRight, FiBriefcase,
+  FiCheckCircle, FiCheck, FiShield, FiCpu
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
+import MedicalDisclaimer from '../components/MedicalDisclaimer'
 import { getInitials } from '../utils/helpers'
 import { getDepartments } from '../services/categories'
 import { getDoctors } from '../services/doctors'
@@ -23,8 +17,8 @@ const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satur
 
 export default function DoctorProfile() {
   const { slug } = useParams()
-  const [doctor, setDoctor]           = useState(null)
-  const [loading, setLoading]         = useState(true)
+  const [doctor, setDoctor] = useState(null)
+  const [loading, setLoading] = useState(true)
   const [linkedGroups, setLinkedGroups] = useState([])
 
   useEffect(() => {
@@ -63,8 +57,8 @@ export default function DoctorProfile() {
   if (!doctor) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-        <p className="text-gray-500 text-xl">Doctor not found.</p>
-        <Link to="/doctors" className="btn-primary">Back to Doctors</Link>
+        <p className="text-gray-500 text-xl">Doctor profile not found.</p>
+        <Link to="/doctors" className="btn-primary">Back to All Doctors</Link>
       </div>
     )
   }
@@ -73,12 +67,25 @@ export default function DoctorProfile() {
     (a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b)
   )
 
+  const doctorSpecialtiesList = (Array.isArray(doctor.specialties) ? doctor.specialties : [])
+    .concat(Array.isArray(doctor.specializations) ? doctor.specializations : [])
+    .filter((val, id, self) => self.indexOf(val) === id)
+
+  const doctorKeywords = [
+    doctor.name,
+    `${doctor.name} Patna`,
+    doctor.specialty,
+    `${doctor.specialty} surgeon Bihar`,
+    'Minimally Invasive Surgery',
+    'Nova Max Hospital'
+  ]
+
   return (
     <>
       <SEO
-        title={doctor.name}
-        description={`${doctor.name} – ${doctor.specialty} specialist at ${siteData.name}, Patna. ${doctor.experience} years of experience. ${doctor.qualification}. Book an appointment today.`}
-        keywords={[doctor.name, doctor.specialty, `${doctor.specialty} doctor Patna`, `${doctor.specialty} specialist Bihar`]}
+        title={`${doctor.name} - ${doctor.specialty} Specialist | Nova Max Hospital, Digha, Patna`}
+        description={`${doctor.name} is a leading ${doctor.specialty} specialist with ${doctor.experience}+ years of experience at Nova Max Hospital in Digha, Patna. Book OPD consultations, keyhole surgeries, and laser treatments.`}
+        keywords={doctorKeywords}
         jsonLd={[
           {
             '@context': 'https://schema.org',
@@ -87,19 +94,13 @@ export default function DoctorProfile() {
             description: doctor.bio || '',
             medicalSpecialty: doctor.specialty,
             hasCredential: doctor.qualification,
-            telephone: doctor.phone ? `+91${doctor.phone}` : undefined,
-            email: doctor.email || undefined,
+            telephone: doctor.phone ? `+91${doctor.phone}` : siteData.contact.phone,
+            email: doctor.email || siteData.contact.email,
             image: doctor.image || undefined,
             workLocation: {
               '@type': 'Hospital',
-              name: siteData.name,
-              url: siteData.url,
-              address: {
-                '@type': 'PostalAddress',
-                addressLocality: 'Patna',
-                addressRegion: 'Bihar',
-                addressCountry: 'IN',
-              },
+              name: 'Nova Max Hospital',
+              address: 'Digha, Patna, Bihar'
             },
           },
           {
@@ -114,275 +115,334 @@ export default function DoctorProfile() {
         ]}
       />
 
-      {/* Breadcrumb */}
-      <div className="bg-gray-50 border-b border-gray-100 py-3 px-4 overflow-x-auto">
-        <div className="container-max flex items-center gap-2 text-sm text-gray-500 whitespace-nowrap">
-          <Link to="/" className="hover:text-primary-600">Home</Link>
-          <span>/</span>
-          <Link to="/doctors" className="hover:text-primary-600">Doctors</Link>
-          <span>/</span>
-          <span className="text-gray-800 truncate max-w-[160px] sm:max-w-none">{doctor.name}</span>
+      {/* Eye-Catching Emergency Helpline Banner */}
+      <div className="bg-gradient-to-r from-primary-700 via-primary-600 to-navy-900 text-white py-2.5 px-4 text-xs md:text-sm font-medium shadow-sm">
+        <div className="container-max flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            <span><strong>Nova Max Hospital in Digha, Patna</strong> — 24/7 OPD &amp; Surgical Consultation Helpline</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <a href={`tel:${doctor.phone || siteData.contact.phone}`} className="hover:underline flex items-center gap-1 font-bold">
+              📞 {doctor.phone || siteData.contact.phone}
+            </a>
+            <a href={`https://wa.me/${(doctor.phone || siteData.contact.phone).replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer" className="bg-emerald-500 hover:bg-emerald-600 text-white px-2.5 py-1 rounded-md text-xs font-bold transition-colors">
+              💬 WhatsApp Doctor
+            </a>
+          </div>
         </div>
       </div>
 
-      <section className="section-padding bg-white">
-        <div className="container-max">
-          <Link to="/doctors" className="inline-flex items-center gap-2 text-primary-600 text-sm font-medium mb-8 hover:gap-3 transition-all">
-            <FiArrowLeft /> Back to All Doctors
-          </Link>
+      {/* Breadcrumb Header */}
+      <div className="bg-slate-100/90 text-slate-700 py-3.5 px-4 border-b border-slate-200">
+        <div className="container-max flex items-center justify-between gap-4 text-xs md:text-sm">
+          <div className="flex items-center gap-2 text-slate-600 truncate">
+            <Link to="/" className="hover:text-primary-600 transition-colors">Home</Link>
+            <span className="text-slate-300">/</span>
+            <Link to="/doctors" className="hover:text-primary-600 transition-colors">Doctors</Link>
+            <span className="text-slate-300">/</span>
+            <span className="text-primary-700 font-bold truncate">{doctor.name} — Nova Max Hospital</span>
+          </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-10">
-            {/* Left: profile card */}
+          <Link to="/doctors" className="inline-flex items-center gap-1.5 text-xs text-primary-600 font-bold hover:text-primary-700">
+            <FiArrowLeft /> Back to Doctors
+          </Link>
+        </div>
+      </div>
+
+      <section className="py-10 md:py-16 bg-slate-50/50">
+        <div className="container-max">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            {/* Left Column: Doctor Profile Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="lg:col-span-1"
             >
-              <div className="card p-6 md:p-8 text-center lg:sticky lg:top-24">
-                {/* Avatar */}
-                <div className="w-28 h-28 md:w-36 md:h-36 rounded-[5px] mx-auto mb-5 overflow-hidden bg-primary-50 flex items-center justify-center border border-primary-100">
+              <div className="bg-white rounded-2xl border border-slate-200 p-6 md:p-8 text-center shadow-sm lg:sticky lg:top-24 space-y-5">
+                
+                {/* Doctor Avatar */}
+                <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl mx-auto overflow-hidden bg-slate-100 flex items-center justify-center border-2 border-primary-100 shadow-sm relative">
                   {doctor.image ? (
-                    <img src={doctor.image} alt={doctor.name} className="w-full h-full object-cover" />
+                    <img src={doctor.image} alt={`${doctor.name} at Nova Max Hospital in Digha, Patna`} className="w-full h-full object-cover object-top" />
                   ) : (
-                    <span className="font-heading font-bold text-primary-600 text-5xl">{getInitials(doctor.name)}</span>
+                    <span className="font-heading font-extrabold text-primary-600 text-4xl">{getInitials(doctor.name)}</span>
                   )}
+                  <span className="absolute bottom-2 right-2 bg-emerald-500 text-white p-1.5 rounded-full shadow" title="Senior Consultant Doctor at Nova Max Hospital">
+                    <FiCheckCircle className="w-4 h-4" />
+                  </span>
                 </div>
 
-                <h1 className="font-heading font-bold text-navy-800 text-2xl mb-1">{doctor.name}</h1>
-                <p className="text-primary-600 font-semibold mb-1">{doctor.specialty}</p>
-                <p className="text-gray-500 text-sm mb-4">{doctor.qualification}</p>
-
-                {/* Info chips */}
-                <div className="space-y-3 text-sm text-left mb-6">
-                  <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-[5px]">
-                    <FiAward className="w-4 h-4 text-primary-500 flex-shrink-0" />
-                    <span className="text-gray-700">{doctor.experience} Years Experience</span>
+                <div>
+                  <div className="inline-block bg-primary-50 text-primary-700 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-1">
+                    Nova Max Hospital Specialist
                   </div>
-                  {doctor.phone && (
-                    <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-[5px]">
-                      <FiPhone className="w-4 h-4 text-primary-500 flex-shrink-0" />
-                      <a href={`tel:${doctor.phone}`} className="text-gray-700 hover:text-primary-600">{doctor.phone}</a>
-                    </div>
-                  )}
-                  {doctor.email && (
-                    <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-[5px]">
-                      <FiMail className="w-4 h-4 text-primary-500 flex-shrink-0" />
-                      <a href={`mailto:${doctor.email}`} className="text-gray-700 hover:text-primary-600 text-xs truncate">{doctor.email}</a>
-                    </div>
-                  )}
+                  <h1 className="font-heading font-extrabold text-navy-900 text-2xl mb-1">{doctor.name}</h1>
+                  <p className="text-primary-600 font-bold text-sm">{doctor.specialty}</p>
+                  <p className="text-slate-500 text-xs mt-1 font-semibold">{doctor.qualification}</p>
+                </div>
+
+                {/* Keyword Pills */}
+                <div className="flex flex-wrap justify-center gap-1.5 pt-1">
+                  {[...doctorKeywords, 'NovaMaxHospitalDighaPatna'].map((kw, i) => (
+                    <span key={i} className="text-[10px] font-semibold bg-slate-100 text-slate-600 px-2 py-0.5 rounded border border-slate-200">
+                      #{kw.replace(/\s+/g, '')}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Quick Info Badges */}
+                <div className="space-y-2.5 text-xs text-left pt-2 border-t border-slate-100">
+                  <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
+                    <FiAward className="w-4 h-4 text-amber-500 shrink-0" />
+                    <span className="text-slate-700 font-semibold">{doctor.experience}+ Years Clinical &amp; Surgical Experience</span>
+                  </div>
+
+                  <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
+                    <FiShield className="w-4 h-4 text-primary-600 shrink-0" />
+                    <span className="text-slate-700 font-semibold">Location: Nova Max Hospital, Digha, Patna</span>
+                  </div>
+
                   {doctor.consultationFee && (
-                    <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-[5px]">
-                      <span className="w-4 h-4 text-primary-500 font-extrabold flex items-center justify-center text-xs shrink-0">₹</span>
-                      <span className="text-gray-700">Consultation Fee: <strong className="text-navy-800">₹{doctor.consultationFee}</strong></span>
+                    <div className="flex items-center gap-3 p-3 bg-emerald-50/60 rounded-xl border border-emerald-100">
+                      <span className="w-4 h-4 text-emerald-700 font-extrabold flex items-center justify-center text-xs shrink-0">₹</span>
+                      <span className="text-slate-700 text-xs">
+                        OPD Consultation Fee: <strong className="text-emerald-800 font-bold">₹{doctor.consultationFee}</strong>
+                      </span>
+                    </div>
+                  )}
+
+                  {doctor.phone && (
+                    <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
+                      <FiPhone className="w-4 h-4 text-primary-600 shrink-0" />
+                      <a href={`tel:${doctor.phone}`} className="text-slate-700 font-bold hover:text-primary-600">{doctor.phone}</a>
                     </div>
                   )}
                 </div>
 
-                <Link
-                  to={`/book-appointment?dept=${encodeURIComponent(doctor.specialty)}&doctor=${encodeURIComponent(doctor.name)}`}
-                  className="btn-primary w-full justify-center"
-                >
-                  <FiCalendar /> Book Appointment
-                </Link>
-                <a
-                  href={`tel:${doctor.phone || siteData.contact.phone}`}
-                  className="btn-secondary w-full justify-center mt-3 flex items-center gap-2"
-                >
-                  <FiPhone className="w-4 h-4 animate-pulse" />
-                  Call: {doctor.phone || siteData.contact.phone}
-                </a>
+                {/* CTAs */}
+                <div className="space-y-2.5 pt-2">
+                  <Link
+                    to={`/book-appointment?dept=${encodeURIComponent(doctor.specialty)}&doctor=${encodeURIComponent(doctor.name)}`}
+                    className="w-full flex items-center justify-center gap-2 bg-primary-600 text-white font-bold text-sm py-3.5 rounded-xl hover:bg-primary-700 transition-colors shadow-md"
+                  >
+                    <FiCalendar className="w-4 h-4" /> Book OPD Appointment
+                  </Link>
+
+                  <a
+                    href={`https://wa.me/${(doctor.phone || siteData.contact.phone).replace(/[^0-9]/g, '')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 bg-emerald-600 text-white font-bold text-xs py-3 rounded-xl hover:bg-emerald-700 transition-colors"
+                  >
+                    💬 WhatsApp Doctor Directly
+                  </a>
+                </div>
+
               </div>
             </motion.div>
 
-            {/* Right: details */}
+            {/* Right Column: Detailed Surgical Profile & Treatments */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15 }}
               className="lg:col-span-2 space-y-8"
             >
-              {/* Bio */}
-              <div className="card p-8">
-                <h2 className="font-heading font-bold text-navy-800 text-xl mb-4">About Dr. {doctor.name.replace('Dr. ', '')}</h2>
-                <p className="text-gray-600 leading-relaxed">{doctor.bio}</p>
-              </div>
 
-              {/* Availability */}
-              {sortedDays.length > 0 && (
-                <div className="card p-8">
-                  <h2 className="font-heading font-bold text-navy-800 text-xl mb-5 flex items-center gap-2">
-                    <FiClock className="w-5 h-5 text-primary-500" /> Availability
-                  </h2>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {dayOrder.map((day) => (
-                      <span
-                        key={day}
-                        className={`px-3 py-1.5 rounded-[5px] text-xs font-medium ${
-                          sortedDays.includes(day)
-                            ? 'bg-primary-600 text-white'
-                            : 'bg-gray-100 text-gray-400'
-                        }`}
-                      >
-                        {day.slice(0, 3)}
-                      </span>
-                    ))}
-                  </div>
-                  {doctor.availableTime && (
-                    <p className="text-gray-600 text-sm flex items-center gap-2">
-                      <FiClock className="w-4 h-4 text-primary-500" />
-                      Timings: <span className="font-semibold text-navy-800">{doctor.availableTime}</span>
-                    </p>
-                  )}
-                </div>
-              )}
-
-              {/* Qualifications */}
-              <div className="card p-8">
-                <h2 className="font-heading font-bold text-navy-800 text-xl mb-4 flex items-center gap-2">
-                  <FiUser className="w-5 h-5 text-primary-500" /> Qualifications
+              {/* Bio & Background */}
+              <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200/80 shadow-sm space-y-4">
+                <h2 className="font-heading font-bold text-navy-900 text-xl md:text-2xl pb-3 border-b border-slate-100 flex items-center gap-2">
+                  <FiUser className="w-6 h-6 text-primary-600" /> Clinical Expertise at Nova Max Hospital in Digha, Patna
                 </h2>
-                <div className="flex flex-wrap gap-2">
-                  {doctor.qualification?.split(',').map((q) => (
-                    <span key={q} className="badge bg-primary-50 text-primary-700">{q.trim()}</span>
-                  ))}
-                </div>
+                <p className="text-slate-700 text-base leading-relaxed font-normal">
+                  {doctor.bio || `${doctor.name} is a senior consultant in ${doctor.specialty} at Nova Max Hospital in Digha, Patna. With ${doctor.experience}+ years of extensive clinical and operating room experience, ${doctor.name} specializes in high-precision minimally invasive keyhole surgeries, laser stone extraction, proctology procedures, and daycare patient-first recovery protocols.`}
+                </p>
               </div>
 
-              {/* Departments & Expertise */}
-              {((Array.isArray(doctor.specialties) && doctor.specialties.length > 0) || 
-                (Array.isArray(doctor.specializations) && doctor.specializations.length > 0)) && (
-                <div className="card p-8">
-                  <h2 className="font-heading font-bold text-navy-800 text-xl mb-4 flex items-center gap-2">
-                    <FiActivity className="w-5 h-5 text-primary-500" /> Departments &amp; Expertise
-                  </h2>
-                  <div className="flex flex-wrap gap-3">
-                    {((Array.isArray(doctor.specialties) ? doctor.specialties : [])
-                      .concat(Array.isArray(doctor.specializations) ? doctor.specializations : [])
-                      .filter((val, id, self) => self.indexOf(val) === id) // deduplicate
-                    ).map((spec) => (
-                      <span key={spec} className="badge bg-primary-50 text-primary-700 px-3 py-1.5 rounded-lg text-sm font-semibold">{spec}</span>
-                    ))}
+              {/* Surgeries & Treatments Provided Section (Bulleted Grid) */}
+              <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200/80 shadow-sm space-y-6">
+                <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
+                  <div className="w-10 h-10 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center shrink-0">
+                    <FiCpu className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h2 className="font-heading font-bold text-navy-900 text-xl md:text-2xl">
+                      Surgeries &amp; Treatments Provided at Nova Max Hospital
+                    </h2>
+                    <p className="text-xs text-slate-500">Comprehensive list of surgical and medical procedures performed by {doctor.name} in Digha, Patna</p>
                   </div>
                 </div>
-              )}
 
-              {/* Professional Experience / Positions (Ex Services) */}
-              {(doctor.currentPosition || doctor.previousPosition) && (
-                <div className="card p-8">
-                  <h2 className="font-heading font-bold text-navy-800 text-xl mb-5 flex items-center gap-2">
-                    <FiBriefcase className="w-5 h-5 text-primary-500" /> Positions &amp; Clinical Experience
-                  </h2>
-                  <div className="space-y-4">
-                    {doctor.currentPosition && (
-                      <div className="flex items-start gap-4 p-4 rounded-xl bg-primary-50/50 border border-primary-100">
-                        <div className="w-10 h-10 rounded-lg bg-primary-600 flex items-center justify-center text-white shrink-0 shadow-sm mt-0.5">
-                          <FiBriefcase className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <p className="text-xs text-primary-600 font-bold uppercase tracking-wider">Current Position</p>
-                          <h3 className="text-navy-800 font-bold text-sm sm:text-base mt-1">
-                            {doctor.currentPosition.split(/,\s*(.+)/)[0]}
-                          </h3>
-                          {doctor.currentPosition.split(/,\s*(.+)/)[1] && (
-                            <p className="text-gray-500 text-xs mt-0.5">
-                              {doctor.currentPosition.split(/,\s*(.+)/)[1]}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    )}
-
-                    {doctor.previousPosition && doctor.previousPosition.split('|').map((p, idx) => {
-                      const parts = p.split(/,\s*(.+)/)
-                      return (
-                        <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-gray-150">
-                          <div className="w-10 h-10 rounded-lg bg-navy-800 flex items-center justify-center text-white shrink-0 shadow-sm mt-0.5">
-                            <FiBriefcase className="w-5 h-5" />
-                          </div>
-                          <div>
-                            <p className="text-xs text-navy-500 font-bold uppercase tracking-wider">Ex-Service / Previous Position</p>
-                            <h3 className="text-navy-800 font-bold text-sm sm:text-base mt-1">
-                              {parts[0]?.trim()}
-                            </h3>
-                            {parts[1] && (
-                              <p className="text-gray-500 text-xs mt-0.5">
-                                {parts[1]?.trim()}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {/* Linked Treatments */}
-              {linkedGroups.length > 0 && (
-                <div className="card p-8">
-                  <h2 className="font-heading font-bold text-navy-800 text-xl mb-5 flex items-center gap-2">
-                    <FiActivity className="w-5 h-5 text-primary-500" /> Treatments &amp; Procedures
-                  </h2>
-                  <div className="space-y-5">
+                {linkedGroups.length > 0 ? (
+                  <div className="space-y-6">
                     {linkedGroups.map(({ spec, treatments }) => (
-                      <div key={spec.id}>
-                        <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">
-                          {spec.icon && (
-                            <span className="w-4 h-4 inline-flex items-center justify-center shrink-0 overflow-hidden mr-1.5 align-middle">
-                              {(spec.icon.startsWith('http') || spec.icon.startsWith('/') || spec.icon.includes('.')) ? (
-                                <img src={spec.icon} alt="" className="w-full h-full object-contain" />
-                              ) : (
-                                spec.icon
-                              )}
-                            </span>
-                          )}
-                          <span className="align-middle">{spec.name}</span>
-                        </p>
-                        <div className="grid sm:grid-cols-2 gap-2">
+                      <div key={spec.id} className="bg-slate-50/70 rounded-xl p-5 border border-slate-200/80">
+                        <h3 className="font-bold text-navy-900 text-base mb-3 flex items-center gap-2">
+                          <span className="w-2.5 h-2.5 rounded-full bg-primary-600" />
+                          {spec.name} Surgeries &amp; Procedures
+                        </h3>
+                        <div className="grid sm:grid-cols-2 gap-3">
                           {treatments.map((t) => (
                             <Link
                               key={t.slug}
                               to={`/services/${spec.slug}/treatment/${t.slug}`}
-                              className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-primary-50 hover:bg-primary-100 transition-colors group"
+                              className="bg-white p-3.5 rounded-xl border border-slate-200 hover:border-primary-400 hover:shadow-sm transition-all group flex items-start justify-between gap-3"
                             >
                               <div>
-                                <p className="text-sm font-semibold text-navy-800 group-hover:text-primary-700">{t.name}</p>
+                                <h4 className="font-bold text-sm text-navy-900 group-hover:text-primary-600 transition-colors flex items-center gap-1.5">
+                                  <FiCheck className="w-4 h-4 text-emerald-500 shrink-0" />
+                                  {t.name}
+                                </h4>
+                                <p className="text-xs text-slate-500 mt-1 line-clamp-1">
+                                  {t.description || 'Advanced minimally invasive procedure with rapid recovery at Nova Max Hospital in Digha, Patna.'}
+                                </p>
                               </div>
-                              <FiChevronRight size={16} className="text-primary-400 group-hover:text-primary-600 flex-shrink-0" />
+                              <FiChevronRight size={16} className="text-slate-400 group-hover:text-primary-600 shrink-0 mt-1" />
                             </Link>
                           ))}
                         </div>
                       </div>
                     ))}
                   </div>
-                </div>
-              )}
+                ) : (
+                  /* Fallback Surgery Grid for Doctor */
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                      <h4 className="font-bold text-navy-900 text-sm flex items-center gap-2">
+                        <FiCheck className="w-4 h-4 text-emerald-500 shrink-0" /> Advanced Keyhole &amp; Laser Surgeries
+                      </h4>
+                      <ul className="space-y-1.5 text-xs text-slate-600 pl-6 list-disc">
+                        <li>Minimally invasive keyhole laparoscopic procedures</li>
+                        <li>High-power Holmium laser stone dusting &amp; proctology</li>
+                        <li>Daycare surgeries with discharge within 24 hours</li>
+                      </ul>
+                    </div>
 
-              {/* Book CTA */}
-              <div className="bg-hero-gradient rounded-2xl p-8 text-white">
-                <h3 className="font-heading font-bold text-xl mb-3">Ready to Book an Appointment?</h3>
-                <p className="text-white/80 text-sm mb-5">
-                  Schedule a consultation with {doctor.name}. Our team will confirm within 30 minutes.
-                </p>
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                  <Link
-                    to={`/book-appointment?dept=${encodeURIComponent(doctor.specialty)}&doctor=${encodeURIComponent(doctor.name)}`}
-                    className="btn-accent inline-flex justify-center"
-                  >
-                    <FiCalendar /> Book Now
-                  </Link>
-                  <div className="flex flex-col">
-                    <span className="text-xs text-white/70">Or call to book directly:</span>
-                    <a
-                      href={`tel:${doctor.phone || siteData.contact.phone}`}
-                      className="inline-flex items-center gap-1.5 text-white hover:text-accent-200 font-bold text-sm mt-0.5"
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                      <h4 className="font-bold text-navy-900 text-sm flex items-center gap-2">
+                        <FiCheck className="w-4 h-4 text-emerald-500 shrink-0" /> OPD Consultations &amp; Emergency Care
+                      </h4>
+                      <ul className="space-y-1.5 text-xs text-slate-600 pl-6 list-disc">
+                        <li>Comprehensive diagnostic evaluations at Nova Max Hospital</li>
+                        <li>Post-operative rehabilitation &amp; routine follow-ups</li>
+                        <li>24×7 Emergency surgical management in Digha, Patna</li>
+                      </ul>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* OPD Schedule & Availability */}
+              <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200/80 shadow-sm space-y-4">
+                <h2 className="font-heading font-bold text-navy-900 text-xl flex items-center gap-2 pb-3 border-b border-slate-100">
+                  <FiClock className="w-5 h-5 text-primary-600" /> OPD Availability at Nova Max Hospital, Digha, Patna
+                </h2>
+
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {dayOrder.map((day) => (
+                    <span
+                      key={day}
+                      className={`px-3.5 py-2 rounded-lg text-xs font-bold ${
+                        sortedDays.includes(day)
+                          ? 'bg-primary-600 text-white shadow-sm'
+                          : 'bg-slate-100 text-slate-400'
+                      }`}
                     >
-                      <FiPhone className="w-4 h-4 animate-pulse" />
-                      {doctor.phone || siteData.contact.phone}
-                    </a>
+                      {day}
+                    </span>
+                  ))}
+                </div>
+
+                {doctor.availableTime && (
+                  <p className="text-xs md:text-sm text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-100 flex items-center gap-2 font-medium">
+                    <FiClock className="w-4 h-4 text-primary-600" />
+                    Consultation Hours: <span className="font-bold text-navy-900">{doctor.availableTime}</span>
+                  </p>
+                )}
+              </div>
+
+              {/* Patient Preparation & Consultation Checklist */}
+              <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200/80 shadow-sm space-y-4">
+                <h2 className="font-heading font-bold text-navy-900 text-xl flex items-center gap-2 pb-3 border-b border-slate-100">
+                  <FiActivity className="w-5 h-5 text-primary-600" /> What to Bring for OPD Consultation
+                </h2>
+                <ul className="grid sm:grid-cols-2 gap-3 text-xs text-slate-700">
+                  <li className="flex items-start gap-2 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                    <FiCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Past medical history, prescription slips &amp; blood test reports</span>
+                  </li>
+                  <li className="flex items-start gap-2 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                    <FiCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Recent Ultrasound (USG), X-Ray, or CT Scan films</span>
+                  </li>
+                  <li className="flex items-start gap-2 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                    <FiCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>List of active medications &amp; allergy history</span>
+                  </li>
+                  <li className="flex items-start gap-2 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                    <FiCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>Health insurance card for TPA cashless approval assistance</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Doctor Consultation FAQs */}
+              <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200/80 shadow-sm space-y-4">
+                <h2 className="font-heading font-bold text-navy-900 text-xl flex items-center gap-2 pb-3 border-b border-slate-100">
+                  <FiShield className="w-5 h-5 text-primary-600" /> Patient FAQs &amp; Appointment Guidance
+                </h2>
+                <div className="space-y-3 text-xs md:text-sm">
+                  <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <h3 className="font-bold text-navy-900 mb-1">How can I book an emergency surgical opinion with {doctor.name}?</h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      Call our direct hospital line at <strong>{doctor.phone || siteData.contact.phone}</strong> or send a WhatsApp message for priority emergency slots at Nova Max Hospital in Digha, Patna.
+                    </p>
+                  </div>
+                  <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <h3 className="font-bold text-navy-900 mb-1">Does {doctor.name} perform daycare laser surgeries?</h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      Yes. {doctor.name} specializes in daycare laser and keyhole procedures allowing patients to walk home comfortably within 24 hours.
+                    </p>
                   </div>
                 </div>
               </div>
+
+              {/* Positions & Clinical Appointments */}
+              {(doctor.currentPosition || doctor.previousPosition) && (
+                <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200/80 shadow-sm space-y-4">
+                  <h2 className="font-heading font-bold text-navy-900 text-xl flex items-center gap-2 pb-3 border-b border-slate-100">
+                    <FiBriefcase className="w-5 h-5 text-primary-600" /> Positions &amp; Clinical Appointments
+                  </h2>
+
+                  <div className="space-y-3">
+                    {doctor.currentPosition && (
+                      <div className="p-4 rounded-xl bg-primary-50/60 border border-primary-100 flex items-start gap-3">
+                        <FiBriefcase className="w-5 h-5 text-primary-600 shrink-0 mt-0.5" />
+                        <div>
+                          <p className="text-[11px] font-bold text-primary-700 uppercase tracking-wider">Current Hospital Appointment</p>
+                          <h3 className="text-navy-900 font-bold text-sm mt-0.5">{doctor.currentPosition} at Nova Max Hospital, Digha, Patna</h3>
+                        </div>
+                      </div>
+                    )}
+
+                    {doctor.previousPosition && doctor.previousPosition.split('|').map((p, idx) => (
+                      <div key={idx} className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                        <FiBriefcase className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
+                        <div>
+                          <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Prior Clinical Experience</p>
+                          <h3 className="text-slate-800 font-bold text-sm mt-0.5">{p.trim()}</h3>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Google Ads Compliant Disclaimer Banner */}
+              <MedicalDisclaimer />
+
             </motion.div>
           </div>
         </div>

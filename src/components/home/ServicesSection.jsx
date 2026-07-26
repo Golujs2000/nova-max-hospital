@@ -49,6 +49,7 @@ export default function ServicesSection() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
+              aria-label={`Filter by ${tab}`}
               className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 border ${
                 activeTab === tab
                   ? 'bg-primary-600 text-white border-primary-600 shadow-btn'
@@ -93,6 +94,7 @@ export default function ServicesSection() {
                   >
                     <Link
                       to={`/services/${spec.slug || spec.id}`}
+                      aria-label={`Explore ${spec.name} department and surgeries`}
                       className="flex flex-col bg-white rounded-2xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 border border-primary-100/60 hover:border-primary-300 hover:-translate-y-1.5 group h-full"
                     >
                       {/* Square icon */}
@@ -101,7 +103,7 @@ export default function ServicesSection() {
                           isUrl ? (
                             <img
                               src={spec.icon}
-                              alt={spec.name}
+                              alt=""
                               className="w-8 h-8 object-contain group-hover:brightness-0 group-hover:invert transition-all duration-300"
                             />
                           ) : (
@@ -115,14 +117,14 @@ export default function ServicesSection() {
                       <h3 className="font-heading font-bold text-navy-800 text-base mb-2 group-hover:text-primary-600 transition-colors">
                         {spec.name}
                       </h3>
-                      <p className="text-gray-500 text-xs leading-relaxed line-clamp-3 flex-1 mb-3">
+                      <p className="text-slate-600 text-xs leading-relaxed line-clamp-3 flex-1 mb-3">
                         {spec.description || 'Expert medical treatment and comprehensive care for a rapid recovery.'}
                       </p>
 
                       {/* Treatments count badge */}
                       {Array.isArray(spec.treatments) && spec.treatments.length > 0 && (
                         <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-100">
-                          <span className="text-[10px] text-gray-400 font-medium">
+                          <span className="text-[10px] text-slate-600 font-bold">
                             {spec.treatments.length} Treatment{spec.treatments.length !== 1 ? 's' : ''}
                           </span>
                           <span className="text-xs text-primary-600 font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">

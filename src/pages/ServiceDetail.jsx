@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import {
   FiArrowLeft, FiClock, FiCalendar, FiCheck, FiActivity,
   FiUser, FiArrowRight, FiMapPin, FiInfo, FiChevronRight,
-  FiHeart, FiShield
+  FiHeart, FiShield, FiHelpCircle, FiChevronDown
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
 import { getCategoryItemBySlug as getDepartmentBySlug } from '../services/categories'
@@ -109,6 +109,7 @@ export default function ServiceDetail() {
   const navigate = useNavigate()
   const [department, setDepartment] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [openFaq, setOpenFaq] = useState(null)
   const { doctors } = useDoctors()
 
   useEffect(() => {
@@ -159,44 +160,57 @@ export default function ServiceDetail() {
         keywords={[department.name, `${department.name} Patna`, `${department.name} hospital Bihar`, ...(department.features || [])]}
       />
 
-      {/* Hero Section — Dynamic Color-Themed Reference Mockup */}
-      <section className="relative border-b border-gray-200 py-16 md:py-20 lg:py-24 px-6 md:px-12 overflow-hidden bg-slate-50 min-h-[480px] lg:min-h-[580px] flex items-center">
+      {/* Eye-Catching Emergency Helpline Banner */}
+      <div className="bg-gradient-to-r from-primary-700 via-primary-600 to-navy-900 text-white py-2.5 px-4 text-xs md:text-sm font-medium shadow-sm">
+        <div className="container-max flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            <span><strong>Nova Max Hospital in Digha, Patna</strong> — 24/7 Surgical &amp; OPD Emergency Care</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <a href={`tel:${siteData.contact.phone}`} className="hover:underline flex items-center gap-1 font-bold">
+              📞 {siteData.contact.phone}
+            </a>
+            <a href={`https://wa.me/${siteData.contact.phone.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer" className="bg-emerald-500 hover:bg-emerald-600 text-white px-2.5 py-1 rounded-md text-xs font-bold transition-colors">
+              💬 WhatsApp Support
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Hero Section — Eye-Catching Light Header */}
+      <section className="relative border-b border-gray-200 py-12 md:py-16 px-6 md:px-12 overflow-hidden bg-gradient-to-b from-primary-50/80 via-slate-50 to-white min-h-[460px] flex items-center">
         {/* Background Image on Right with Fade Overlay */}
         {department.heroImage ? (
-          <div className="absolute top-0 right-0 bottom-0 w-full lg:w-[55%] z-0 hidden lg:block">
+          <div className="absolute top-0 right-0 bottom-0 w-full lg:w-[50%] z-0 hidden lg:block">
             <img 
               src={department.heroImage} 
-              alt={department.name} 
-              className="w-full h-full object-cover animate-pulse-slow animate-float" 
+              alt={`${department.name} at Nova Max Hospital in Digha, Patna`} 
+              className="w-full h-full object-cover animate-pulse-slow animate-float opacity-90" 
             />
             {/* Fade overlay from left to right */}
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-50 via-slate-50/35 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-50 via-slate-50/60 to-transparent z-10" />
           </div>
         ) : (
-          <div className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-primary-50/20 to-transparent z-0 hidden lg:block" />
+          <div className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-primary-100/30 to-transparent z-0 hidden lg:block" />
         )}
 
-        {/* Subtle grid pattern background */}
-        <div className="absolute inset-0 opacity-[0.02] pointer-events-none z-0" 
-             style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        
         <div className="container-max relative z-20 w-full">
-          <Link to="/hospital-departments" className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-800 text-sm font-semibold mb-6 transition-colors">
-            <FiArrowLeft className="w-4 h-4" /> All Departments
+          <Link to="/hospital-departments" className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-800 text-xs md:text-sm font-bold mb-4 transition-colors">
+            <FiArrowLeft className="w-4 h-4" /> All Departments — Nova Max Hospital
           </Link>
           
           <div className={`w-full ${department.heroImage ? 'lg:max-w-[55%] xl:max-w-[60%]' : 'max-w-4xl'}`}>
-            {/* Tagline / Category details */}
-            <p className={`font-extrabold uppercase tracking-widest text-xs md:text-sm mb-3 ${theme.tagline}`}>
-              COMPASSIONATE CARE. POWERED BY INNOVATION.
-            </p>
+            <div className="inline-flex items-center gap-2 bg-primary-100 text-primary-800 border border-primary-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">
+              <FiShield className="w-3.5 h-3.5 text-primary-600" /> Nova Max Hospital in Digha, Patna
+            </div>
 
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-black text-navy-800 mb-4 leading-tight tracking-tight">
-              Experts in <span className={theme.tagline}>{department.name.replace(/(Department of|Services|Service)/i, '').trim()}</span>. Focused on You.
+            <h1 className="font-heading text-3xl md:text-5xl lg:text-6xl font-black text-navy-900 mb-4 leading-tight tracking-tight">
+              {department.name} <span className="block text-primary-600 text-xl md:text-3xl font-extrabold mt-1">at Nova Max Hospital, Digha, Patna</span>
             </h1>
 
-            <p className="text-gray-600 text-base md:text-lg max-w-2xl leading-relaxed font-light mb-6">
-              {department.description}
+            <p className="text-slate-600 text-base md:text-lg max-w-2xl leading-relaxed font-normal mb-6">
+              {department.description || `State-of-the-art diagnostic, surgical, and therapeutic medical solutions at Nova Max Hospital in Digha, Patna.`}
             </p>
 
             {/* Mobile Hero Image */}
@@ -204,56 +218,53 @@ export default function ServiceDetail() {
               <div className="w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-6 block lg:hidden shadow-sm border border-gray-150">
                 <img 
                   src={department.heroImage} 
-                  alt={department.name} 
+                  alt={`${department.name} at Nova Max Hospital`} 
                   className="w-full h-full object-cover" 
                 />
               </div>
             )}
 
-            {/* Feature row matching mockup details */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 py-6 border-t border-b border-gray-200/80 my-8">
-              <div className="flex flex-col items-start gap-1 pr-2 md:border-r border-gray-200 last:border-r-0">
-                <FiActivity className={`w-6 h-6 mb-1 ${theme.iconColor}`} />
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Advanced</span>
-                <span className="text-sm font-extrabold text-[#1a2e40] -mt-1">Technology</span>
+            {/* Feature Row Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 py-4 border-t border-b border-slate-200 my-6">
+              <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
+                <FiActivity className="w-5 h-5 mb-1 text-primary-600" />
+                <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest block">4K Laparoscopy &amp; Laser</span>
+                <span className="text-xs font-black text-navy-900">Modern OT Tech</span>
               </div>
-              <div className="flex flex-col items-start gap-1 pr-2 md:border-r border-gray-200 last:border-r-0">
-                <FiUser className={`w-6 h-6 mb-1 ${theme.iconColor}`} />
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Expert</span>
-                <span className="text-sm font-extrabold text-[#1a2e40] -mt-1">{getSpecialistLabel(department.name)}</span>
+              <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
+                <FiUser className="w-5 h-5 mb-1 text-primary-600" />
+                <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest block">Board Certified</span>
+                <span className="text-xs font-black text-navy-900">{getSpecialistLabel(department.name)}</span>
               </div>
-              <div className="flex flex-col items-start gap-1 pr-2 md:border-r border-gray-200 last:border-r-0">
-                <FiHeart className={`w-6 h-6 mb-1 ${theme.iconColor}`} />
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Comprehensive</span>
-                <span className="text-sm font-extrabold text-[#1a2e40] -mt-1">Care</span>
+              <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
+                <FiHeart className="w-5 h-5 mb-1 text-emerald-600" />
+                <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest block">Daycare Surgery</span>
+                <span className="text-xs font-black text-navy-900">24h Discharge</span>
               </div>
-              <div className="flex flex-col items-start gap-1 pr-2 last:border-r-0">
-                <FiShield className={`w-6 h-6 mb-1 ${theme.iconColor}`} />
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Patient First</span>
-                <span className="text-sm font-extrabold text-[#1a2e40] -mt-1">Approach</span>
+              <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
+                <FiShield className="w-5 h-5 mb-1 text-amber-600" />
+                <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest block">Google Ads Verified</span>
+                <span className="text-xs font-black text-navy-900">Clinical Safety</span>
               </div>
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-3">
               <Link
                 to={`/book-appointment?dept=${encodeURIComponent(department.name)}`}
-                className={`inline-flex items-center gap-2 font-bold text-xs tracking-wider uppercase px-8 py-4 rounded-md shadow-md transition-all duration-200 active:scale-95 ${theme.btn}`}
+                className="inline-flex items-center gap-2 font-bold text-xs tracking-wider uppercase px-7 py-3.5 rounded-lg shadow-md bg-primary-600 hover:bg-primary-700 text-white transition-all active:scale-95"
               >
-                Book an Appointment <FiArrowRight className="w-4 h-4" />
+                Book OPD Appointment <FiArrowRight className="w-4 h-4" />
               </Link>
               
-              {/* Category indicator / badge */}
-              {department.category && (
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-500 bg-gray-100 px-3 py-2 rounded-md">
-                  {department.category}
-                </span>
-              )}
-              {department.available && (
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-500 bg-gray-100 px-3 py-2 rounded-md flex items-center gap-1.5">
-                   <FiClock className="w-3.5 h-3.5" /> {department.available}
-                </span>
-              )}
+              <a
+                href={`https://wa.me/${siteData.contact.phone.replace(/[^0-9]/g, '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-bold text-xs tracking-wider uppercase px-6 py-3.5 rounded-lg border border-emerald-500 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 transition-all"
+              >
+                💬 WhatsApp Consultation
+              </a>
             </div>
 
           </div>
@@ -268,14 +279,13 @@ export default function ServiceDetail() {
             {/* Left — Main Content Area */}
             <div className="lg:col-span-2 space-y-12">
 
-              {/* Department Overview */}
-              {department.longDescription && (
+              {(department.longDescription || department.description) && (
                 <div className="prose max-w-none">
                   <h2 className="flex items-center gap-3 text-2xl font-heading font-bold text-navy-900 mb-6 pb-2 border-b border-gray-100">
                     <FiInfo className="text-primary-500 w-6 h-6" /> Overview
                   </h2>
                   <div className="text-gray-700 text-lg leading-relaxed space-y-6 font-light">
-                    {department.longDescription.split('\\n').filter(p => p.trim()).map((paragraph, i) => (
+                    {(department.longDescription || department.description).split(/\r?\n|\\n/).filter(p => p.trim()).map((paragraph, i) => (
                       <p key={i}>{paragraph}</p>
                     ))}
                   </div>
@@ -331,66 +341,147 @@ export default function ServiceDetail() {
                   </div>
                 </div>
               )}
+
+              {/* Department FAQs Accordion */}
+              <div className="pt-6 border-t border-gray-200">
+                <h2 className="flex items-center gap-3 text-2xl font-heading font-bold text-navy-900 mb-6 pb-2 border-b border-gray-100">
+                  <FiHelpCircle className="text-primary-600 w-6 h-6" /> Frequently Asked Questions ({department.name})
+                </h2>
+                <div className="space-y-3">
+                  {[
+                    {
+                      question: `What OPD consultation hours and emergency care are available for ${department.name} at Nova Max Hospital in Digha, Patna?`,
+                      answer: `Our ${department.name} department operates regular daily OPD hours for consultations while 24x7 emergency medical and surgical admissions are active round-the-clock.`
+                    },
+                    {
+                      question: `What diagnostic tests or preparations are required before visiting ${department.name}?`,
+                      answer: `Please bring your complete past medical history, previous blood tests, ultrasound/CT scan reports, and prescription details. If surgery is planned, fast for 6 to 8 hours prior to pre-op workup.`
+                    },
+                    {
+                      question: `Are cashless insurance services accepted for ${department.name} procedures?`,
+                      answer: `Yes, Nova Max Hospital assists patients with cashless insurance claims, TPA approvals, and panel schemes for eligible medical and surgical procedures.`
+                    }
+                  ].map((faq, i) => (
+                    <div key={i} className="border border-slate-200 rounded-xl overflow-hidden bg-slate-50/50">
+                      <button
+                        onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                        className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left hover:bg-slate-100/60 transition-colors"
+                      >
+                        <span className={`font-semibold text-sm md:text-base ${openFaq === i ? 'text-primary-600' : 'text-navy-900'}`}>
+                          {faq.question}
+                        </span>
+                        <FiChevronDown className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${openFaq === i ? 'rotate-180 text-primary-500' : 'text-slate-400'}`} />
+                      </button>
+                      {openFaq === i && (
+                        <div className="px-5 pb-5 pt-1 border-t border-slate-200/60 bg-white">
+                          <p className="text-xs md:text-sm text-slate-600 leading-relaxed">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Right Sidebar — Specialists */}
             <div className="space-y-8 lg:sticky lg:top-24 self-start">
-              <div className="bg-slate-50 rounded-2xl border border-gray-200 p-6 md:p-8">
-                <h3 className="font-heading font-bold text-xl text-navy-900 mb-2">Our Specialists</h3>
-                <p className="text-sm text-gray-600 mb-6">Book a direct consultation with our experts in {department.name}.</p>
+              <div className="bg-slate-50 rounded-2xl border border-gray-200 p-6">
+                <h3 className="font-heading font-bold text-xl text-navy-900 mb-1">Attending Specialists</h3>
+                <p className="text-xs text-gray-500 mb-5">Senior doctors specializing in {department.name} at Nova Max Hospital in Digha, Patna.</p>
                 
                 {relatedDoctors.length > 0 ? (
-                  <div className="space-y-6">
+                  <div className="space-y-5">
                     {relatedDoctors.map((doc) => (
-                      <div key={doc.id} className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow">
-                        <div className="flex items-start gap-4 mb-4">
-                          <div className="relative flex-shrink-0">
-                            {doc.image ? (
-                              <img src={doc.image} alt={doc.name} className="w-14 h-14 rounded-full object-cover border border-gray-100" />
-                            ) : (
-                              <div className="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center border border-gray-200">
-                                <span className="font-bold text-gray-500 text-lg">{getInitials(doc.name)}</span>
+                      <div key={doc.id} className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-xs hover:shadow-md transition-all group">
+                        {/* Doctor Photo Card Header */}
+                        <div className="w-full aspect-[4/3] bg-slate-100 relative overflow-hidden flex items-center justify-center border-b border-gray-150">
+                          {doc.image ? (
+                            <img src={doc.image} alt={`${doc.name} at Nova Max Hospital in Digha, Patna`} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-navy-900 text-white">
+                              <div className="w-14 h-14 bg-primary-600 rounded-full flex items-center justify-center shadow">
+                                <span className="font-bold text-white text-xl">{getInitials(doc.name)}</span>
                               </div>
-                            )}
-                            <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full" />
-                          </div>
-                          
-                          <div className="flex-1 min-w-0 pt-1">
-                            <Link to={`/doctors/${doc.slug || doc.id}`} className="font-bold text-navy-900 text-base hover:text-primary-600 transition-colors block">
-                              {doc.name}
-                            </Link>
-                            <p className="text-xs text-gray-500 mt-0.5">{doc.qualification}</p>
-                            {doc.experience && (
-                              <p className="text-[11px] font-semibold text-primary-600 mt-1 uppercase tracking-wider">{doc.experience} Exp</p>
-                            )}
-                          </div>
+                            </div>
+                          )}
+                          <span className="absolute bottom-2.5 right-2.5 inline-flex items-center gap-1.5 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">
+                            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                            OPD Available Today
+                          </span>
                         </div>
 
-                        {/* Direct Booking Button for this Doctor */}
-                        <Link
-                          to={`/book-appointment?dept=${encodeURIComponent(department.name)}&doctor=${encodeURIComponent(doc.name)}`}
-                          className="w-full flex items-center justify-center gap-2 bg-navy-900 text-white font-semibold text-sm py-2.5 rounded-lg hover:bg-primary-600 transition-colors"
-                        >
-                          <FiCalendar className="w-4 h-4" /> Book Appointment
-                        </Link>
+                        {/* Doctor Card Content */}
+                        <div className="p-4 space-y-3">
+                          <div>
+                            <Link to={`/doctors/${doc.slug || doc.id}`} className="font-heading font-bold text-navy-900 text-base hover:text-primary-600 transition-colors block">
+                              {doc.name}
+                            </Link>
+                            <p className="text-xs text-slate-500 mt-0.5 font-medium">{doc.qualification}</p>
+                          </div>
+
+                          {/* Specialties & Experience Tags */}
+                          <div className="flex flex-wrap gap-1.5">
+                            <span className="text-[10px] font-bold bg-primary-50 text-primary-700 border border-primary-200 px-2 py-0.5 rounded">
+                              {doc.specialty}
+                            </span>
+                            {doc.experience && (
+                              <span className="text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded">
+                                {doc.experience}+ Yrs Exp
+                              </span>
+                            )}
+                          </div>
+
+                          <div className="text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-lg border border-slate-200/80">
+                            <strong className="text-navy-900 font-semibold block mb-0.5">Location &amp; Hospital:</strong>
+                            <span className="text-slate-600">Nova Max Hospital, Digha, Patna</span>
+                          </div>
+
+                          {/* Action CTAs */}
+                          <div className="pt-1 space-y-2">
+                            <Link
+                              to={`/book-appointment?dept=${encodeURIComponent(department.name)}&doctor=${encodeURIComponent(doc.name)}`}
+                              className="w-full flex items-center justify-center gap-2 bg-primary-600 text-white font-bold text-xs py-2.5 rounded-lg hover:bg-primary-700 transition-colors shadow-xs"
+                            >
+                              <FiCalendar className="w-3.5 h-3.5" /> Book OPD Appointment
+                            </Link>
+                            
+                            <a
+                              href={`https://wa.me/${(doc.phone || siteData.contact.phone).replace(/[^0-9]/g, '')}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="w-full flex items-center justify-center gap-1.5 text-center py-2 border border-emerald-500 bg-emerald-50 text-emerald-800 font-bold text-xs rounded-lg hover:bg-emerald-100 transition-colors"
+                            >
+                              💬 WhatsApp Consultation
+                            </a>
+
+                            <Link
+                              to={`/doctors/${doc.slug || doc.id}`}
+                              className="w-full flex items-center justify-center gap-1 text-center py-1.5 text-slate-600 hover:text-primary-600 font-semibold text-xs transition-colors"
+                            >
+                              View Full Doctor Profile <FiChevronRight size={14} />
+                            </Link>
+                          </div>
+                        </div>
                       </div>
                     ))}
                   </div>
                 ) : (
                   <div className="text-center py-6 bg-white rounded-xl border border-gray-200">
                     <FiUser className="w-8 h-8 text-gray-300 mx-auto mb-2" />
-                    <p className="text-sm text-gray-500">No specialists currently assigned.</p>
+                    <p className="text-xs text-gray-500">Senior doctors available for consultation at Nova Max Hospital in Digha, Patna.</p>
                   </div>
                 )}
                 
-                {/* Fallback general booking if they just want the department */}
-                <div className="mt-6 pt-6 border-t border-gray-200">
-                  <p className="text-xs text-gray-500 text-center mb-3">Not sure who to see?</p>
+                {/* Fallback general booking */}
+                <div className="mt-5 pt-5 border-t border-gray-200">
+                  <p className="text-xs text-gray-500 text-center mb-2.5">Need immediate consultation?</p>
                   <Link
                     to={`/book-appointment?dept=${encodeURIComponent(department.name)}&from=/services/${department.slug}`}
-                    className="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 text-gray-700 font-bold text-sm py-3 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="w-full flex items-center justify-center gap-2 bg-navy-900 text-white font-bold text-xs py-3 rounded-lg hover:bg-navy-800 transition-colors"
                   >
-                    General Department Booking
+                    <FiCalendar className="w-3.5 h-3.5" /> General Department Booking
                   </Link>
                 </div>
               </div>

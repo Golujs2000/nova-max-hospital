@@ -57,6 +57,7 @@ function Lightbox({ images, index, onClose }) {
         {/* Close */}
         <button
           onClick={onClose}
+          aria-label="Close image gallery popup"
           className="absolute top-4 right-4 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
         >
           <FiX className="w-5 h-5" />
@@ -66,6 +67,7 @@ function Lightbox({ images, index, onClose }) {
         {images.length > 1 && (
           <button
             onClick={(e) => { e.stopPropagation(); prev() }}
+            aria-label="View previous photo"
             className="absolute left-4 w-11 h-11 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
           >
             <FiChevronLeft className="w-6 h-6" />
@@ -96,10 +98,10 @@ function Lightbox({ images, index, onClose }) {
             />
           )}
           {img.title && (
-            <p className="text-white/70 text-sm mt-3">{img.title}</p>
+            <p className="text-white/80 text-sm mt-3">{img.title}</p>
           )}
           {images.length > 1 && (
-            <p className="text-white/40 text-xs mt-1">{current + 1} / {images.length}</p>
+            <p className="text-white/80 text-xs mt-1">{current + 1} / {images.length}</p>
           )}
         </motion.div>
 
@@ -107,6 +109,7 @@ function Lightbox({ images, index, onClose }) {
         {images.length > 1 && (
           <button
             onClick={(e) => { e.stopPropagation(); next() }}
+            aria-label="View next photo"
             className="absolute right-4 w-11 h-11 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
           >
             <FiChevronRight className="w-6 h-6" />

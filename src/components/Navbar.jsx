@@ -69,27 +69,27 @@ export default function Navbar() {
         <div className="hidden md:flex text-white text-xs px-8 py-2 justify-between items-center border-b border-primary-900/10 bg-primary-800">
           <div className="flex-1 flex items-center justify-start gap-4">
             {siteData.social.facebook && (
-              <a href={siteData.social.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-accent-300 transition-all hover:scale-110">
+              <a href={siteData.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Visit Nova Max Hospital Facebook page" className="hover:text-accent-300 transition-all hover:scale-110 p-1">
                 <FaFacebookF className="w-3.5 h-3.5" />
               </a>
             )}
             {siteData.social.twitter && (
-              <a href={siteData.social.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-accent-300 transition-all hover:scale-110">
+              <a href={siteData.social.twitter} target="_blank" rel="noopener noreferrer" aria-label="Visit Nova Max Hospital Twitter page" className="hover:text-accent-300 transition-all hover:scale-110 p-1">
                 <FaTwitter className="w-3.5 h-3.5" />
               </a>
             )}
             {siteData.social.instagram && (
-              <a href={siteData.social.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-accent-300 transition-all hover:scale-110">
+              <a href={siteData.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Visit Nova Max Hospital Instagram page" className="hover:text-accent-300 transition-all hover:scale-110 p-1">
                 <FaInstagram className="w-3.5 h-3.5" />
               </a>
             )}
             {siteData.social.youtube && (
-              <a href={siteData.social.youtube} target="_blank" rel="noopener noreferrer" className="hover:text-accent-300 transition-all hover:scale-110">
+              <a href={siteData.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="Visit Nova Max Hospital YouTube channel" className="hover:text-accent-300 transition-all hover:scale-110 p-1">
                 <FaYoutube className="w-3.5 h-3.5" />
               </a>
             )}
             {siteData.social.linkedin && (
-              <a href={siteData.social.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-accent-300 transition-all hover:scale-110">
+              <a href={siteData.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Visit Nova Max Hospital LinkedIn page" className="hover:text-accent-300 transition-all hover:scale-110 p-1">
                 <FaLinkedinIn className="w-3.5 h-3.5" />
               </a>
             )}

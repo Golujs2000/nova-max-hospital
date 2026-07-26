@@ -41,18 +41,21 @@ export default function DoctorCard({ doc, accent }) {
         <div className="hidden md:flex flex-col gap-2.5 w-full">
           <Link
             to={`/book-appointment?doctor=${encodeURIComponent(doc.name)}&dept=${encodeURIComponent(doc.specialty)}`}
+            aria-label={`Book appointment with ${doc.name}`}
             className="w-full text-center py-3 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
           >
             <FiCalendar className="w-3.5 h-3.5" /> Book Appointment
           </Link>
           <a
             href={`tel:${doc.phone || siteData.contact.phone}`}
+            aria-label={`Call ${doc.name}`}
             className="w-full text-center py-3 bg-accent-600 hover:bg-accent-700 text-white font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
           >
             <FiPhone className="w-3.5 h-3.5 animate-pulse" /> Call: {doc.phone || siteData.contact.phone}
           </a>
           <Link
             to={`/doctors/${doc.slug || doc.id}`}
+            aria-label={`View full profile of ${doc.name}`}
             className="w-full text-center py-3 border border-primary-600 text-primary-600 hover:bg-primary-50 font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
           >
             View Profile <FiChevronRight className="w-3.5 h-3.5" />
@@ -78,17 +81,17 @@ export default function DoctorCard({ doc, accent }) {
               )}
             </div>
             {doc.consultationFee && (
-              <span className="text-xs font-semibold text-gray-500 bg-gray-50 border border-gray-100 px-3 py-1 rounded-[5px]">
+              <span className="text-xs font-semibold text-slate-700 bg-slate-50 border border-slate-200 px-3 py-1 rounded-[5px]">
                 Fee: ₹{doc.consultationFee}
               </span>
             )}
           </div>
 
-          <h2 className="font-heading font-black text-navy-800 text-2xl md:text-3xl leading-tight mb-2 tracking-tight group-hover:text-primary-600 transition-colors">
+          <h3 className="font-heading font-black text-navy-800 text-2xl md:text-3xl leading-tight mb-2 tracking-tight group-hover:text-primary-600 transition-colors">
             {doc.name}
-          </h2>
+          </h3>
 
-          <p className="text-gray-500 text-sm leading-relaxed mb-4">
+          <p className="text-slate-600 text-sm leading-relaxed mb-4">
             {doc.bio
               ? doc.bio.length > 180
                 ? doc.bio.slice(0, 177) + '...'
@@ -107,7 +110,7 @@ export default function DoctorCard({ doc, accent }) {
                 </li>
               )}
               {doc.currentPosition && (
-                <li className="flex items-center gap-2 text-gray-600">
+                <li className="flex items-center gap-2 text-slate-700">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary-400" />
                   <span>Current: {doc.currentPosition.split(/,\s*(.+)/)[0]}</span>
                 </li>
@@ -119,14 +122,14 @@ export default function DoctorCard({ doc, accent }) {
         {/* Footer row — Timings */}
         {doc.availableTime && (
           <div className="pt-4 border-t border-gray-100 w-full">
-            <div className="flex items-center gap-3 text-xs text-gray-600">
+            <div className="flex items-center gap-3 text-xs text-slate-700">
               <FiClock className="w-4 h-4 text-primary-500 shrink-0" />
               <div>
                 <p className="font-semibold text-navy-800">OPD Timings</p>
-                <p className="text-gray-500 mt-0.5">
+                <p className="text-slate-600 mt-0.5">
                   {doc.availableTime} 
                   {Array.isArray(doc.availableDays) && doc.availableDays.length > 0 && (
-                    <span className="text-primary-500 font-bold ml-1.5">
+                    <span className="text-primary-600 font-bold ml-1.5">
                       ({DAYS_SHORT.map((s, i) => doc.availableDays.includes(DAYS_FULL[i]) ? s : null).filter(Boolean).join(', ')})
                     </span>
                   )}
@@ -140,18 +143,21 @@ export default function DoctorCard({ doc, accent }) {
         <div className="flex md:hidden flex-col gap-2.5 w-full mt-5">
           <Link
             to={`/book-appointment?doctor=${encodeURIComponent(doc.name)}&dept=${encodeURIComponent(doc.specialty)}`}
+            aria-label={`Book appointment with ${doc.name}`}
             className="w-full text-center py-3 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
           >
             <FiCalendar className="w-3.5 h-3.5" /> Book Appointment
           </Link>
           <a
             href={`tel:${doc.phone || siteData.contact.phone}`}
+            aria-label={`Call ${doc.name}`}
             className="w-full text-center py-3 bg-accent-600 hover:bg-accent-700 text-white font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
           >
             <FiPhone className="w-3.5 h-3.5 animate-pulse" /> Call: {doc.phone || siteData.contact.phone}
           </a>
           <Link
             to={`/doctors/${doc.slug || doc.id}`}
+            aria-label={`View full profile of ${doc.name}`}
             className="w-full text-center py-3 border border-primary-600 text-primary-600 hover:bg-primary-50 font-bold rounded-[5px] text-xs transition-all flex items-center justify-center gap-1.5"
           >
             View Profile <FiChevronRight className="w-3.5 h-3.5" />

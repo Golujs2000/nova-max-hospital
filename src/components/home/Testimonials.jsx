@@ -150,6 +150,7 @@ export default function Testimonials() {
           <div className="flex items-center justify-center gap-4 mt-10">
             <button
               onClick={prev}
+              aria-label="View previous testimonials page"
               className="w-11 h-11 bg-white border border-primary-200 rounded-full flex items-center justify-center hover:bg-primary-600 hover:text-white hover:border-primary-600 transition-all duration-200 shadow-sm text-primary-600"
             >
               <FiChevronLeft className="w-5 h-5" />
@@ -159,12 +160,14 @@ export default function Testimonials() {
                 <button
                   key={i}
                   onClick={() => setActive(i)}
+                  aria-label={`Go to testimonial page ${i + 1}`}
                   className={`h-2.5 rounded-full transition-all duration-300 ${i === active ? 'w-8 bg-primary-600' : 'w-2.5 bg-primary-200 hover:bg-primary-400'}`}
                 />
               ))}
             </div>
             <button
               onClick={next}
+              aria-label="View next testimonials page"
               className="w-11 h-11 bg-white border border-primary-200 rounded-full flex items-center justify-center hover:bg-primary-600 hover:text-white hover:border-primary-600 transition-all duration-200 shadow-sm text-primary-600"
             >
               <FiChevronRight className="w-5 h-5" />

@@ -129,7 +129,7 @@ ${formData.message.trim() ? `*Symptoms/Message:* ${formData.message.trim()}` : '
 
 Please confirm my appointment slot. Thank you!`
 
-    const whatsappNumber = siteData.contact.whatsapp || '919334097925'
+    const whatsappNumber = siteData.contact.whatsapp || '917250520694'
     return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`
   }
 

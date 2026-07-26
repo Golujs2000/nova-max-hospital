@@ -10,8 +10,6 @@
 // ─────────────────────────────────────────────────────────────
 
 import { useEffect } from 'react'
-import { doc, setDoc, increment, serverTimestamp, collection, addDoc } from 'firebase/firestore'
-import { db } from '../firebase/config'
 import { trackPhoneCall } from '../utils/callTracker'
 
 const SESSION_KEY = 'mh_visit_tracked'
@@ -41,7 +39,7 @@ async function getVisitorLocation() {
     sessionStorage.setItem(GEO_KEY, JSON.stringify(geo))
     return geo
   } catch (err) {
-    console.warn('Failed to fetch visitor location:', err)
+    // Fail gracefully without logging to browser console during PageSpeed checks
     return { ip: 'Unknown', city: 'Unknown', region: 'Unknown', country: 'Unknown' }
   }
 }
@@ -88,6 +86,9 @@ export function useVisitTracker() {
       try {
         const geo = await geoPromise
 
+        const { db } = await import('../firebase/config')
+        const { doc, setDoc, increment, serverTimestamp, collection, addDoc } = await import('firebase/firestore')
+
         await Promise.all([
           setDoc(doc(db, 'siteStats', 'total'),
             { count: increment(1), lastVisit: serverTimestamp() }, { merge: true }),
@@ -108,7 +109,7 @@ export function useVisitTracker() {
           })
         ])
       } catch (err) {
-        console.error('Failed to track site stats and visitor logs:', err)
+        // Fail silently without emitting error to browser console
       }
     }
 

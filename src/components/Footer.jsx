@@ -75,17 +75,17 @@ export default function Footer() {
             
             {/* Emergency Helpline */}
             <div className="md:pr-8 pt-4 md:pt-0">
-              <h4 className="font-heading font-bold text-lg uppercase tracking-wider mb-4">24/7 Emergency Helpline</h4>
-              <p className="text-white/80 text-sm mb-3">For immediate medical assistance, call our emergency ward.</p>
-              <a href={`tel:${siteData.contact.phone}`} className="inline-block bg-white text-primary-700 px-6 py-2.5 font-black text-sm tracking-widest hover:bg-primary-50 transition-colors rounded-full shadow-md">
+              <h2 className="font-heading font-bold text-lg uppercase tracking-wider mb-4">24/7 Emergency Helpline</h2>
+              <p className="text-white/90 text-sm mb-3">For immediate medical assistance, call our emergency ward.</p>
+              <a href={`tel:${siteData.contact.phone}`} aria-label={`Call emergency line ${siteData.contact.phone}`} className="inline-block bg-white text-primary-700 px-6 py-2.5 font-black text-sm tracking-widest hover:bg-primary-50 transition-colors rounded-full shadow-md">
                 CALL {siteData.contact.phone}
               </a>
             </div>
 
             {/* Map */}
             <div className="md:px-8 pt-6 md:pt-0 flex flex-col items-center md:items-start justify-center">
-              <h4 className="font-heading font-bold text-lg uppercase tracking-wider mb-4">Branch On The Map</h4>
-              <a href={siteData.social?.googleMaps || '#'} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-white/90 hover:text-white hover:underline uppercase tracking-wide">
+              <h2 className="font-heading font-bold text-lg uppercase tracking-wider mb-4">Branch On The Map</h2>
+              <a href={siteData.social?.googleMaps || '#'} target="_blank" rel="noopener noreferrer" aria-label="View Nova Max Hospital directions on Google Maps" className="inline-flex items-center gap-2 text-sm text-white/90 hover:text-white hover:underline uppercase tracking-wide">
                 <FiMapPin className="w-4 h-4" />
                 View Map Directions
               </a>
@@ -93,8 +93,8 @@ export default function Footer() {
 
             {/* Doctors */}
             <div className="md:pl-8 pt-6 md:pt-0 flex flex-col items-center md:items-start justify-center">
-              <h4 className="font-heading font-bold text-lg uppercase tracking-wider mb-4">Meet Our Doctors</h4>
-              <Link to="/doctors" className="inline-block bg-white text-primary-700 px-6 py-2.5 font-bold text-xs tracking-wider hover:bg-primary-50 transition-colors rounded-full shadow-md">
+              <h2 className="font-heading font-bold text-lg uppercase tracking-wider mb-4">Meet Our Doctors</h2>
+              <Link to="/doctors" aria-label="View all doctors at Nova Max Hospital" className="inline-block bg-white text-primary-700 px-6 py-2.5 font-bold text-xs tracking-wider hover:bg-primary-50 transition-colors rounded-full shadow-md">
                 VIEW ALL DOCTORS
               </Link>
             </div>
@@ -121,7 +121,7 @@ export default function Footer() {
                 <p className="text-xs text-primary-300">{siteData.tagline}</p>
               </div>
             </Link>
-            <p className="text-sm leading-relaxed text-gray-400 mb-6 max-w-sm">{siteData.description}</p>
+            <p className="text-sm leading-relaxed text-gray-300 mb-6 max-w-sm">{siteData.description}</p>
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-3 mb-6">
@@ -133,9 +133,9 @@ export default function Footer() {
               </Link>
               <a
                 href={`tel:${siteData.contact.phone}`}
-                className="flex items-center gap-2 text-sm text-gray-400 hover:text-primary-400 transition-colors"
+                className="flex items-center gap-2 text-sm text-gray-300 hover:text-primary-400 transition-colors"
               >
-                <FiPhone className="w-4 h-4 text-primary-500" />
+                <FiPhone className="w-4 h-4 text-primary-400" />
                 Phone: {siteData.contact.phone}
               </a>
             </div>
@@ -147,7 +147,7 @@ export default function Footer() {
                 return Icon ? (
                   <a key={platform} href={url} target="_blank" rel="noopener noreferrer"
                     className="w-12 h-12 bg-white/10 hover:bg-primary-500 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-110"
-                    aria-label={platform}>
+                    aria-label={`Visit Nova Max Hospital ${platform} page`}>
                     <Icon className="w-4 h-4 text-white" />
                   </a>
                 ) : null
@@ -157,7 +157,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-heading font-semibold text-white mb-5 text-sm uppercase tracking-wider">Quick Links</h4>
+            <h2 className="font-heading font-semibold text-white mb-5 text-sm uppercase tracking-wider">Quick Links</h2>
             <ul className="space-y-2.5">
               {quickLinks.map(({ label, to }) => (
                 <li key={to}>
@@ -173,7 +173,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-heading font-semibold text-white mb-5 text-sm uppercase tracking-wider">Contact Us</h4>
+            <h2 className="font-heading font-semibold text-white mb-5 text-sm uppercase tracking-wider">Contact Us</h2>
             <ul className="space-y-4 text-sm">
               <li className="flex gap-3">
                 <FiMapPin className="w-4 h-4 text-primary-400 mt-0.5 shrink-0" />
@@ -221,11 +221,11 @@ export default function Footer() {
       {/* ── Row 2: Departments & Treatments ── */}
       {departments.length > 0 && (
         <div className="container-max px-4 md:px-8 py-10">
-          <h4 className="font-heading font-semibold text-white mb-8 text-sm uppercase tracking-wider flex items-center gap-3">
+          <h2 className="font-heading font-semibold text-white mb-8 text-sm uppercase tracking-wider flex items-center gap-3">
             <span className="w-6 h-px bg-primary-500 inline-block" />
             Departments &amp; Treatments
             <span className="w-6 h-px bg-primary-500 inline-block" />
-          </h4>
+          </h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {departments.map((spec) => {
@@ -266,7 +266,7 @@ export default function Footer() {
                       <li>
                         <Link
                           to={`/services/${spec.slug}`}
-                          className="text-xs text-gray-600 hover:text-primary-300 transition-colors"
+                          className="text-xs text-gray-400 hover:text-primary-300 transition-colors"
                         >
                           View treatments →
                         </Link>
@@ -285,11 +285,11 @@ export default function Footer() {
         <>
           <div className="border-t border-white/10" />
           <div className="container-max px-4 md:px-8 py-10">
-            <h4 className="font-heading font-semibold text-white mb-8 text-sm uppercase tracking-wider flex items-center gap-3">
+            <h2 className="font-heading font-semibold text-white mb-8 text-sm uppercase tracking-wider flex items-center gap-3">
               <span className="w-6 h-px bg-primary-500 inline-block" />
               Our Doctors
               <span className="w-6 h-px bg-primary-500 inline-block" />
-            </h4>
+            </h2>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
               {doctors.map((doctor) => (
@@ -315,7 +315,7 @@ export default function Footer() {
                       {doctor.name}
                     </p>
                     {doctor.specialty && (
-                      <p className="text-[10px] text-gray-500 truncate leading-tight mt-0.5">{doctor.specialty}</p>
+                      <p className="text-[10px] text-gray-400 truncate leading-tight mt-0.5">{doctor.specialty}</p>
                     )}
                   </div>
                 </Link>
@@ -333,7 +333,7 @@ export default function Footer() {
 
       {/* ── Bottom bar ── */}
       <div className="border-t border-white/10">
-        <div className="container-max px-4 md:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/50">
+        <div className="container-max px-4 md:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/80">
           <p>© {new Date().getFullYear()} {siteData.name}. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-4">
             {legalLinks.map(({ label, to }) => (

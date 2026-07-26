@@ -2,13 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://nova-max-hospital-4ac39.web.app/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://nova-max-hospital-4ac39.web.app/about</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://nova-max-hospital-4ac39.web.app/services</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://nova-max-hospital-4ac39.web.app/hospital-services</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/hospital-departments</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/surgical-services</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://nova-max-hospital-4ac39.web.app/doctors</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://nova-max-hospital-4ac39.web.app/gallery</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://nova-max-hospital-4ac39.web.app/blog</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://nova-max-hospital-4ac39.web.app/contact</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
   <url><loc>https://nova-max-hospital-4ac39.web.app/book-appointment</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  
+  <!-- Department Pages -->
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/urology</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/laparoscopy</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/general-surgery</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/uro-gynecology</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/male-infertility</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/sexology</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/icu-emergency-care</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/hemodialysis-pathology</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- Surgeries & Treatment Pages -->
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/urology/treatment/kidney-stone-treatment</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/urology/treatment/prostate-surgery</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/urology/treatment/rirs</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/laparoscopy/treatment/laparoscopic-cholecystectomy</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/laparoscopy/treatment/laparoscopic-hernia-repair</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/laparoscopy/treatment/laparoscopic-appendectomy</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/general-surgery/treatment/piles-laser-stapled-surgery</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/general-surgery/treatment/varicose-veins-laser-therapy</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/uro-gynecology/treatment/laparoscopic-hysterectomy-myomectomy</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/male-infertility/treatment/varicocele-treatment</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://nova-max-hospital-4ac39.web.app/services/sexology/treatment/erectile-dysfunction</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+
+  <!-- Legal & Info -->
   <url><loc>https://nova-max-hospital-4ac39.web.app/privacy-policy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://nova-max-hospital-4ac39.web.app/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>

@@ -127,7 +127,7 @@ function getFaqsForTreatment(tName, tSlug, parentId) {
   
   return [
     { question: `Is ${tName} safe?`, answer: `Yes, ${tName} is highly safe and performed by senior consultants using state-of-the-art medical equipment following strict clinical guidelines.` },
-    { question: "How can I book an appointment?", answer: "You can book directly on our website through the Online Booking form, or call our emergency desk at 9801927994." }
+    { question: "How can I book an appointment?", answer: "You can book directly on our website through the Online Booking form, or call our emergency desk at 072505 20694." }
   ];
 }
 

@@ -39,8 +39,8 @@ const COLLECTIONS = [
   'settings'
 ];
 
-const OLD_PHONE_REGEX = /072505\s*20694/g;
-const NEW_PHONE = '9801927994';
+const OLD_PHONE_REGEX = /9801927994/g;
+const NEW_PHONE = '072505 20694';
 
 function replacePhoneInVal(val, regex, newPhone) {
   if (typeof val === 'string') {

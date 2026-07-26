@@ -160,33 +160,33 @@ export default function HeroSection() {
       <div className="container-max px-4 md:px-8 py-8">
         <div className="grid grid-cols-1 sm:grid-cols-3 rounded-2xl overflow-hidden shadow-card-hover border border-primary-100">
           
-          <Link to="/hospital-departments" className="bg-primary-700 hover:bg-primary-800 transition-all duration-300 text-white p-7 md:p-8 flex items-center gap-5 group">
+          <Link to="/hospital-departments" aria-label="Explore hospital medical services" className="bg-primary-700 hover:bg-primary-800 transition-all duration-300 text-white p-7 md:p-8 flex items-center gap-5 group">
             <div className="w-14 h-14 rounded-xl bg-white/15 flex items-center justify-center shrink-0 group-hover:bg-white/25 group-hover:scale-110 transition-all duration-300">
               <FiActivity className="w-7 h-7" />
             </div>
             <div>
-              <h3 className="font-heading font-bold text-base tracking-wider uppercase mb-1">Medical Services</h3>
-              <p className="text-xs text-white/70">Explore our specialties</p>
+              <h2 className="font-heading font-bold text-base tracking-wider uppercase mb-1">Medical Services</h2>
+              <p className="text-xs text-white/90">Explore our specialties</p>
             </div>
           </Link>
 
-          <Link to="/contact" className="bg-primary-600 hover:bg-primary-700 transition-all duration-300 text-white p-7 md:p-8 flex items-center gap-5 group border-y sm:border-y-0 sm:border-x border-primary-500">
+          <Link to="/contact" aria-label="Contact hospital emergency care" className="bg-primary-600 hover:bg-primary-700 transition-all duration-300 text-white p-7 md:p-8 flex items-center gap-5 group border-y sm:border-y-0 sm:border-x border-primary-500">
             <div className="w-14 h-14 rounded-xl bg-white/15 flex items-center justify-center shrink-0 group-hover:bg-white/25 group-hover:scale-110 transition-all duration-300">
               <FiClock className="w-7 h-7" />
             </div>
             <div>
-              <h3 className="font-heading font-bold text-base tracking-wider uppercase mb-1">Open 24 / 7</h3>
-              <p className="text-xs text-white/70">Emergency care always ready</p>
+              <h2 className="font-heading font-bold text-base tracking-wider uppercase mb-1">Open 24 / 7</h2>
+              <p className="text-xs text-white/90">Emergency care always ready</p>
             </div>
           </Link>
 
-          <Link to="/book-appointment" className="bg-accent-500 hover:bg-accent-600 transition-all duration-300 text-white p-7 md:p-8 flex items-center gap-5 group">
+          <Link to="/book-appointment" aria-label="Book appointment with specialists" className="bg-accent-500 hover:bg-accent-600 transition-all duration-300 text-white p-7 md:p-8 flex items-center gap-5 group">
             <div className="w-14 h-14 rounded-xl bg-white/15 flex items-center justify-center shrink-0 group-hover:bg-white/25 group-hover:scale-110 transition-all duration-300">
               <FiCalendar className="w-7 h-7" />
             </div>
             <div>
-              <h3 className="font-heading font-bold text-base tracking-wider uppercase mb-1">Book Appointment</h3>
-              <p className="text-xs text-white/70">Visit our specialists today</p>
+              <h2 className="font-heading font-bold text-base tracking-wider uppercase mb-1">Book Appointment</h2>
+              <p className="text-xs text-white/90">Visit our specialists today</p>
             </div>
           </Link>
 

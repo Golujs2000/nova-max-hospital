@@ -26,7 +26,7 @@ import { siteData } from '../data/siteData'
  *   noIndex      — set true for admin/private pages
  *   jsonLd       — object or array of JSON-LD structured data schemas
  */
-export default function SEO({ title, description, image, type = 'website', keywords, noIndex = false, jsonLd }) {
+export default function SEO({ title, description, image, type = 'website', keywords, noIndex = false, jsonLd, excludeHospitalSchema = false }) {
   const { pathname } = useLocation()
   const canonicalUrl = `${siteData.url}${pathname}`
 
@@ -114,7 +114,9 @@ export default function SEO({ title, description, image, type = 'website', keywo
     ]
   }
   
-  schemas.push(localSeoSchema)
+  if (!excludeHospitalSchema) {
+    schemas.push(localSeoSchema)
+  }
 
   return (
     <Helmet>

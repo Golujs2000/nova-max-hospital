@@ -1,25 +1,33 @@
 # Nova Max Hospital
 
-Nova Max Hospital is a premier multi-specialty healthcare facility located in Digha, Patna, Bihar, specializing in Urology, Advanced Laparoscopy, Sexology, Male Infertility, Uro Gynecology, and General Surgeries.
+> Premier multi-specialty healthcare facility located in Digha, Patna, Bihar, specializing in Urology, Advanced Laparoscopy, Sexology, Male Infertility, Uro Gynecology, and General Surgeries.
 
-## Core Information
-- **Director**: Dr. M. K. Sinha (Senior Consultant Urologist, ex-Sir J.J. Hospital Mumbai)
-- **Address**: Opposite Women's ITI College, Beside HDFC Bank or Ziom, Digha, Patna, Bihar 800011, India
-- **Contact Number**: +91 72505 20694 / +91 94718 69654
+Nova Max Hospital delivers expert clinical care under the direction of Dr. M. K. Sinha (Senior Consultant Urologist, ex-Sir J.J. Hospital Mumbai).
+
+## Key Pages
+
+- [Home Page](https://novamaxhospital.com/): Primary portal featuring department selection, doctor bios, and online appointment booking.
+- [About Us](https://novamaxhospital.com/about): Hospital history, director credentials, and clinical infrastructure details.
+- [Doctors](https://novamaxhospital.com/doctors): Complete roster of consulting specialists, medical credentials, and OPD schedules.
+- [Hospital Departments](https://novamaxhospital.com/hospital-departments): Clinical departments providing specialized medical care.
+- [Surgical Services](https://novamaxhospital.com/surgical-services): Advanced laparoscopic surgeries, keyhole procedures, and general surgical care.
+- [Critical & Emergency Care](https://novamaxhospital.com/critical-care): 24/7 ICU, ICCU, hemodialysis unit, and emergency trauma management.
+- [Facilities & Diagnostics](https://novamaxhospital.com/facilities-diagnostics): Digital X-Ray, ultrasound, and in-house pathology laboratory.
+- [Book Appointment](https://novamaxhospital.com/book-appointment): Digital booking form for OPD consultations and surgical evaluations.
+- [Contact Us](https://novamaxhospital.com/contact): Hospital address, interactive map, emergency telephone numbers, and inquiry desk.
+
+## Core Medical Specialties
+
+- [Urology](https://novamaxhospital.com/services/urology): Treatment for kidney stones (RIRS laser, PCNL, URS), enlarged prostate (TURP), UTIs, and bladder diseases.
+- [Laparoscopic Surgery](https://novamaxhospital.com/services/laparoscopy): Keyhole surgeries including Laparoscopic Cholecystectomy (Gallstones), Hernia repair (TEP/TAPP), Appendectomy, and Hysterectomy.
+- [Male Infertility](https://novamaxhospital.com/services/male-infertility): Semen analysis, hormonal evaluations, and varicocele micro-surgery.
+- [Sexology](https://novamaxhospital.com/services/sexology): Confidential consultations and treatments for Erectile Dysfunction (ED) and Premature Ejaculation (PE).
+- [Uro Gynecology](https://novamaxhospital.com/services/uro-gynecology): Female urinary incontinence, pelvic floor repair, and gynecological procedures.
+
+## Contact & Location
+
+- **Director**: Dr. M. K. Sinha (Senior Consultant Urologist)
+- **Address**: Opposite Women's ITI College, Beside HDFC Bank / Ziom, Digha, Patna, Bihar 800011, India
+- **Phone**: +91 72505 20694 / +91 94718 69654
 - **Email**: info@novamaxhospital.com
 - **Website**: https://novamaxhospital.com
-
-## Main Departments & Specialties
-- **Urology**: Treatment for kidney stones, RIRS laser surgery, PCNL, URS, TURP prostate surgery, UTIs, and bladder diseases.
-- **Laparoscopy**: Keyhole surgeries including Laparoscopic Cholecystectomy (Gallstones), Hernia repair (TEP/TAPP), Appendectomy, and Hysterectomy.
-- **Male Infertility**: Semen analysis, hormonal evaluations, and varicocele micro-surgery.
-- **Sexology**: Private counseling and treatments for Erectile Dysfunction (ED) and Premature Ejaculation (PE).
-- **Uro Gynecology**: Pelvic organ prolapse, incontinence, and gynecological consultations.
-- **Diagnostics & Support**: 24/7 ICU support, advanced hemodialysis, digital X-Ray, ultrasound, and in-house pathology lab.
-
-## Key Sitemap Paths
-- `/` - Homepage featuring department selection, doctor bios, and booking.
-- `/about` - Hospital history, story, director information, and clinical infrastructure details.
-- `/doctors` - Detailed list of consulting specialists, credentials, and schedules.
-- `/contact` - Location details, inquiry form, and telephone numbers.
-- `/book-appointment` - Direct digital channel to request patient consultations.
