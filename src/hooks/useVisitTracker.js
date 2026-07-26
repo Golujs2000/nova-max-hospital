@@ -29,13 +29,14 @@ async function getVisitorLocation() {
   }
 
   try {
-    const res = await fetch('https://ipapi.co/json/')
+    const res = await fetch('https://ipinfo.io/json')
     const data = await res.json()
+    const countryName = data.country === 'IN' ? 'India' : (data.country || 'Unknown')
     const geo = {
       ip: data.ip || 'Unknown',
       city: data.city || 'Unknown',
       region: data.region || 'Unknown',
-      country: data.country_name || 'Unknown',
+      country: countryName,
     }
     sessionStorage.setItem(GEO_KEY, JSON.stringify(geo))
     return geo
