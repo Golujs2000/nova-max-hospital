@@ -252,9 +252,17 @@ export default function Category({ categoryName, categoryNames, title, descripti
   return (
     <>
       <SEO
-        title={`${title} | ${siteData.name}`}
-        description={description}
-        keywords={keywords || [title, 'Hospitals in Patna', 'Surgeries Patna', 'Nova Max Hospital']}
+        title={`${title} in Digha, Patna | Nova Max Hospital`}
+        description={`${description} Expert board-certified specialists, 4K laparoscopic & laser surgeries, 24/7 ICU care, and affordable daycare procedures.`}
+        keywords={keywords || [
+          title,
+          `${title} in Digha Patna`,
+          'Best Laparoscopic Surgery Hospital Patna',
+          'Urology & General Surgery Clinic Patna',
+          'Emergency OPD & OT Booking Digha Patna',
+          'Same Day Discharge Laser Surgery Patna',
+          'Nova Max Hospital Digha Patna'
+        ]}
       />
 
       {/* Hero Section — Clean Light Design */}

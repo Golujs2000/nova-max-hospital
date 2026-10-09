@@ -155,9 +155,18 @@ export default function ServiceDetail() {
   return (
     <div className="bg-white min-h-screen font-sans text-gray-800">
       <SEO
-        title={`${department.name} - ${siteData.name}`}
-        description={`${department.description} Recovery: ${department.recoveryTime || 'Varies'}.`}
-        keywords={[department.name, `${department.name} Patna`, `${department.name} hospital Bihar`, ...(department.features || [])]}
+        title={`Best ${department.name} Hospital in Digha, Patna | Nova Max Hospital`}
+        description={`Leading ${department.name} department at Nova Max Hospital, Digha, Patna. Board-certified specialist doctors, 4K laparoscopic & laser surgery, 24/7 emergency care, and affordable daycare procedures.`}
+        keywords={[
+          department.name,
+          `Best ${department.name} Hospital in Digha Patna`,
+          `Top ${department.name} Specialist Doctor in Patna`,
+          `${department.name} Surgery & OPD Booking Patna`,
+          `${department.name} Treatment Cost Digha Patna`,
+          `Minimally Invasive Laser Surgery Patna`,
+          `Nova Max Hospital Digha Patna`,
+          ...(department.features || [])
+        ]}
       />
 
       {/* Eye-Catching Emergency Helpline Banner */}

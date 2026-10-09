@@ -334,7 +334,21 @@ export default function Footer() {
       {/* ── Bottom bar ── */}
       <div className="border-t border-white/10">
         <div className="container-max px-4 md:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/80">
-          <p>© {new Date().getFullYear()} {siteData.name}. All rights reserved.</p>
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-2 gap-y-1 text-center md:text-left">
+            <span>© {new Date().getFullYear()} {siteData.name}. All rights reserved.</span>
+            <span className="text-white/40 hidden sm:inline">•</span>
+            <span>
+              Design by{' '}
+              <a
+                href="https://nirviai.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary-400 hover:text-white font-medium underline underline-offset-2 transition-colors"
+              >
+                nirviai.com
+              </a>
+            </span>
+          </div>
           <div className="flex flex-wrap items-center gap-4">
             {legalLinks.map(({ label, to }) => (
               <Link key={to} to={to} className="hover:text-white transition-colors">{label}</Link>

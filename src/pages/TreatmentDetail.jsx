@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  FiArrowLeft, FiClock, FiCalendar, FiCheck,
+  FiClock, FiCalendar, FiCheck,
   FiPhone, FiAlertCircle, FiActivity,
-  FiImage, FiHelpCircle, FiChevronDown, FiX, FiInfo, FiUser,
-  FiShield, FiAward, FiCheckCircle, FiHeart, FiCpu, FiFileText
+  FiImage, FiHelpCircle, FiChevronDown, FiChevronRight, FiX, FiInfo, FiUser,
+  FiShield, FiAward, FiCheckCircle, FiCpu, FiFileText
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
 import MedicalDisclaimer from '../components/MedicalDisclaimer'
@@ -38,8 +38,12 @@ export default function TreatmentDetail() {
         if (!data) navigate('/hospital-departments', { replace: true })
         else setDepartment(data)
       })
+      .catch((err) => {
+        console.error('Error loading department:', err)
+        navigate('/hospital-departments', { replace: true })
+      })
       .finally(() => setLoading(false))
-  }, [slug])
+  }, [slug, navigate])
 
   useEffect(() => {
     if (!department) return
@@ -115,14 +119,20 @@ export default function TreatmentDetail() {
 
   const faqsList = (Array.isArray(treatment.faqs) && treatment.faqs.length > 0) ? treatment.faqs : defaultFaqs
 
-  const keywordsList = treatment.keywords || [
+  const defaultKeywords = [
     treatment.name,
     `${treatment.name} in Digha Patna`,
-    department.name,
-    'Minimally Invasive Surgery Patna',
-    'Laser Surgery Digha',
+    `Best ${treatment.name} Doctor in Patna`,
+    `${treatment.name} Laser Surgery Digha Patna`,
+    `Top ${department.name} Specialist Hospital Patna`,
+    'Minimally Invasive Daycare Surgery Patna',
+    'Emergency Surgery & OPD Consultation Digha Patna',
     'Nova Max Hospital Digha Patna'
   ]
+
+  const keywordsList = (Array.isArray(treatment.keywords) && treatment.keywords.length > 0)
+    ? [...new Set([...treatment.keywords, ...defaultKeywords])]
+    : defaultKeywords
 
   const schemaJsonLd = {
     '@context': 'https://schema.org',
@@ -146,8 +156,8 @@ export default function TreatmentDetail() {
   return (
     <div className="bg-slate-50/50 min-h-screen font-sans text-slate-800">
       <SEO
-        title={`${treatment.name} at Nova Max Hospital, Digha, Patna - ${department.name}`}
-        description={`${treatment.name} at Nova Max Hospital in Digha, Patna. Advanced laser & laparoscopic procedure, expert board-certified doctors, and rapid daycare recovery.`}
+        title={`${treatment.name} in Digha, Patna | Best ${department.name} Specialist - Nova Max Hospital`}
+        description={`Book OPD consultation for ${treatment.name} at Nova Max Hospital in Digha, Patna. Senior board-certified surgeons, 4K laparoscopic & laser procedure, 24h daycare discharge, and emergency care.`}
         keywords={keywordsList}
         jsonLd={[schemaJsonLd]}
       />
